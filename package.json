@@ -1,0 +1,35 @@
+{
+  "name": "zarban",
+  "version": "1.0.0",
+  "description": "Zarban - A TypeScript SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "generate": "npm run generate:service && npm run generate:wallet",
+    "generate:service": "openapi-generator-cli generate -i ./api_specs/service.yaml -g typescript-axios -o ./src/service --additional-properties=supportsES6=true",
+    "generate:wallet": "openapi-generator-cli generate -i ./api_specs/wallet.yaml -g typescript-axios -o ./src/wallet --additional-properties=supportsES6=true",
+    "build": "tsc",
+    "prepare": "npm run generate && npm run build"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "typescript": "^5.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarbanio/zarban-ts"
+  },
+  "keywords": [
+    "zarban",
+    "sdk",
+    "api",
+    "typescript",
+    "service",
+    "wallet"
+  ],
+  "author": "zarban",
+  "license": "ISC"
+}
