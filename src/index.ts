@@ -1,2 +1,2 @@
-export * from "./service";
-export * from "./wallet";
+export * as service from "./service/api";
+export * as wallet from "./wallet/api";
