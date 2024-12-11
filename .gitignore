@@ -1,8 +1,4 @@
 // .gitignore
-node_modules /
-    dist /
-    src / generated /
 
-api_specs/
-
-fix-exports.js/
+node_modules
+dist 

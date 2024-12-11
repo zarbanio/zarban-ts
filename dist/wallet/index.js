@@ -2,8 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Zarban API
- * API for Zarban services.
+ * Zarban Wallet API
+ * API for Zarban wallet services.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: info@zarban.io
