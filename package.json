@@ -6,8 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "generate": "npm run generate:service && npm run generate:wallet",
-    "generate:service": "openapi-generator-cli generate -i ./api_specs/service.yaml -g typescript-axios -o ./src/service --additional-properties=supportsES6=true",
-    "generate:wallet": "openapi-generator-cli generate -i ./api_specs/wallet.yaml -g typescript-axios -o ./src/wallet --additional-properties=supportsES6=true",
+    "generate:service": "openapi-generator-cli generate -i ./api_specs/service.openapi.yaml -g typescript-fetch -o ./src/service --additional-properties=supportsES6=true --enable-post-process-file",
+    "generate:wallet": "openapi-generator-cli generate -i ./api_specs/wallet.openapi.yaml -g typescript-fetch -o ./src/wallet --additional-properties=supportsES6=true --enable-post-process-file",
     "build": "tsc",
     "prepare": "npm run generate && npm run build"
   },
@@ -15,7 +15,7 @@
     "axios": "^1.6.2"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@openapitools/openapi-generator-cli": "^7.10.0",
     "typescript": "^5.7.0"
   },
   "repository": {
