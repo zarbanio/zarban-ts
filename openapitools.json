@@ -2,6 +2,56 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "7.10.0"
+    "version": "7.10.0",
+    "generators": {
+      "service": {
+        "generatorName": "typescript-axios",
+        "output": "./src/service",
+        "inputSpec": "./api_specs/service.openapi.yaml",
+        "additionalProperties": {
+          "supportsES6": true,
+          "withSeparateModelsAndApi": true,
+          "withInterfaces": true,
+          "withNodeImports": true,
+          "apiPackage": "api",
+          "modelPackage": "model",
+          "npmName": "zarban",
+          "npmVersion": "0.1.0",
+          "modelPropertyNaming": "camelCase",
+          "enumPropertyNaming": "UPPERCASE",
+          "nullSafeAdditionalProps": true
+        },
+        "enablePostProcessFile": true
+      },
+      "service-docs": {
+        "generatorName": "markdown",
+        "output": "./docs/service",
+        "inputSpec": "./api_specs/service.openapi.yaml"
+      },
+      "wallet": {
+        "generatorName": "typescript-axios",
+        "output": "./src/wallet",
+        "inputSpec": "./api_specs/wallet.openapi.yaml",
+        "additionalProperties": {
+          "supportsES6": true,
+          "withSeparateModelsAndApi": true,
+          "withInterfaces": true,
+          "withNodeImports": true,
+          "apiPackage": "api",
+          "modelPackage": "model",
+          "npmName": "zarban",
+          "npmVersion": "0.1.0",
+          "modelPropertyNaming": "camelCase",
+          "enumPropertyNaming": "UPPERCASE",
+          "nullSafeAdditionalProps": true
+        },
+        "enablePostProcessFile": true
+      },
+      "wallet-docs": {
+        "generatorName": "markdown",
+        "output": "./docs/wallet",
+        "inputSpec": "./api_specs/wallet.openapi.yaml"
+      }
+    }
   }
 }
