@@ -34,3 +34,4 @@ export interface StablecoinSystemGemexitTxRequest {
      */
     'ilk': string;
 }
+//# sourceMappingURL=stablecoin-system-gemexit-tx-request.d.ts.map

@@ -41,3 +41,4 @@ export interface V3PoolInRoute {
      */
     'fee': string;
 }
+//# sourceMappingURL=v3-pool-in-route.d.ts.map

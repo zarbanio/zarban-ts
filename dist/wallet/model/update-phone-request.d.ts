@@ -22,3 +22,4 @@ export interface UpdatePhoneRequest {
      */
     'number': string;
 }
+//# sourceMappingURL=update-phone-request.d.ts.map

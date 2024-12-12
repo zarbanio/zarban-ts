@@ -23,3 +23,4 @@ export interface StakePlansResponse {
      */
     'data': Array<StakePlan>;
 }
+//# sourceMappingURL=stake-plans-response.d.ts.map

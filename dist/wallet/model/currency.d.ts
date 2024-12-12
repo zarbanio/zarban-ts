@@ -24,3 +24,4 @@ export interface Currency {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=currency.d.ts.map

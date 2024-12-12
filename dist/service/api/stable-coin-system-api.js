@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetVaultEventsByIdTypeEnum = exports.StableCoinSystemApi = exports.StableCoinSystemApiFactory = exports.StableCoinSystemApiFp = exports.StableCoinSystemApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * StableCoinSystemApi - axios parameter creator
  * @export
  */
-const StableCoinSystemApiAxiosParamCreator = function (configuration) {
+export const StableCoinSystemApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * approve and join ZAR token into Vat contract
@@ -41,24 +35,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         approveAndJoinZarTransaction: async (stablecoinSystemZarjoinTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemZarjoinTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('approveAndJoinZarTransaction', 'stablecoinSystemZarjoinTxRequest', stablecoinSystemZarjoinTxRequest);
+            assertParamExists('approveAndJoinZarTransaction', 'stablecoinSystemZarjoinTxRequest', stablecoinSystemZarjoinTxRequest);
             const localVarPath = `/v2/stablecoinsystem/auctions/tx/zarjoin`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemZarjoinTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemZarjoinTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -71,24 +65,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         createStableCoinVault: async (stablecoinSystemCreateVaultTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemCreateVaultTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('createStableCoinVault', 'stablecoinSystemCreateVaultTxRequest', stablecoinSystemCreateVaultTxRequest);
+            assertParamExists('createStableCoinVault', 'stablecoinSystemCreateVaultTxRequest', stablecoinSystemCreateVaultTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/createvault`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemCreateVaultTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemCreateVaultTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -101,24 +95,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         depositStableCoinCollateral: async (stablecoinSystemDepositCollateralTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemDepositCollateralTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('depositStableCoinCollateral', 'stablecoinSystemDepositCollateralTxRequest', stablecoinSystemDepositCollateralTxRequest);
+            assertParamExists('depositStableCoinCollateral', 'stablecoinSystemDepositCollateralTxRequest', stablecoinSystemDepositCollateralTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/depositcollateral`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemDepositCollateralTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemDepositCollateralTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -131,24 +125,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         exitGemTransaction: async (stablecoinSystemGemexitTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemGemexitTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('exitGemTransaction', 'stablecoinSystemGemexitTxRequest', stablecoinSystemGemexitTxRequest);
+            assertParamExists('exitGemTransaction', 'stablecoinSystemGemexitTxRequest', stablecoinSystemGemexitTxRequest);
             const localVarPath = `/v2/stablecoinsystem/auctions/tx/gemexit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemGemexitTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemGemexitTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -161,24 +155,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         exitZarTransaction: async (stablecoinSystemZarexitTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemZarexitTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('exitZarTransaction', 'stablecoinSystemZarexitTxRequest', stablecoinSystemZarexitTxRequest);
+            assertParamExists('exitZarTransaction', 'stablecoinSystemZarexitTxRequest', stablecoinSystemZarexitTxRequest);
             const localVarPath = `/v2/stablecoinsystem/auctions/tx/zarexit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemZarexitTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemZarexitTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -191,19 +185,19 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
         getAllIlks: async (options = {}) => {
             const localVarPath = `/v2/ilks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -216,19 +210,19 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
         getCollectorData: async (options = {}) => {
             const localVarPath = `/v2/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -241,23 +235,23 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         getIlkByName: async (name, options = {}) => {
             // verify required parameter 'name' is not null or undefined
-            (0, common_1.assertParamExists)('getIlkByName', 'name', name);
+            assertParamExists('getIlkByName', 'name', name);
             const localVarPath = `/v2/ilks/{name}`
                 .replace(`{${"name"}}`, encodeURIComponent(String(name)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -270,23 +264,23 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         getVaultById: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getVaultById', 'id', id);
+            assertParamExists('getVaultById', 'id', id);
             const localVarPath = `/v2/vaults/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -300,26 +294,26 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         getVaultEventsById: async (id, type, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getVaultEventsById', 'id', id);
+            assertParamExists('getVaultEventsById', 'id', id);
             const localVarPath = `/v2/vaults/{id}/events`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -333,22 +327,22 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
         getVaultsByOwner: async (owner, options = {}) => {
             const localVarPath = `/v2/vaults`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (owner !== undefined) {
                 localVarQueryParameter['owner'] = owner;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -361,24 +355,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         liquidateVaultTransaction: async (stablecoinSystemBarkTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemBarkTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('liquidateVaultTransaction', 'stablecoinSystemBarkTxRequest', stablecoinSystemBarkTxRequest);
+            assertParamExists('liquidateVaultTransaction', 'stablecoinSystemBarkTxRequest', stablecoinSystemBarkTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/bark`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemBarkTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemBarkTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -391,24 +385,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         mintZarTransaction: async (stablecoinSystemMintZarTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemMintZarTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('mintZarTransaction', 'stablecoinSystemMintZarTxRequest', stablecoinSystemMintZarTxRequest);
+            assertParamExists('mintZarTransaction', 'stablecoinSystemMintZarTxRequest', stablecoinSystemMintZarTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/mintzar`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemMintZarTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemMintZarTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -421,24 +415,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         repayZarTransaction: async (stablecoinSystemRepayZarTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemRepayZarTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('repayZarTransaction', 'stablecoinSystemRepayZarTxRequest', stablecoinSystemRepayZarTxRequest);
+            assertParamExists('repayZarTransaction', 'stablecoinSystemRepayZarTxRequest', stablecoinSystemRepayZarTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/repayzar`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemRepayZarTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemRepayZarTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -451,24 +445,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         resetAuctionTransaction: async (stablecoinSystemRedoTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemRedoTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('resetAuctionTransaction', 'stablecoinSystemRedoTxRequest', stablecoinSystemRedoTxRequest);
+            assertParamExists('resetAuctionTransaction', 'stablecoinSystemRedoTxRequest', stablecoinSystemRedoTxRequest);
             const localVarPath = `/v2/stablecoinsystem/auctions/tx/redo`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemRedoTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemRedoTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -481,24 +475,24 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         takeAuctionTransaction: async (stablecoinSystemTakeTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemTakeTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('takeAuctionTransaction', 'stablecoinSystemTakeTxRequest', stablecoinSystemTakeTxRequest);
+            assertParamExists('takeAuctionTransaction', 'stablecoinSystemTakeTxRequest', stablecoinSystemTakeTxRequest);
             const localVarPath = `/v2/stablecoinsystem/auctions/tx/take`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemTakeTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemTakeTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -511,36 +505,35 @@ const StableCoinSystemApiAxiosParamCreator = function (configuration) {
          */
         withdrawCollateralTransaction: async (stablecoinSystemWithdrawCollateralTxRequest, options = {}) => {
             // verify required parameter 'stablecoinSystemWithdrawCollateralTxRequest' is not null or undefined
-            (0, common_1.assertParamExists)('withdrawCollateralTransaction', 'stablecoinSystemWithdrawCollateralTxRequest', stablecoinSystemWithdrawCollateralTxRequest);
+            assertParamExists('withdrawCollateralTransaction', 'stablecoinSystemWithdrawCollateralTxRequest', stablecoinSystemWithdrawCollateralTxRequest);
             const localVarPath = `/v2/stablecoinsystem/tx/withdrawcollateral`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stablecoinSystemWithdrawCollateralTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(stablecoinSystemWithdrawCollateralTxRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.StableCoinSystemApiAxiosParamCreator = StableCoinSystemApiAxiosParamCreator;
 /**
  * StableCoinSystemApi - functional programming interface
  * @export
  */
-const StableCoinSystemApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.StableCoinSystemApiAxiosParamCreator)(configuration);
+export const StableCoinSystemApiFp = function (configuration) {
+    const localVarAxiosParamCreator = StableCoinSystemApiAxiosParamCreator(configuration);
     return {
         /**
          * approve and join ZAR token into Vat contract
@@ -550,11 +543,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.approveAndJoinZarTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.approveAndJoinZarTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Create vault
@@ -564,11 +556,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async createStableCoinVault(stablecoinSystemCreateVaultTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.createStableCoinVault(stablecoinSystemCreateVaultTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.createStableCoinVault']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.createStableCoinVault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Deposit collateral
@@ -578,11 +569,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.depositStableCoinCollateral']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.depositStableCoinCollateral']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * exit Gem token (which can be used as collateral) from Vat contract
@@ -592,11 +582,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async exitGemTransaction(stablecoinSystemGemexitTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.exitGemTransaction(stablecoinSystemGemexitTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.exitGemTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.exitGemTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * exit ZAR token from Vat contract
@@ -606,11 +595,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async exitZarTransaction(stablecoinSystemZarexitTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.exitZarTransaction(stablecoinSystemZarexitTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.exitZarTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.exitZarTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve a list of all available ilks.
@@ -619,11 +607,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getAllIlks(options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllIlks(options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getAllIlks']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getAllIlks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get collector data
@@ -632,11 +619,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getCollectorData(options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollectorData(options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getCollectorData']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getCollectorData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve an Ilk by providing its name.
@@ -646,11 +632,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getIlkByName(name, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getIlkByName(name, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getIlkByName']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getIlkByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          *
@@ -660,11 +645,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultById(id, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultById(id, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getVaultById']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getVaultById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          *
@@ -675,11 +659,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultEventsById(id, type, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultEventsById(id, type, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getVaultEventsById']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getVaultEventsById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          *
@@ -689,11 +672,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultsByOwner(owner, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultsByOwner(owner, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.getVaultsByOwner']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.getVaultsByOwner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * liquidate a vault
@@ -703,11 +685,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async liquidateVaultTransaction(stablecoinSystemBarkTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.liquidateVaultTransaction(stablecoinSystemBarkTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.liquidateVaultTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.liquidateVaultTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Mint ZAR
@@ -717,11 +698,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async mintZarTransaction(stablecoinSystemMintZarTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.mintZarTransaction(stablecoinSystemMintZarTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.mintZarTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.mintZarTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Repay ZAR
@@ -731,11 +711,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async repayZarTransaction(stablecoinSystemRepayZarTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.repayZarTransaction(stablecoinSystemRepayZarTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.repayZarTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.repayZarTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * reset a auction
@@ -745,11 +724,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async resetAuctionTransaction(stablecoinSystemRedoTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.resetAuctionTransaction(stablecoinSystemRedoTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.resetAuctionTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.resetAuctionTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * take a auction
@@ -759,11 +737,10 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async takeAuctionTransaction(stablecoinSystemTakeTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.takeAuctionTransaction(stablecoinSystemTakeTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.takeAuctionTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.takeAuctionTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Withdraw collateral
@@ -773,21 +750,19 @@ const StableCoinSystemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['StableCoinSystemApi.withdrawCollateralTransaction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StableCoinSystemApi.withdrawCollateralTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.StableCoinSystemApiFp = StableCoinSystemApiFp;
 /**
  * StableCoinSystemApi - factory interface
  * @export
  */
-const StableCoinSystemApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.StableCoinSystemApiFp)(configuration);
+export const StableCoinSystemApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = StableCoinSystemApiFp(configuration);
     return {
         /**
          * approve and join ZAR token into Vat contract
@@ -960,14 +935,13 @@ const StableCoinSystemApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.StableCoinSystemApiFactory = StableCoinSystemApiFactory;
 /**
  * StableCoinSystemApi - object-oriented interface
  * @export
  * @class StableCoinSystemApi
  * @extends {BaseAPI}
  */
-class StableCoinSystemApi extends base_1.BaseAPI {
+export class StableCoinSystemApi extends BaseAPI {
     /**
      * approve and join ZAR token into Vat contract
      * @summary approve and join ZAR token into Vat contract
@@ -977,7 +951,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Create vault
@@ -988,7 +962,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     createStableCoinVault(stablecoinSystemCreateVaultTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).createStableCoinVault(stablecoinSystemCreateVaultTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).createStableCoinVault(stablecoinSystemCreateVaultTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Deposit collateral
@@ -999,7 +973,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * exit Gem token (which can be used as collateral) from Vat contract
@@ -1010,7 +984,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     exitGemTransaction(stablecoinSystemGemexitTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).exitGemTransaction(stablecoinSystemGemexitTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).exitGemTransaction(stablecoinSystemGemexitTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * exit ZAR token from Vat contract
@@ -1021,7 +995,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     exitZarTransaction(stablecoinSystemZarexitTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).exitZarTransaction(stablecoinSystemZarexitTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).exitZarTransaction(stablecoinSystemZarexitTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve a list of all available ilks.
@@ -1031,7 +1005,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getAllIlks(options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getAllIlks(options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getAllIlks(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get collector data
@@ -1041,7 +1015,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getCollectorData(options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getCollectorData(options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getCollectorData(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve an Ilk by providing its name.
@@ -1052,7 +1026,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getIlkByName(name, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getIlkByName(name, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getIlkByName(name, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -1063,7 +1037,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getVaultById(id, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getVaultById(id, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getVaultById(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -1075,7 +1049,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getVaultEventsById(id, type, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getVaultEventsById(id, type, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getVaultEventsById(id, type, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -1086,7 +1060,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     getVaultsByOwner(owner, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).getVaultsByOwner(owner, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).getVaultsByOwner(owner, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * liquidate a vault
@@ -1097,7 +1071,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     liquidateVaultTransaction(stablecoinSystemBarkTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).liquidateVaultTransaction(stablecoinSystemBarkTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).liquidateVaultTransaction(stablecoinSystemBarkTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Mint ZAR
@@ -1108,7 +1082,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     mintZarTransaction(stablecoinSystemMintZarTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).mintZarTransaction(stablecoinSystemMintZarTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).mintZarTransaction(stablecoinSystemMintZarTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Repay ZAR
@@ -1119,7 +1093,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     repayZarTransaction(stablecoinSystemRepayZarTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).repayZarTransaction(stablecoinSystemRepayZarTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).repayZarTransaction(stablecoinSystemRepayZarTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * reset a auction
@@ -1130,7 +1104,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     resetAuctionTransaction(stablecoinSystemRedoTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).resetAuctionTransaction(stablecoinSystemRedoTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).resetAuctionTransaction(stablecoinSystemRedoTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * take a auction
@@ -1141,7 +1115,7 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     takeAuctionTransaction(stablecoinSystemTakeTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).takeAuctionTransaction(stablecoinSystemTakeTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).takeAuctionTransaction(stablecoinSystemTakeTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Withdraw collateral
@@ -1152,16 +1126,16 @@ class StableCoinSystemApi extends base_1.BaseAPI {
      * @memberof StableCoinSystemApi
      */
     withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest, options) {
-        return (0, exports.StableCoinSystemApiFp)(this.configuration).withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return StableCoinSystemApiFp(this.configuration).withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.StableCoinSystemApi = StableCoinSystemApi;
 /**
  * @export
  */
-exports.GetVaultEventsByIdTypeEnum = {
+export const GetVaultEventsByIdTypeEnum = {
     REPAY: 'repay',
     DEPOSIT: 'deposit',
     WITHDRAW: 'withdraw',
     MINT: 'mint'
 };
+//# sourceMappingURL=stable-coin-system-api.js.map

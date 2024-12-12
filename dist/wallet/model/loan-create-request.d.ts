@@ -58,3 +58,4 @@ export declare const LoanCreateRequestIntentEnum: {
     readonly PREVIEW: "preview";
 };
 export type LoanCreateRequestIntentEnum = typeof LoanCreateRequestIntentEnum[keyof typeof LoanCreateRequestIntentEnum];
+//# sourceMappingURL=loan-create-request.d.ts.map

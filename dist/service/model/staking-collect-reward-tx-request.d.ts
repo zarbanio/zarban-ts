@@ -28,3 +28,4 @@ export interface StakingCollectRewardTxRequest {
      */
     'contractAddress': string;
 }
+//# sourceMappingURL=staking-collect-reward-tx-request.d.ts.map

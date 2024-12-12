@@ -20,3 +20,4 @@ export declare const LoanToValueOptions: {
     readonly SAFE: "Safe";
 };
 export type LoanToValueOptions = typeof LoanToValueOptions[keyof typeof LoanToValueOptions];
+//# sourceMappingURL=loan-to-value-options.d.ts.map

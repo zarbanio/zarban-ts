@@ -34,3 +34,4 @@ export interface RedemptionRequest {
      */
     'SmsOtp': number;
 }
+//# sourceMappingURL=redemption-request.d.ts.map

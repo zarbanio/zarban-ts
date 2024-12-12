@@ -54,3 +54,4 @@ export interface StakePlan {
      */
     'finishAt': Timestamp;
 }
+//# sourceMappingURL=stake-plan.d.ts.map

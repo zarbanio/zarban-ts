@@ -23,3 +23,4 @@ export interface UserStakesResponse {
      */
     'data': Array<UserStake>;
 }
+//# sourceMappingURL=user-stakes-response.d.ts.map

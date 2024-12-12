@@ -16,3 +16,4 @@ import type { VaultEventExtension } from './vault-event-extension';
  * @export
  */
 export type VaultEventItem = BasicEvent & VaultEventExtension;
+//# sourceMappingURL=vault-event-item.d.ts.map

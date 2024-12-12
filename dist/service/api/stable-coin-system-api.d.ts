@@ -782,3 +782,4 @@ export declare const GetVaultEventsByIdTypeEnum: {
     readonly MINT: "mint";
 };
 export type GetVaultEventsByIdTypeEnum = typeof GetVaultEventsByIdTypeEnum[keyof typeof GetVaultEventsByIdTypeEnum];
+//# sourceMappingURL=stable-coin-system-api.d.ts.map

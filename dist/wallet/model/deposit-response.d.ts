@@ -35,3 +35,4 @@ export interface DepositResponse {
      */
     'symbol': string;
 }
+//# sourceMappingURL=deposit-response.d.ts.map

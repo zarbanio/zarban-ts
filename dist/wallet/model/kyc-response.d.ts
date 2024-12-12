@@ -53,3 +53,4 @@ export interface KycResponse {
      */
     'bankInfo': BankInfo;
 }
+//# sourceMappingURL=kyc-response.d.ts.map

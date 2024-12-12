@@ -16,3 +16,4 @@
  */
 export interface SystemDebt {
 }
+//# sourceMappingURL=system-debt.d.ts.map

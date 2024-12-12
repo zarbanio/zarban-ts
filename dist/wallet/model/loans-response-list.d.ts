@@ -23,3 +23,4 @@ export interface LoansResponseList {
      */
     'data': Array<LoansResponse>;
 }
+//# sourceMappingURL=loans-response-list.d.ts.map

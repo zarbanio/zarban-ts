@@ -34,3 +34,4 @@ export interface StablecoinSystemWithdrawCollateralTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=stablecoin-system-withdraw-collateral-tx-request.d.ts.map

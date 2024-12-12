@@ -23,3 +23,4 @@ export interface StakingWithdrawTxResponse {
      */
     'chainActivity'?: ChainActivity;
 }
+//# sourceMappingURL=staking-withdraw-tx-response.d.ts.map

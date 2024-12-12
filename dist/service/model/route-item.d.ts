@@ -15,3 +15,4 @@ import type { V3PoolInRoute } from './v3-pool-in-route';
  * @export
  */
 export type RouteItem = V3PoolInRoute;
+//# sourceMappingURL=route-item.d.ts.map

@@ -34,3 +34,4 @@ export declare const AdminRedemptionUpdateRequestStatusEnum: {
     readonly COMPLETED: "Completed";
 };
 export type AdminRedemptionUpdateRequestStatusEnum = typeof AdminRedemptionUpdateRequestStatusEnum[keyof typeof AdminRedemptionUpdateRequestStatusEnum];
+//# sourceMappingURL=admin-redemption-update-request.d.ts.map

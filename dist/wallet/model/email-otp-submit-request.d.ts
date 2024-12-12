@@ -22,3 +22,4 @@ export interface EmailOtpSubmitRequest {
      */
     'code': number;
 }
+//# sourceMappingURL=email-otp-submit-request.d.ts.map

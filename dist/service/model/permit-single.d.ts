@@ -29,3 +29,4 @@ export interface PermitSingle {
      */
     'hash': string;
 }
+//# sourceMappingURL=permit-single.d.ts.map

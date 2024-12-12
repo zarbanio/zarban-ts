@@ -28,3 +28,4 @@ export interface ErrorDetail {
      */
     'solutions': Array<string>;
 }
+//# sourceMappingURL=error-detail.d.ts.map

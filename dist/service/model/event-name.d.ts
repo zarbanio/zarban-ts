@@ -33,3 +33,4 @@ export declare const EventName: {
     readonly UNKNOWN: "Unknown";
 };
 export type EventName = typeof EventName[keyof typeof EventName];
+//# sourceMappingURL=event-name.d.ts.map

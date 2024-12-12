@@ -17,3 +17,4 @@ import type { PreparedTx } from './prepared-tx';
  * @export
  */
 export type ChainActivityStepData = EIP712SignRequest | PersonalSignRequest | PreparedTx;
+//# sourceMappingURL=chain-activity-step-data.d.ts.map

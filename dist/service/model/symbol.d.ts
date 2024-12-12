@@ -26,3 +26,4 @@ export declare const Symbol: {
     readonly TMN: "TMN";
 };
 export type Symbol = typeof Symbol[keyof typeof Symbol];
+//# sourceMappingURL=symbol.d.ts.map

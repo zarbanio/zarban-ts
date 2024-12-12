@@ -22,3 +22,4 @@ export interface KycConfirmRequest {
      */
     'id': string;
 }
+//# sourceMappingURL=kyc-confirm-request.d.ts.map

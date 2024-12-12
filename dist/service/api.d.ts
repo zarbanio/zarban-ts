@@ -26,3 +26,4 @@ export * as StakingApi from './api/staking-api';
 export * as SwapApi from './api/swap-api';
 export * as VaultsApi from './api/vaults-api';
 export * as WebsocketApi from './api/websocket-api';
+//# sourceMappingURL=api.d.ts.map

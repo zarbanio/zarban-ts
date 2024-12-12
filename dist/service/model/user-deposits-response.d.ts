@@ -23,3 +23,4 @@ export interface UserDepositsResponse {
      */
     'data': Array<LendingpoolDeposit>;
 }
+//# sourceMappingURL=user-deposits-response.d.ts.map

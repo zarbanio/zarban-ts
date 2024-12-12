@@ -20,3 +20,4 @@ export declare const EventType: {
     readonly USER: "user";
 };
 export type EventType = typeof EventType[keyof typeof EventType];
+//# sourceMappingURL=event-type.d.ts.map

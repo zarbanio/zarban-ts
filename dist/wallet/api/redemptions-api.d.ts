@@ -232,3 +232,4 @@ export declare const GetAllRedemptionsStateEnum: {
     readonly REJECTED: "rejected";
 };
 export type GetAllRedemptionsStateEnum = typeof GetAllRedemptionsStateEnum[keyof typeof GetAllRedemptionsStateEnum];
+//# sourceMappingURL=redemptions-api.d.ts.map

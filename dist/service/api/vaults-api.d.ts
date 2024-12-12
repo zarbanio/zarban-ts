@@ -189,3 +189,4 @@ export declare const GetVaultEventsByIdTypeEnum: {
     readonly MINT: "mint";
 };
 export type GetVaultEventsByIdTypeEnum = typeof GetVaultEventsByIdTypeEnum[keyof typeof GetVaultEventsByIdTypeEnum];
+//# sourceMappingURL=vaults-api.d.ts.map

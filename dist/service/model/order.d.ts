@@ -85,3 +85,4 @@ export declare const OrderOrderTypeEnum: {
     readonly LIMIT: "limit";
 };
 export type OrderOrderTypeEnum = typeof OrderOrderTypeEnum[keyof typeof OrderOrderTypeEnum];
+//# sourceMappingURL=order.d.ts.map

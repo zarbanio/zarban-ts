@@ -28,3 +28,4 @@ export interface StablecoinSystemBarkTxRequest {
      */
     'vaultId': number;
 }
+//# sourceMappingURL=stablecoin-system-bark-tx-request.d.ts.map

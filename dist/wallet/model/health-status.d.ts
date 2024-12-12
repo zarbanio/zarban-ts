@@ -22,3 +22,4 @@ export interface HealthStatus {
      */
     'status'?: string;
 }
+//# sourceMappingURL=health-status.d.ts.map

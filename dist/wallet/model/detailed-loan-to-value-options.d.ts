@@ -30,3 +30,4 @@ export interface DetailedLoanToValueOptions {
      */
     'value': string;
 }
+//# sourceMappingURL=detailed-loan-to-value-options.d.ts.map

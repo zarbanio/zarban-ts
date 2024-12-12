@@ -16,3 +16,4 @@
  */
 export interface SystemSurplusLotSize {
 }
+//# sourceMappingURL=system-surplus-lot-size.d.ts.map

@@ -34,3 +34,4 @@ export interface StablecoinSystemMintZarTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=stablecoin-system-mint-zar-tx-request.d.ts.map

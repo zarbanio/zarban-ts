@@ -16,3 +16,4 @@
  */
 export interface SystemDebtCeiling {
 }
+//# sourceMappingURL=system-debt-ceiling.d.ts.map

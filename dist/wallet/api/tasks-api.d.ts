@@ -83,3 +83,4 @@ export declare class TasksApi extends BaseAPI implements TasksApiInterface {
      */
     getTasks(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<TaskResponse, any>>;
 }
+//# sourceMappingURL=tasks-api.d.ts.map

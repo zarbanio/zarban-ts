@@ -23,3 +23,4 @@ export interface EventDetailsResponse {
      */
     'data': Array<Log>;
 }
+//# sourceMappingURL=event-details-response.d.ts.map

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,9 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.WithdrawRequestStatusEnum = void 0;
-exports.WithdrawRequestStatusEnum = {
+export const WithdrawRequestStatusEnum = {
     PENDING: 'Pending',
     CANCELED: 'Canceled',
     APPROVED: 'Approved',
@@ -26,3 +23,4 @@ exports.WithdrawRequestStatusEnum = {
     ACCOUNT_BALANCE_UNLOCKED: 'AccountBalanceUnlocked',
     COMPLETED: 'Completed'
 };
+//# sourceMappingURL=withdraw-request.js.map

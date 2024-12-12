@@ -23,3 +23,4 @@ export interface VaultsResponse {
      */
     'data': Array<Vault>;
 }
+//# sourceMappingURL=vaults-response.d.ts.map

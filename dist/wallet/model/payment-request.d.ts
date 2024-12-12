@@ -22,3 +22,4 @@ export interface PaymentRequest {
      */
     'amount': string;
 }
+//# sourceMappingURL=payment-request.d.ts.map

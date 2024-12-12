@@ -127,3 +127,4 @@ export interface QuoteResponse {
      */
     'permitData'?: TypedData;
 }
+//# sourceMappingURL=quote-response.d.ts.map

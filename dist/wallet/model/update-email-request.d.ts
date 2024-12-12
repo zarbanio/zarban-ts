@@ -22,3 +22,4 @@ export interface UpdateEmailRequest {
      */
     'email': string;
 }
+//# sourceMappingURL=update-email-request.d.ts.map

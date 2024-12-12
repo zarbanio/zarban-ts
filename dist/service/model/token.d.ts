@@ -59,3 +59,4 @@ export interface Token {
      */
     'persianName': string;
 }
+//# sourceMappingURL=token.d.ts.map

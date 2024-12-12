@@ -89,3 +89,4 @@ export interface User {
      */
     'telegram'?: TelegramProfile;
 }
+//# sourceMappingURL=user.d.ts.map

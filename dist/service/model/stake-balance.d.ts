@@ -16,3 +16,4 @@
  */
 export interface StakeBalance {
 }
+//# sourceMappingURL=stake-balance.d.ts.map

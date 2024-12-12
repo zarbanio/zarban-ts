@@ -38,3 +38,4 @@ export interface AccountStakingSummary {
      */
     'netApy': string;
 }
+//# sourceMappingURL=account-staking-summary.d.ts.map

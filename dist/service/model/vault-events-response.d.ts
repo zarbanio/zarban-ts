@@ -23,3 +23,4 @@ export interface VaultEventsResponse {
      */
     'data': Array<ExtendedEvent>;
 }
+//# sourceMappingURL=vault-events-response.d.ts.map

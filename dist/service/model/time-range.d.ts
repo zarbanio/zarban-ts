@@ -28,3 +28,4 @@ export interface TimeRange {
      */
     'to'?: string;
 }
+//# sourceMappingURL=time-range.d.ts.map

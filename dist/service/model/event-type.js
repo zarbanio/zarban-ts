@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,15 +11,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventType = void 0;
 /**
  * The type of the event. who has triggered the event.
  * @export
  * @enum {string}
  */
-exports.EventType = {
+export const EventType = {
     EXECUTIVE: 'executive',
     ORACLE: 'oracle',
     USER: 'user'
 };
+//# sourceMappingURL=event-type.js.map

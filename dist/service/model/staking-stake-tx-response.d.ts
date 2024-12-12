@@ -23,3 +23,4 @@ export interface StakingStakeTxResponse {
      */
     'chainActivity'?: ChainActivity;
 }
+//# sourceMappingURL=staking-stake-tx-response.d.ts.map

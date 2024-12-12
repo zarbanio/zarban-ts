@@ -1,0 +1,1 @@
+{"version":3,"file":"bank-info.d.ts","sourceRoot":"","sources":["../../../src/wallet/model/bank-info.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAIH;;;;GAIG;AACH,MAAM,WAAW,QAAQ;IACrB;;;;OAIG;IACH,UAAU,EAAE,MAAM,CAAC;IACnB;;;;OAIG;IACH,YAAY,EAAE,MAAM,CAAC;IACrB;;;;OAIG;IACH,MAAM,EAAE,MAAM,CAAC;CAClB"}

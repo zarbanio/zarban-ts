@@ -34,3 +34,4 @@ export interface StablecoinSystemRedoTxRequest {
      */
     'ilk': string;
 }
+//# sourceMappingURL=stablecoin-system-redo-tx-request.d.ts.map

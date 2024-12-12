@@ -52,3 +52,4 @@ export interface Payment {
      */
     'shareUrl': string;
 }
+//# sourceMappingURL=payment.d.ts.map

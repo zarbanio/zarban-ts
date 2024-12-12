@@ -88,3 +88,4 @@ export interface ExternalTransaction {
      */
     'Status': TransactionStatus;
 }
+//# sourceMappingURL=external-transaction.d.ts.map

@@ -46,3 +46,4 @@ export interface StablecoinSystemTakeTxRequest {
      */
     'maxAcceptablePrice': string;
 }
+//# sourceMappingURL=stablecoin-system-take-tx-request.d.ts.map

@@ -23,3 +23,4 @@ export interface ReferralResponse {
      */
     'data': Array<Referral>;
 }
+//# sourceMappingURL=referral-response.d.ts.map

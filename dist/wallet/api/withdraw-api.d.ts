@@ -213,3 +213,4 @@ export declare class WithdrawApi extends BaseAPI implements WithdrawApiInterface
      */
     requestWithdrawal(withdrawRequestBody: WithdrawRequestBody, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WithdrawResponseBody, any>>;
 }
+//# sourceMappingURL=withdraw-api.d.ts.map

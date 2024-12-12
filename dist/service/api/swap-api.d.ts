@@ -89,3 +89,4 @@ export declare class SwapApi extends BaseAPI implements SwapApiInterface {
      */
     getSwapQuote(quoteRequest: QuoteRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<QuoteResponse, any>>;
 }
+//# sourceMappingURL=swap-api.d.ts.map

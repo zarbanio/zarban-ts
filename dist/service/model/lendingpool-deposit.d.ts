@@ -49,3 +49,4 @@ export interface LendingpoolDeposit {
      */
     'supplyAPY': string;
 }
+//# sourceMappingURL=lendingpool-deposit.d.ts.map

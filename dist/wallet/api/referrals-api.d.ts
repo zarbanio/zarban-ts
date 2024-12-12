@@ -215,3 +215,4 @@ export declare class ReferralsApi extends BaseAPI implements ReferralsApiInterfa
      */
     validateReferral(referralId: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
+//# sourceMappingURL=referrals-api.d.ts.map

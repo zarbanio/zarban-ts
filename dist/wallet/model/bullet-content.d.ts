@@ -34,3 +34,4 @@ export interface BulletContent {
      */
     'bullets': Array<string>;
 }
+//# sourceMappingURL=bullet-content.d.ts.map

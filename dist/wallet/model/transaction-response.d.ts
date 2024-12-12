@@ -23,3 +23,4 @@ export interface TransactionResponse {
      */
     'data': Array<Transaction>;
 }
+//# sourceMappingURL=transaction-response.d.ts.map

@@ -61,3 +61,4 @@ export interface LoanPlan {
      */
     'loanToValueOptions': Array<DetailedLoanToValueOptions>;
 }
+//# sourceMappingURL=loan-plan.d.ts.map

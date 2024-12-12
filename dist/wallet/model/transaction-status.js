@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,15 +11,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionStatus = void 0;
 /**
  *
  * @export
  * @enum {string}
  */
-exports.TransactionStatus = {
+export const TransactionStatus = {
     SENT: 'Sent',
     SUCCESS: 'Success',
     FAILED: 'Failed'
 };
+//# sourceMappingURL=transaction-status.js.map

@@ -126,3 +126,4 @@ export declare class IlksApi extends BaseAPI implements IlksApiInterface {
      */
     getIlkByName(name: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Ilk, any>>;
 }
+//# sourceMappingURL=ilks-api.d.ts.map

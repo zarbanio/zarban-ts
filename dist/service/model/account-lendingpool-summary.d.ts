@@ -90,3 +90,4 @@ export interface AccountLendingpoolSummary {
      */
     'loanToValue': string;
 }
+//# sourceMappingURL=account-lendingpool-summary.d.ts.map

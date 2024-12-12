@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PermitApi = exports.PermitApiFactory = exports.PermitApiFp = exports.PermitApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * PermitApi - axios parameter creator
  * @export
  */
-const PermitApiAxiosParamCreator = function (configuration) {
+export const PermitApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get permit for single token
@@ -42,17 +36,17 @@ const PermitApiAxiosParamCreator = function (configuration) {
          */
         getSingleTokenPermit: async (token, user, options = {}) => {
             // verify required parameter 'token' is not null or undefined
-            (0, common_1.assertParamExists)('getSingleTokenPermit', 'token', token);
+            assertParamExists('getSingleTokenPermit', 'token', token);
             // verify required parameter 'user' is not null or undefined
-            (0, common_1.assertParamExists)('getSingleTokenPermit', 'user', user);
+            assertParamExists('getSingleTokenPermit', 'user', user);
             const localVarPath = `/v2/permit/single`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (token !== undefined) {
@@ -61,23 +55,22 @@ const PermitApiAxiosParamCreator = function (configuration) {
             if (user !== undefined) {
                 localVarQueryParameter['user'] = user;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.PermitApiAxiosParamCreator = PermitApiAxiosParamCreator;
 /**
  * PermitApi - functional programming interface
  * @export
  */
-const PermitApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.PermitApiAxiosParamCreator)(configuration);
+export const PermitApiFp = function (configuration) {
+    const localVarAxiosParamCreator = PermitApiAxiosParamCreator(configuration);
     return {
         /**
          * Get permit for single token
@@ -88,21 +81,19 @@ const PermitApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getSingleTokenPermit(token, user, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSingleTokenPermit(token, user, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PermitApi.getSingleTokenPermit']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PermitApi.getSingleTokenPermit']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.PermitApiFp = PermitApiFp;
 /**
  * PermitApi - factory interface
  * @export
  */
-const PermitApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.PermitApiFp)(configuration);
+export const PermitApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = PermitApiFp(configuration);
     return {
         /**
          * Get permit for single token
@@ -117,14 +108,13 @@ const PermitApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.PermitApiFactory = PermitApiFactory;
 /**
  * PermitApi - object-oriented interface
  * @export
  * @class PermitApi
  * @extends {BaseAPI}
  */
-class PermitApi extends base_1.BaseAPI {
+export class PermitApi extends BaseAPI {
     /**
      * Get permit for single token
      * @summary Get permit for single token
@@ -135,7 +125,7 @@ class PermitApi extends base_1.BaseAPI {
      * @memberof PermitApi
      */
     getSingleTokenPermit(token, user, options) {
-        return (0, exports.PermitApiFp)(this.configuration).getSingleTokenPermit(token, user, options).then((request) => request(this.axios, this.basePath));
+        return PermitApiFp(this.configuration).getSingleTokenPermit(token, user, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.PermitApi = PermitApi;
+//# sourceMappingURL=permit-api.js.map

@@ -104,3 +104,4 @@ export * from './vault-event-item';
 export * from './vault-events-response';
 export * from './vaults-response';
 export * from './wallet-balance';
+//# sourceMappingURL=index.d.ts.map

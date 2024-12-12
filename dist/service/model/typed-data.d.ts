@@ -46,3 +46,4 @@ export interface TypedData {
         [key: string]: any | undefined;
     };
 }
+//# sourceMappingURL=typed-data.d.ts.map

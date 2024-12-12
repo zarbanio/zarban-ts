@@ -55,3 +55,4 @@ export interface WithdrawRequestPreview {
      */
     'balanceAfterWithdraw': Currency;
 }
+//# sourceMappingURL=withdraw-request-preview.d.ts.map

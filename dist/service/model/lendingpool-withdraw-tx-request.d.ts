@@ -34,3 +34,4 @@ export interface LendingpoolWithdrawTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=lendingpool-withdraw-tx-request.d.ts.map

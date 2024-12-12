@@ -22,3 +22,4 @@ export interface CreateChildUserRequest {
      */
     'username': string;
 }
+//# sourceMappingURL=create-child-user-request.d.ts.map

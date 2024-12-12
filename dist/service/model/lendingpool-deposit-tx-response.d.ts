@@ -30,3 +30,4 @@ export interface LendingpoolDepositTxResponse {
      */
     'response'?: LendingpoolTxResponse;
 }
+//# sourceMappingURL=lendingpool-deposit-tx-response.d.ts.map

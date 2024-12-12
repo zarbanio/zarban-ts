@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,9 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionDirectionEnum = void 0;
-exports.TransactionDirectionEnum = {
+export const TransactionDirectionEnum = {
     INBOUND: 'Inbound',
     OUTBOUND: 'Outbound'
 };
+//# sourceMappingURL=transaction.js.map

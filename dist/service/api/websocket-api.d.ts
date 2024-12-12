@@ -82,3 +82,4 @@ export declare class WebsocketApi extends BaseAPI implements WebsocketApiInterfa
      */
     getUnfilledOrdersWebsocket(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
+//# sourceMappingURL=websocket-api.d.ts.map

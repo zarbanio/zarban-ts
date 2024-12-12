@@ -19,3 +19,4 @@ export declare const TradeType: {
     readonly EXACT_OUTPUT: "ExactOutput";
 };
 export type TradeType = typeof TradeType[keyof typeof TradeType];
+//# sourceMappingURL=trade-type.d.ts.map

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PricesApi = exports.PricesApiFactory = exports.PricesApiFp = exports.PricesApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * PricesApi - axios parameter creator
  * @export
  */
-const PricesApiAxiosParamCreator = function (configuration) {
+export const PricesApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Retrieve a list of price details based on specified query parameters
@@ -42,34 +36,33 @@ const PricesApiAxiosParamCreator = function (configuration) {
         listPrices: async (symbol, options = {}) => {
             const localVarPath = `/v2/prices`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (symbol !== undefined) {
                 localVarQueryParameter['symbol'] = symbol;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.PricesApiAxiosParamCreator = PricesApiAxiosParamCreator;
 /**
  * PricesApi - functional programming interface
  * @export
  */
-const PricesApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.PricesApiAxiosParamCreator)(configuration);
+export const PricesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = PricesApiAxiosParamCreator(configuration);
     return {
         /**
          * Retrieve a list of price details based on specified query parameters
@@ -79,21 +72,19 @@ const PricesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async listPrices(symbol, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.listPrices(symbol, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['PricesApi.listPrices']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PricesApi.listPrices']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.PricesApiFp = PricesApiFp;
 /**
  * PricesApi - factory interface
  * @export
  */
-const PricesApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.PricesApiFp)(configuration);
+export const PricesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = PricesApiFp(configuration);
     return {
         /**
          * Retrieve a list of price details based on specified query parameters
@@ -107,14 +98,13 @@ const PricesApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.PricesApiFactory = PricesApiFactory;
 /**
  * PricesApi - object-oriented interface
  * @export
  * @class PricesApi
  * @extends {BaseAPI}
  */
-class PricesApi extends base_1.BaseAPI {
+export class PricesApi extends BaseAPI {
     /**
      * Retrieve a list of price details based on specified query parameters
      * @summary List prices based on query parameters
@@ -124,7 +114,7 @@ class PricesApi extends base_1.BaseAPI {
      * @memberof PricesApi
      */
     listPrices(symbol, options) {
-        return (0, exports.PricesApiFp)(this.configuration).listPrices(symbol, options).then((request) => request(this.axios, this.basePath));
+        return PricesApiFp(this.configuration).listPrices(symbol, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.PricesApi = PricesApi;
+//# sourceMappingURL=prices-api.js.map

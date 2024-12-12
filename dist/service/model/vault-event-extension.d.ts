@@ -23,3 +23,4 @@ export interface VaultEventExtension {
      */
     'payload'?: VaultEvent;
 }
+//# sourceMappingURL=vault-event-extension.d.ts.map

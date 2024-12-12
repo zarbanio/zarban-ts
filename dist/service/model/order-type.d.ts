@@ -19,3 +19,4 @@ export declare const OrderType: {
     readonly DUTCH_LIMIT: "DutchLimit";
 };
 export type OrderType = typeof OrderType[keyof typeof OrderType];
+//# sourceMappingURL=order-type.d.ts.map

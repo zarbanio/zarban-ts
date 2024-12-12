@@ -25,3 +25,4 @@ export interface UserError {
         [key: string]: ErrorDetail | undefined;
     };
 }
+//# sourceMappingURL=user-error.d.ts.map

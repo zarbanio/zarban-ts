@@ -22,3 +22,4 @@ export interface UpdateOrderRequest {
      */
     'orderHash': string;
 }
+//# sourceMappingURL=update-order-request.d.ts.map

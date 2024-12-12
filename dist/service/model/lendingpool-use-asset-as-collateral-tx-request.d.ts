@@ -34,3 +34,4 @@ export interface LendingpoolUseAssetAsCollateralTxRequest {
      */
     'enabled': boolean;
 }
+//# sourceMappingURL=lendingpool-use-asset-as-collateral-tx-request.d.ts.map

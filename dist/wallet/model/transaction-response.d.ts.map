@@ -1,0 +1,1 @@
+{"version":3,"file":"transaction-response.d.ts","sourceRoot":"","sources":["../../../src/wallet/model/transaction-response.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AAEjD;;;;GAIG;AACH,MAAM,WAAW,mBAAmB;IAChC;;;;OAIG;IACH,MAAM,EAAE,KAAK,CAAC,WAAW,CAAC,CAAC;CAC9B"}

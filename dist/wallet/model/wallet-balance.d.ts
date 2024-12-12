@@ -30,3 +30,4 @@ export interface WalletBalance {
      */
     'balances': Array<Balance>;
 }
+//# sourceMappingURL=wallet-balance.d.ts.map

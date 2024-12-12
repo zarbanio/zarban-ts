@@ -23,3 +23,4 @@ export interface Scoreboard {
      */
     'items': Array<ScoreboardItem>;
 }
+//# sourceMappingURL=scoreboard.d.ts.map

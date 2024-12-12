@@ -16,3 +16,4 @@
  */
 export interface UnclaimedReward {
 }
+//# sourceMappingURL=unclaimed-reward.d.ts.map

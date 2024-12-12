@@ -38,3 +38,4 @@ export interface Price {
      */
     'timestamp': Timestamp;
 }
+//# sourceMappingURL=price.d.ts.map

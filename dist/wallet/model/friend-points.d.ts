@@ -28,3 +28,4 @@ export interface FriendPoints {
      */
     'points': number;
 }
+//# sourceMappingURL=friend-points.d.ts.map

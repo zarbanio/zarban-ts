@@ -103,3 +103,4 @@ export declare class BorrowsApi extends BaseAPI implements BorrowsApiInterface {
      */
     getUserBorrows(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserBorrowsResponse, any>>;
 }
+//# sourceMappingURL=borrows-api.d.ts.map

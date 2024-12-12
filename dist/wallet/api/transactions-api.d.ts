@@ -93,3 +93,4 @@ export declare class TransactionsApi extends BaseAPI implements TransactionsApiI
      */
     getUserTransactions(cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<TransactionResponse, any>>;
 }
+//# sourceMappingURL=transactions-api.d.ts.map

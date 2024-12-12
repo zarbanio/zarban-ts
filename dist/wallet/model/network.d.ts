@@ -30,3 +30,4 @@ export interface Network {
      */
     'logoUri': string;
 }
+//# sourceMappingURL=network.d.ts.map

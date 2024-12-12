@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,9 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderOrderTypeEnum = exports.OrderOrderStatusEnum = void 0;
-exports.OrderOrderStatusEnum = {
+export const OrderOrderStatusEnum = {
     OPEN: 'open',
     EXPIRED: 'expired',
     ERROR: 'error',
@@ -22,7 +19,8 @@ exports.OrderOrderStatusEnum = {
     FILLED: 'filled',
     INSUFFICIENT_FUNDS: 'insufficient-funds'
 };
-exports.OrderOrderTypeEnum = {
+export const OrderOrderTypeEnum = {
     DUTCH: 'dutch',
     LIMIT: 'limit'
 };
+//# sourceMappingURL=order.js.map

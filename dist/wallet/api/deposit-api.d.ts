@@ -93,3 +93,4 @@ export declare class DepositApi extends BaseAPI implements DepositApiInterface {
      */
     depositMoney(network: string, symbol: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DepositResponse, any>>;
 }
+//# sourceMappingURL=deposit-api.d.ts.map

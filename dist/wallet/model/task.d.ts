@@ -47,3 +47,4 @@ export interface Task {
      */
     'completedAt'?: Timestamp;
 }
+//# sourceMappingURL=task.d.ts.map

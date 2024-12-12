@@ -46,3 +46,4 @@ export interface TypedDataDomain {
      */
     'salt'?: string;
 }
+//# sourceMappingURL=typed-data-domain.d.ts.map

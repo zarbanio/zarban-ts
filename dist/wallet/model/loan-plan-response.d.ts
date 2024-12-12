@@ -23,3 +23,4 @@ export interface LoanPlanResponse {
      */
     'data': Array<LoanPlan>;
 }
+//# sourceMappingURL=loan-plan-response.d.ts.map

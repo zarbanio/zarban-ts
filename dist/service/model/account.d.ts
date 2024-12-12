@@ -80,3 +80,4 @@ export interface Account {
      */
     'stakingSummary': AccountStakingSummary;
 }
+//# sourceMappingURL=account.d.ts.map
