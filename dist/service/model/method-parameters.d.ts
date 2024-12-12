@@ -34,3 +34,4 @@ export interface MethodParameters {
      */
     'value': string;
 }
+//# sourceMappingURL=method-parameters.d.ts.map

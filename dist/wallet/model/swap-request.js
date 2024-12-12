@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,14 +11,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SwapRequestTradeTypeEnum = exports.SwapRequestIntentEnum = void 0;
-exports.SwapRequestIntentEnum = {
+export const SwapRequestIntentEnum = {
     SWAP: 'Swap',
     QUOTE: 'Quote',
     PREVIEW: 'Preview'
 };
-exports.SwapRequestTradeTypeEnum = {
+export const SwapRequestTradeTypeEnum = {
     EXACT_INPUT: 'ExactInput',
     EXACT_OUTPUT: 'ExactOutput'
 };
+//# sourceMappingURL=swap-request.js.map

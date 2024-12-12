@@ -40,3 +40,4 @@ export interface StablecoinSystemCreateVaultTxRequest {
      */
     'mintAmount': string;
 }
+//# sourceMappingURL=stablecoin-system-create-vault-tx-request.d.ts.map

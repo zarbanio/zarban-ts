@@ -22,3 +22,4 @@ export interface PersonalSignRequest {
      */
     'message': string;
 }
+//# sourceMappingURL=personal-sign-request.d.ts.map

@@ -1,6 +1,6 @@
 /**
- * Zarban Wallet API
- * API for Zarban wallet services.
+ * Zarban API
+ * API for Zarban services.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: info@zarban.io
@@ -12,3 +12,4 @@
 export * from "./api";
 export * from "./configuration";
 export * from "./model";
+//# sourceMappingURL=index.d.ts.map

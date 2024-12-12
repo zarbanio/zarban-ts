@@ -35,3 +35,4 @@ export interface EIP712SignRequest {
      */
     'hash': string;
 }
+//# sourceMappingURL=eip712-sign-request.d.ts.map

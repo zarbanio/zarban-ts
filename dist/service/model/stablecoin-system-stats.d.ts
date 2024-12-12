@@ -64,3 +64,4 @@ export interface StablecoinSystemStats {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=stablecoin-system-stats.d.ts.map

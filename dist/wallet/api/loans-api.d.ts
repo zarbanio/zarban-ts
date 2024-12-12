@@ -339,3 +339,4 @@ export declare const GetUserLoansStateEnum: {
     readonly SETTLEMENT_FAILED: "settlement-failed";
 };
 export type GetUserLoansStateEnum = typeof GetUserLoansStateEnum[keyof typeof GetUserLoansStateEnum];
+//# sourceMappingURL=loans-api.d.ts.map

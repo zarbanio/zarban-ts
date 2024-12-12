@@ -23,3 +23,4 @@ export interface OrderResponse {
      */
     'data': Array<Order>;
 }
+//# sourceMappingURL=order-response.d.ts.map

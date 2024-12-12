@@ -45,3 +45,4 @@ export interface DutchAmount {
      */
     'recipient'?: string;
 }
+//# sourceMappingURL=dutch-amount.d.ts.map

@@ -64,3 +64,4 @@ interface ServerMap {
  */
 export declare const operationServerMap: ServerMap;
 export {};
+//# sourceMappingURL=base.d.ts.map

@@ -63,3 +63,4 @@ export interface Redemption {
      */
     'payaTrackingCode'?: string;
 }
+//# sourceMappingURL=redemption.d.ts.map

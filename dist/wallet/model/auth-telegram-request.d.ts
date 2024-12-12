@@ -22,3 +22,4 @@ export interface AuthTelegramRequest {
      */
     'initdata': string;
 }
+//# sourceMappingURL=auth-telegram-request.d.ts.map

@@ -51,3 +51,4 @@ export interface LendingpoolBorrow {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=lendingpool-borrow.d.ts.map

@@ -34,3 +34,4 @@ export interface KycRequest {
      */
     'cardNumber': string;
 }
+//# sourceMappingURL=kyc-request.d.ts.map

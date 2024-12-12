@@ -85,3 +85,4 @@ export interface Log {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=log.d.ts.map

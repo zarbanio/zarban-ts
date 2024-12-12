@@ -30,3 +30,4 @@ export interface Stats {
      */
     'lendingpool': LendingpoolStats;
 }
+//# sourceMappingURL=stats.d.ts.map

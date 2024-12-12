@@ -64,3 +64,4 @@ export interface Coin {
      */
     'content': BulletContent;
 }
+//# sourceMappingURL=coin.d.ts.map

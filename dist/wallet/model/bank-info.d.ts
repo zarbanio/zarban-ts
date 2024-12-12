@@ -34,3 +34,4 @@ export interface BankInfo {
      */
     'iban': string;
 }
+//# sourceMappingURL=bank-info.d.ts.map

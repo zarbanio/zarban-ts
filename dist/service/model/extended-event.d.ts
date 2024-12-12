@@ -58,3 +58,4 @@ export interface ExtendedEvent {
         [key: string]: any | undefined;
     };
 }
+//# sourceMappingURL=extended-event.d.ts.map

@@ -21,3 +21,4 @@ export declare const EventDomain: {
     readonly UNISWAP_V3: "uniswapV3";
 };
 export type EventDomain = typeof EventDomain[keyof typeof EventDomain];
+//# sourceMappingURL=event-domain.d.ts.map

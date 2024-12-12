@@ -50,3 +50,4 @@ export interface BasicEvent {
      */
     'raw': Log;
 }
+//# sourceMappingURL=basic-event.d.ts.map

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetUserLoansStateEnum = exports.EstimateLoanCollateralInputTypeEnum = exports.LoansApi = exports.LoansApiFactory = exports.LoansApiFp = exports.LoansApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * LoansApi - axios parameter creator
  * @export
  */
-const LoansApiAxiosParamCreator = function (configuration) {
+export const LoansApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Create a vault
@@ -41,27 +35,27 @@ const LoansApiAxiosParamCreator = function (configuration) {
          */
         createLoanVault: async (loanCreateRequest, options = {}) => {
             // verify required parameter 'loanCreateRequest' is not null or undefined
-            (0, common_1.assertParamExists)('createLoanVault', 'loanCreateRequest', loanCreateRequest);
+            assertParamExists('createLoanVault', 'loanCreateRequest', loanCreateRequest);
             const localVarPath = `/loans/create`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(loanCreateRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(loanCreateRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -77,21 +71,21 @@ const LoansApiAxiosParamCreator = function (configuration) {
          */
         estimateLoanCollateral: async (planName, loanToValueOption, amount, inputType, options = {}) => {
             // verify required parameter 'planName' is not null or undefined
-            (0, common_1.assertParamExists)('estimateLoanCollateral', 'planName', planName);
+            assertParamExists('estimateLoanCollateral', 'planName', planName);
             // verify required parameter 'loanToValueOption' is not null or undefined
-            (0, common_1.assertParamExists)('estimateLoanCollateral', 'loanToValueOption', loanToValueOption);
+            assertParamExists('estimateLoanCollateral', 'loanToValueOption', loanToValueOption);
             // verify required parameter 'amount' is not null or undefined
-            (0, common_1.assertParamExists)('estimateLoanCollateral', 'amount', amount);
+            assertParamExists('estimateLoanCollateral', 'amount', amount);
             // verify required parameter 'inputType' is not null or undefined
-            (0, common_1.assertParamExists)('estimateLoanCollateral', 'inputType', inputType);
+            assertParamExists('estimateLoanCollateral', 'inputType', inputType);
             const localVarPath = `/loans/estimate`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (planName !== undefined) {
@@ -106,11 +100,11 @@ const LoansApiAxiosParamCreator = function (configuration) {
             if (inputType !== undefined) {
                 localVarQueryParameter['inputType'] = inputType;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -123,19 +117,19 @@ const LoansApiAxiosParamCreator = function (configuration) {
         getAllLoanPlans: async (options = {}) => {
             const localVarPath = `/loans/plans`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -148,26 +142,26 @@ const LoansApiAxiosParamCreator = function (configuration) {
          */
         getLoanDetails: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getLoanDetails', 'id', id);
+            assertParamExists('getLoanDetails', 'id', id);
             const localVarPath = `/loans/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -182,28 +176,28 @@ const LoansApiAxiosParamCreator = function (configuration) {
         getUserLoans: async (state, planName, options = {}) => {
             const localVarPath = `/loans`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             if (state !== undefined) {
                 localVarQueryParameter['state'] = state;
             }
             if (planName !== undefined) {
                 localVarQueryParameter['planName'] = planName;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -216,39 +210,38 @@ const LoansApiAxiosParamCreator = function (configuration) {
          */
         repayLoan: async (repayLoanRequest, options = {}) => {
             // verify required parameter 'repayLoanRequest' is not null or undefined
-            (0, common_1.assertParamExists)('repayLoan', 'repayLoanRequest', repayLoanRequest);
+            assertParamExists('repayLoan', 'repayLoanRequest', repayLoanRequest);
             const localVarPath = `/loans/repay`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(repayLoanRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(repayLoanRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.LoansApiAxiosParamCreator = LoansApiAxiosParamCreator;
 /**
  * LoansApi - functional programming interface
  * @export
  */
-const LoansApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.LoansApiAxiosParamCreator)(configuration);
+export const LoansApiFp = function (configuration) {
+    const localVarAxiosParamCreator = LoansApiAxiosParamCreator(configuration);
     return {
         /**
          * Create a vault
@@ -258,11 +251,10 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async createLoanVault(loanCreateRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLoanVault(loanCreateRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.createLoanVault']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.createLoanVault']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get an estimate of required collateral for a specific loan amount, and vice versa.
@@ -275,11 +267,10 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async estimateLoanCollateral(planName, loanToValueOption, amount, inputType, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.estimateLoanCollateral(planName, loanToValueOption, amount, inputType, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.estimateLoanCollateral']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.estimateLoanCollateral']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get a list of the available plan loans.
@@ -288,11 +279,10 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getAllLoanPlans(options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllLoanPlans(options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.getAllLoanPlans']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.getAllLoanPlans']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the details of a loan.
@@ -302,11 +292,10 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getLoanDetails(id, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLoanDetails(id, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.getLoanDetails']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.getLoanDetails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get a list of the user\'s loans.
@@ -317,11 +306,10 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getUserLoans(state, planName, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserLoans(state, planName, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.getUserLoans']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.getUserLoans']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Repay a loan totally
@@ -331,21 +319,19 @@ const LoansApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async repayLoan(repayLoanRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.repayLoan(repayLoanRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['LoansApi.repayLoan']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['LoansApi.repayLoan']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.LoansApiFp = LoansApiFp;
 /**
  * LoansApi - factory interface
  * @export
  */
-const LoansApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.LoansApiFp)(configuration);
+export const LoansApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = LoansApiFp(configuration);
     return {
         /**
          * Create a vault
@@ -412,14 +398,13 @@ const LoansApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.LoansApiFactory = LoansApiFactory;
 /**
  * LoansApi - object-oriented interface
  * @export
  * @class LoansApi
  * @extends {BaseAPI}
  */
-class LoansApi extends base_1.BaseAPI {
+export class LoansApi extends BaseAPI {
     /**
      * Create a vault
      * @summary Create vault
@@ -429,7 +414,7 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     createLoanVault(loanCreateRequest, options) {
-        return (0, exports.LoansApiFp)(this.configuration).createLoanVault(loanCreateRequest, options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).createLoanVault(loanCreateRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get an estimate of required collateral for a specific loan amount, and vice versa.
@@ -443,7 +428,7 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     estimateLoanCollateral(planName, loanToValueOption, amount, inputType, options) {
-        return (0, exports.LoansApiFp)(this.configuration).estimateLoanCollateral(planName, loanToValueOption, amount, inputType, options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).estimateLoanCollateral(planName, loanToValueOption, amount, inputType, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get a list of the available plan loans.
@@ -453,7 +438,7 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     getAllLoanPlans(options) {
-        return (0, exports.LoansApiFp)(this.configuration).getAllLoanPlans(options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).getAllLoanPlans(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the details of a loan.
@@ -464,7 +449,7 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     getLoanDetails(id, options) {
-        return (0, exports.LoansApiFp)(this.configuration).getLoanDetails(id, options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).getLoanDetails(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get a list of the user\'s loans.
@@ -476,7 +461,7 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     getUserLoans(state, planName, options) {
-        return (0, exports.LoansApiFp)(this.configuration).getUserLoans(state, planName, options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).getUserLoans(state, planName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Repay a loan totally
@@ -487,21 +472,20 @@ class LoansApi extends base_1.BaseAPI {
      * @memberof LoansApi
      */
     repayLoan(repayLoanRequest, options) {
-        return (0, exports.LoansApiFp)(this.configuration).repayLoan(repayLoanRequest, options).then((request) => request(this.axios, this.basePath));
+        return LoansApiFp(this.configuration).repayLoan(repayLoanRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.LoansApi = LoansApi;
 /**
  * @export
  */
-exports.EstimateLoanCollateralInputTypeEnum = {
+export const EstimateLoanCollateralInputTypeEnum = {
     LOAN: 'loan',
     COLLATERAL: 'collateral'
 };
 /**
  * @export
  */
-exports.GetUserLoansStateEnum = {
+export const GetUserLoansStateEnum = {
     PENDING: 'pending',
     ACTIVE: 'active',
     REPAYMENT_ONGOING: 'repayment-ongoing',
@@ -509,3 +493,4 @@ exports.GetUserLoansStateEnum = {
     CREATION_FAILED: 'creation-failed',
     SETTLEMENT_FAILED: 'settlement-failed'
 };
+//# sourceMappingURL=loans-api.js.map

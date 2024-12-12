@@ -102,3 +102,4 @@ export interface OrderInfo {
      */
     'outputs': Array<DutchAmount>;
 }
+//# sourceMappingURL=order-info.d.ts.map

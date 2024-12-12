@@ -24,3 +24,4 @@ export interface SimpleResponse {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=simple-response.d.ts.map

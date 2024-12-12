@@ -89,3 +89,4 @@ export declare class PaymentApi extends BaseAPI implements PaymentApiInterface {
      */
     createPayment(paymentRequest: PaymentRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Payment, any>>;
 }
+//# sourceMappingURL=payment-api.d.ts.map

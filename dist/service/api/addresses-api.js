@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddressesApi = exports.AddressesApiFactory = exports.AddressesApiFp = exports.AddressesApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * AddressesApi - axios parameter creator
  * @export
  */
-const AddressesApiAxiosParamCreator = function (configuration) {
+export const AddressesApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * All addresses knows to Zarban.
@@ -42,34 +36,33 @@ const AddressesApiAxiosParamCreator = function (configuration) {
         getAllAddresses: async (format, options = {}) => {
             const localVarPath = `/v2/addresses`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (format !== undefined) {
                 localVarQueryParameter['format'] = format;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.AddressesApiAxiosParamCreator = AddressesApiAxiosParamCreator;
 /**
  * AddressesApi - functional programming interface
  * @export
  */
-const AddressesApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.AddressesApiAxiosParamCreator)(configuration);
+export const AddressesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = AddressesApiAxiosParamCreator(configuration);
     return {
         /**
          * All addresses knows to Zarban.
@@ -79,21 +72,19 @@ const AddressesApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getAllAddresses(format, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllAddresses(format, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['AddressesApi.getAllAddresses']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AddressesApi.getAllAddresses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.AddressesApiFp = AddressesApiFp;
 /**
  * AddressesApi - factory interface
  * @export
  */
-const AddressesApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.AddressesApiFp)(configuration);
+export const AddressesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = AddressesApiFp(configuration);
     return {
         /**
          * All addresses knows to Zarban.
@@ -107,14 +98,13 @@ const AddressesApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.AddressesApiFactory = AddressesApiFactory;
 /**
  * AddressesApi - object-oriented interface
  * @export
  * @class AddressesApi
  * @extends {BaseAPI}
  */
-class AddressesApi extends base_1.BaseAPI {
+export class AddressesApi extends BaseAPI {
     /**
      * All addresses knows to Zarban.
      * @summary Get all addresses
@@ -124,7 +114,7 @@ class AddressesApi extends base_1.BaseAPI {
      * @memberof AddressesApi
      */
     getAllAddresses(format, options) {
-        return (0, exports.AddressesApiFp)(this.configuration).getAllAddresses(format, options).then((request) => request(this.axios, this.basePath));
+        return AddressesApiFp(this.configuration).getAllAddresses(format, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.AddressesApi = AddressesApi;
+//# sourceMappingURL=addresses-api.js.map

@@ -36,3 +36,4 @@ export interface Balance {
      */
     'balance': Currency;
 }
+//# sourceMappingURL=balance.d.ts.map

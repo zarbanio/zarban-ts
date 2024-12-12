@@ -23,3 +23,4 @@ export interface PriceListResponse {
      */
     'data': Array<Price>;
 }
+//# sourceMappingURL=price-list-response.d.ts.map

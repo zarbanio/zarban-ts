@@ -51,3 +51,4 @@ export interface PreparedTx {
      */
     'methodParameters': MethodParameters;
 }
+//# sourceMappingURL=prepared-tx.d.ts.map

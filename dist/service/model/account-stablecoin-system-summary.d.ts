@@ -38,3 +38,4 @@ export interface AccountStablecoinSystemSummary {
      */
     'netApy': string;
 }
+//# sourceMappingURL=account-stablecoin-system-summary.d.ts.map

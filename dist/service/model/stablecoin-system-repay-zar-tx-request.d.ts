@@ -34,3 +34,4 @@ export interface StablecoinSystemRepayZarTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=stablecoin-system-repay-zar-tx-request.d.ts.map

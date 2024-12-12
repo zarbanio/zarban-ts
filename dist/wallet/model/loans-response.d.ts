@@ -105,3 +105,4 @@ export interface LoansResponse {
      */
     'termsAndConditions'?: BulletContent;
 }
+//# sourceMappingURL=loans-response.d.ts.map

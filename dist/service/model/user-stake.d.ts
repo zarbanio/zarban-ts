@@ -50,3 +50,4 @@ export interface UserStake {
      */
     'planName': string;
 }
+//# sourceMappingURL=user-stake.d.ts.map

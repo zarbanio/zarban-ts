@@ -23,3 +23,4 @@ export interface IlksResponse {
      */
     'data': Array<Ilk>;
 }
+//# sourceMappingURL=ilks-response.d.ts.map

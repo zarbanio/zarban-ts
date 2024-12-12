@@ -34,3 +34,4 @@ export interface StablecoinSystemDepositCollateralTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=stablecoin-system-deposit-collateral-tx-request.d.ts.map

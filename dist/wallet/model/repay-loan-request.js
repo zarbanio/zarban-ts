@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,9 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RepayLoanRequestIntentEnum = void 0;
-exports.RepayLoanRequestIntentEnum = {
+export const RepayLoanRequestIntentEnum = {
     REPAY: 'Repay',
     PREVIEW: 'Preview'
 };
+//# sourceMappingURL=repay-loan-request.js.map

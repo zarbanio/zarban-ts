@@ -424,3 +424,4 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      */
     setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest: LendingpoolUseAssetAsCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolUseAssetAsCollateralTxResponse, any>>;
 }
+//# sourceMappingURL=lending-pool-api.d.ts.map

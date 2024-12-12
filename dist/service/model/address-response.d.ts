@@ -23,3 +23,4 @@ export interface AddressResponse {
      */
     'data': Array<Address>;
 }
+//# sourceMappingURL=address-response.d.ts.map

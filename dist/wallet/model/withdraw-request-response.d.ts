@@ -23,3 +23,4 @@ export interface WithdrawRequestResponse {
      */
     'data': Array<WithdrawRequest>;
 }
+//# sourceMappingURL=withdraw-request-response.d.ts.map

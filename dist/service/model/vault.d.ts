@@ -93,3 +93,4 @@ export interface Vault {
      */
     'ilk': Ilk;
 }
+//# sourceMappingURL=vault.d.ts.map

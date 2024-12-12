@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,17 +11,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionType = void 0;
 /**
  *
  * @export
  * @enum {string}
  */
-exports.TransactionType = {
+export const TransactionType = {
     CREDIT: 'Credit',
     DEBIT: 'Debit',
     TRANSFER: 'Transfer',
     DEPOSIT: 'Deposit',
     WITHDRAW: 'Withdraw'
 };
+//# sourceMappingURL=transaction-type.js.map

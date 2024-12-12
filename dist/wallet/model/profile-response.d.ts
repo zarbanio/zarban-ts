@@ -43,3 +43,4 @@ export interface ProfileResponse {
      */
     'bankInfo': Array<BankInfo>;
 }
+//# sourceMappingURL=profile-response.d.ts.map

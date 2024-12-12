@@ -197,3 +197,4 @@ export declare const GetUnfilledOrdersStatusEnum: {
     readonly INSUFFICIENT_FUNDS: "insufficient-funds";
 };
 export type GetUnfilledOrdersStatusEnum = typeof GetUnfilledOrdersStatusEnum[keyof typeof GetUnfilledOrdersStatusEnum];
+//# sourceMappingURL=orders-api.d.ts.map

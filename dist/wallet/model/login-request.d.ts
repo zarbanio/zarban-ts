@@ -28,3 +28,4 @@ export interface LoginRequest {
      */
     'password': string;
 }
+//# sourceMappingURL=login-request.d.ts.map

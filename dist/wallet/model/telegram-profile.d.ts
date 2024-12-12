@@ -40,3 +40,4 @@ export interface TelegramProfile {
      */
     'photoUrl'?: string | null;
 }
+//# sourceMappingURL=telegram-profile.d.ts.map

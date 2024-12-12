@@ -1,0 +1,1 @@
+{"version":3,"file":"eip712-sign-request.d.ts","sourceRoot":"","sources":["../../../src/service/model/eip712-sign-request.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AAE9C;;;;GAIG;AACH,MAAM,WAAW,iBAAiB;IAC9B;;;;OAIG;IACH,MAAM,EAAE,MAAM,CAAC;IACf;;;;OAIG;IACH,WAAW,EAAE,SAAS,CAAC;IACvB;;;;OAIG;IACH,MAAM,EAAE,MAAM,CAAC;CAClB"}

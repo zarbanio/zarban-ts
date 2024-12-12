@@ -28,3 +28,4 @@ export interface Timestamp {
      */
     'gregorian': string;
 }
+//# sourceMappingURL=timestamp.d.ts.map

@@ -23,3 +23,4 @@ export interface CoinResponse {
      */
     'data': Array<Coin>;
 }
+//# sourceMappingURL=coin-response.d.ts.map

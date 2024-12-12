@@ -319,3 +319,4 @@ export declare const GetOtpChannelEnum: {
     readonly PHONE: "phone";
 };
 export type GetOtpChannelEnum = typeof GetOtpChannelEnum[keyof typeof GetOtpChannelEnum];
+//# sourceMappingURL=auth-api.d.ts.map

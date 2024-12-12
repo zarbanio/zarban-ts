@@ -31,3 +31,4 @@ export interface UserError {
      */
     'reasons': Array<string>;
 }
+//# sourceMappingURL=user-error.d.ts.map

@@ -387,3 +387,4 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      */
     verifyUserEmailAddress(updateEmailRequest: UpdateEmailRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
 }
+//# sourceMappingURL=user-api.d.ts.map

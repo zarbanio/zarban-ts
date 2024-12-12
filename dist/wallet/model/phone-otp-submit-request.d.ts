@@ -22,3 +22,4 @@ export interface PhoneOtpSubmitRequest {
      */
     'code': number;
 }
+//# sourceMappingURL=phone-otp-submit-request.d.ts.map

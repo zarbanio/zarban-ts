@@ -30,3 +30,4 @@ export interface LendingpoolUseAssetAsCollateralTxResponse {
      */
     'response'?: LendingpoolTxResponse;
 }
+//# sourceMappingURL=lendingpool-use-asset-as-collateral-tx-response.d.ts.map

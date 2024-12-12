@@ -40,3 +40,4 @@ export interface RawDutchAmount {
      */
     'recipient'?: string;
 }
+//# sourceMappingURL=raw-dutch-amount.d.ts.map

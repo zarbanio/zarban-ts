@@ -34,3 +34,4 @@ export interface StakingStakeTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=staking-stake-tx-request.d.ts.map

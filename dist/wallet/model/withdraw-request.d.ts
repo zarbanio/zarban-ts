@@ -86,3 +86,4 @@ export declare const WithdrawRequestStatusEnum: {
     readonly COMPLETED: "Completed";
 };
 export type WithdrawRequestStatusEnum = typeof WithdrawRequestStatusEnum[keyof typeof WithdrawRequestStatusEnum];
+//# sourceMappingURL=withdraw-request.d.ts.map

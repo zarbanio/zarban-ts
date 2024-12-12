@@ -23,3 +23,4 @@ export interface StakingCollectRewardTxResponse {
      */
     'chainActivity'?: ChainActivity;
 }
+//# sourceMappingURL=staking-collect-reward-tx-response.d.ts.map

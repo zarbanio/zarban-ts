@@ -88,3 +88,4 @@ export declare class AddressesApi extends BaseAPI implements AddressesApiInterfa
      */
     getAllAddresses(format?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AddressResponse, any>>;
 }
+//# sourceMappingURL=addresses-api.d.ts.map

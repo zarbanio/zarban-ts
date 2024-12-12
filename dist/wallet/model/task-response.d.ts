@@ -23,3 +23,4 @@ export interface TaskResponse {
      */
     'data': Array<Task>;
 }
+//# sourceMappingURL=task-response.d.ts.map

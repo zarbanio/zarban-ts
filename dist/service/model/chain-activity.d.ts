@@ -35,3 +35,4 @@ export interface ChainActivity {
      */
     'steps': Array<ChainActivityStep>;
 }
+//# sourceMappingURL=chain-activity.d.ts.map

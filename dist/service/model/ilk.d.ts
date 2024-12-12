@@ -147,3 +147,4 @@ export interface Ilk {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=ilk.d.ts.map

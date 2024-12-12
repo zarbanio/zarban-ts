@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetUnfilledOrdersStatusEnum = exports.GetUnfilledOrdersTypeEnum = exports.OrdersApi = exports.OrdersApiFactory = exports.OrdersApiFp = exports.OrdersApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * OrdersApi - axios parameter creator
  * @export
  */
-const OrdersApiAxiosParamCreator = function (configuration) {
+export const OrdersApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get a list of unfilled orders filtered by different parameters.
@@ -51,12 +45,12 @@ const OrdersApiAxiosParamCreator = function (configuration) {
         getUnfilledOrders: async (type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options = {}) => {
             const localVarPath = `/v2/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (type !== undefined) {
@@ -95,11 +89,11 @@ const OrdersApiAxiosParamCreator = function (configuration) {
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -112,36 +106,35 @@ const OrdersApiAxiosParamCreator = function (configuration) {
          */
         syncOrder: async (updateOrderRequest, options = {}) => {
             // verify required parameter 'updateOrderRequest' is not null or undefined
-            (0, common_1.assertParamExists)('syncOrder', 'updateOrderRequest', updateOrderRequest);
+            assertParamExists('syncOrder', 'updateOrderRequest', updateOrderRequest);
             const localVarPath = `/v2/orders/sync`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(updateOrderRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(updateOrderRequest, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.OrdersApiAxiosParamCreator = OrdersApiAxiosParamCreator;
 /**
  * OrdersApi - functional programming interface
  * @export
  */
-const OrdersApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.OrdersApiAxiosParamCreator)(configuration);
+export const OrdersApiFp = function (configuration) {
+    const localVarAxiosParamCreator = OrdersApiAxiosParamCreator(configuration);
     return {
         /**
          * Get a list of unfilled orders filtered by different parameters.
@@ -160,11 +153,10 @@ const OrdersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getUnfilledOrders(type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUnfilledOrders(type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['OrdersApi.getUnfilledOrders']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.getUnfilledOrders']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * updates an order entity in database
@@ -174,21 +166,19 @@ const OrdersApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async syncOrder(updateOrderRequest, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.syncOrder(updateOrderRequest, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['OrdersApi.syncOrder']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.syncOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.OrdersApiFp = OrdersApiFp;
 /**
  * OrdersApi - factory interface
  * @export
  */
-const OrdersApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.OrdersApiFp)(configuration);
+export const OrdersApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = OrdersApiFp(configuration);
     return {
         /**
          * Get a list of unfilled orders filtered by different parameters.
@@ -221,14 +211,13 @@ const OrdersApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.OrdersApiFactory = OrdersApiFactory;
 /**
  * OrdersApi - object-oriented interface
  * @export
  * @class OrdersApi
  * @extends {BaseAPI}
  */
-class OrdersApi extends base_1.BaseAPI {
+export class OrdersApi extends BaseAPI {
     /**
      * Get a list of unfilled orders filtered by different parameters.
      * @summary Fetch Unfilled Orders
@@ -247,7 +236,7 @@ class OrdersApi extends base_1.BaseAPI {
      * @memberof OrdersApi
      */
     getUnfilledOrders(type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options) {
-        return (0, exports.OrdersApiFp)(this.configuration).getUnfilledOrders(type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).getUnfilledOrders(type, hash, status, offerer, filler, decayStartTime, decayEndTime, deadline, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * updates an order entity in database
@@ -258,21 +247,20 @@ class OrdersApi extends base_1.BaseAPI {
      * @memberof OrdersApi
      */
     syncOrder(updateOrderRequest, options) {
-        return (0, exports.OrdersApiFp)(this.configuration).syncOrder(updateOrderRequest, options).then((request) => request(this.axios, this.basePath));
+        return OrdersApiFp(this.configuration).syncOrder(updateOrderRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.OrdersApi = OrdersApi;
 /**
  * @export
  */
-exports.GetUnfilledOrdersTypeEnum = {
+export const GetUnfilledOrdersTypeEnum = {
     LIMIT: 'limit',
     DUTCH: 'dutch'
 };
 /**
  * @export
  */
-exports.GetUnfilledOrdersStatusEnum = {
+export const GetUnfilledOrdersStatusEnum = {
     OPEN: 'open',
     EXPIRED: 'expired',
     ERROR: 'error',
@@ -280,3 +268,4 @@ exports.GetUnfilledOrdersStatusEnum = {
     FILLED: 'filled',
     INSUFFICIENT_FUNDS: 'insufficient-funds'
 };
+//# sourceMappingURL=orders-api.js.map

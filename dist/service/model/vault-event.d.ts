@@ -39,3 +39,4 @@ export interface VaultEvent {
      */
     'ilk': Ilk;
 }
+//# sourceMappingURL=vault-event.d.ts.map

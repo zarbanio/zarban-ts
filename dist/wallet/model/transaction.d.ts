@@ -80,3 +80,4 @@ export declare const TransactionDirectionEnum: {
     readonly OUTBOUND: "Outbound";
 };
 export type TransactionDirectionEnum = typeof TransactionDirectionEnum[keyof typeof TransactionDirectionEnum];
+//# sourceMappingURL=transaction.d.ts.map

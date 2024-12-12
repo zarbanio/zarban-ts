@@ -34,3 +34,4 @@ export interface LendingpoolDepositTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=lendingpool-deposit-tx-request.d.ts.map

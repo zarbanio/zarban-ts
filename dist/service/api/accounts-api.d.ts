@@ -88,3 +88,4 @@ export declare class AccountsApi extends BaseAPI implements AccountsApiInterface
      */
     getAccountByAddress(address: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Account, any>>;
 }
+//# sourceMappingURL=accounts-api.d.ts.map

@@ -88,3 +88,4 @@ export declare class PricesApi extends BaseAPI implements PricesApiInterface {
      */
     listPrices(symbol?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PriceListResponse, any>>;
 }
+//# sourceMappingURL=prices-api.d.ts.map

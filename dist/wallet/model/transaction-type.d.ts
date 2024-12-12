@@ -22,3 +22,4 @@ export declare const TransactionType: {
     readonly WITHDRAW: "Withdraw";
 };
 export type TransactionType = typeof TransactionType[keyof typeof TransactionType];
+//# sourceMappingURL=transaction-type.d.ts.map

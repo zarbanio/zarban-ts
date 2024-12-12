@@ -28,3 +28,4 @@ export interface ModelError {
      */
     'reasons': Array<string>;
 }
+//# sourceMappingURL=model-error.d.ts.map

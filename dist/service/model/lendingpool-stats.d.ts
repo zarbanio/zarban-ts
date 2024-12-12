@@ -34,3 +34,4 @@ export interface LendingpoolStats {
      */
     'totalMarketSize': any;
 }
+//# sourceMappingURL=lendingpool-stats.d.ts.map

@@ -9,18 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export * from './api/auth-api';
-export * from './api/balance-api';
-export * from './api/coins-api';
-export * from './api/deposit-api';
-export * from './api/health-api';
-export * from './api/loans-api';
-export * from './api/payment-api';
-export * from './api/points-api';
-export * from './api/redemptions-api';
-export * from './api/referrals-api';
-export * from './api/swap-api';
-export * from './api/tasks-api';
-export * from './api/transactions-api';
-export * from './api/user-api';
-export * from './api/withdraw-api';
+export * as AuthApi from './api/auth-api';
+export * as BalanceApi from './api/balance-api';
+export * as CoinsApi from './api/coins-api';
+export * as DepositApi from './api/deposit-api';
+export * as HealthApi from './api/health-api';
+export * as LoansApi from './api/loans-api';
+export * as PaymentApi from './api/payment-api';
+export * as PointsApi from './api/points-api';
+export * as RedemptionsApi from './api/redemptions-api';
+export * as ReferralsApi from './api/referrals-api';
+export * as SwapApi from './api/swap-api';
+export * as TasksApi from './api/tasks-api';
+export * as TransactionsApi from './api/transactions-api';
+export * as UserApi from './api/user-api';
+export * as WithdrawApi from './api/withdraw-api';
+//# sourceMappingURL=api.d.ts.map

@@ -127,3 +127,4 @@ export declare class CoinsApi extends BaseAPI implements CoinsApiInterface {
      */
     getSupportedCoins(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CoinResponse, any>>;
 }
+//# sourceMappingURL=coins-api.d.ts.map

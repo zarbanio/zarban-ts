@@ -83,3 +83,4 @@ export declare class PointsApi extends BaseAPI implements PointsApiInterface {
      */
     getScoreboard(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Scoreboard, any>>;
 }
+//# sourceMappingURL=points-api.d.ts.map

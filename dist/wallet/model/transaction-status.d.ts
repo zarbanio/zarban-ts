@@ -20,3 +20,4 @@ export declare const TransactionStatus: {
     readonly FAILED: "Failed";
 };
 export type TransactionStatus = typeof TransactionStatus[keyof typeof TransactionStatus];
+//# sourceMappingURL=transaction-status.d.ts.map

@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.WithdrawApi = exports.WithdrawApiFactory = exports.WithdrawApiFp = exports.WithdrawApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * WithdrawApi - axios parameter creator
  * @export
  */
-const WithdrawApiAxiosParamCreator = function (configuration) {
+export const WithdrawApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get user withdraw requests
@@ -41,22 +35,22 @@ const WithdrawApiAxiosParamCreator = function (configuration) {
         getUserWithdrawRequests: async (options = {}) => {
             const localVarPath = `/withdraws`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -69,26 +63,26 @@ const WithdrawApiAxiosParamCreator = function (configuration) {
          */
         getWithdrawalStatus: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getWithdrawalStatus', 'id', id);
+            assertParamExists('getWithdrawalStatus', 'id', id);
             const localVarPath = `/withdraws/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -101,27 +95,27 @@ const WithdrawApiAxiosParamCreator = function (configuration) {
          */
         previewWithdrawal: async (withdrawRequestBody, options = {}) => {
             // verify required parameter 'withdrawRequestBody' is not null or undefined
-            (0, common_1.assertParamExists)('previewWithdrawal', 'withdrawRequestBody', withdrawRequestBody);
+            assertParamExists('previewWithdrawal', 'withdrawRequestBody', withdrawRequestBody);
             const localVarPath = `/withdraws/preview`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(withdrawRequestBody, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(withdrawRequestBody, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -134,39 +128,38 @@ const WithdrawApiAxiosParamCreator = function (configuration) {
          */
         requestWithdrawal: async (withdrawRequestBody, options = {}) => {
             // verify required parameter 'withdrawRequestBody' is not null or undefined
-            (0, common_1.assertParamExists)('requestWithdrawal', 'withdrawRequestBody', withdrawRequestBody);
+            assertParamExists('requestWithdrawal', 'withdrawRequestBody', withdrawRequestBody);
             const localVarPath = `/withdraws/request`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(withdrawRequestBody, localVarRequestOptions, configuration);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = serializeDataIfNeeded(withdrawRequestBody, localVarRequestOptions, configuration);
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.WithdrawApiAxiosParamCreator = WithdrawApiAxiosParamCreator;
 /**
  * WithdrawApi - functional programming interface
  * @export
  */
-const WithdrawApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.WithdrawApiAxiosParamCreator)(configuration);
+export const WithdrawApiFp = function (configuration) {
+    const localVarAxiosParamCreator = WithdrawApiAxiosParamCreator(configuration);
     return {
         /**
          * Get user withdraw requests
@@ -175,11 +168,10 @@ const WithdrawApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getUserWithdrawRequests(options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserWithdrawRequests(options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['WithdrawApi.getUserWithdrawRequests']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WithdrawApi.getUserWithdrawRequests']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the status of a withdrawal request.
@@ -189,11 +181,10 @@ const WithdrawApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getWithdrawalStatus(id, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWithdrawalStatus(id, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['WithdrawApi.getWithdrawalStatus']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WithdrawApi.getWithdrawalStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Request a withdrawal from the wallet.
@@ -203,11 +194,10 @@ const WithdrawApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async previewWithdrawal(withdrawRequestBody, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.previewWithdrawal(withdrawRequestBody, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['WithdrawApi.previewWithdrawal']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WithdrawApi.previewWithdrawal']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Request a withdrawal from the wallet.
@@ -217,21 +207,19 @@ const WithdrawApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async requestWithdrawal(withdrawRequestBody, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.requestWithdrawal(withdrawRequestBody, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['WithdrawApi.requestWithdrawal']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WithdrawApi.requestWithdrawal']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.WithdrawApiFp = WithdrawApiFp;
 /**
  * WithdrawApi - factory interface
  * @export
  */
-const WithdrawApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.WithdrawApiFp)(configuration);
+export const WithdrawApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = WithdrawApiFp(configuration);
     return {
         /**
          * Get user withdraw requests
@@ -274,14 +262,13 @@ const WithdrawApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.WithdrawApiFactory = WithdrawApiFactory;
 /**
  * WithdrawApi - object-oriented interface
  * @export
  * @class WithdrawApi
  * @extends {BaseAPI}
  */
-class WithdrawApi extends base_1.BaseAPI {
+export class WithdrawApi extends BaseAPI {
     /**
      * Get user withdraw requests
      * @summary Get user withdraw requests
@@ -290,7 +277,7 @@ class WithdrawApi extends base_1.BaseAPI {
      * @memberof WithdrawApi
      */
     getUserWithdrawRequests(options) {
-        return (0, exports.WithdrawApiFp)(this.configuration).getUserWithdrawRequests(options).then((request) => request(this.axios, this.basePath));
+        return WithdrawApiFp(this.configuration).getUserWithdrawRequests(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the status of a withdrawal request.
@@ -301,7 +288,7 @@ class WithdrawApi extends base_1.BaseAPI {
      * @memberof WithdrawApi
      */
     getWithdrawalStatus(id, options) {
-        return (0, exports.WithdrawApiFp)(this.configuration).getWithdrawalStatus(id, options).then((request) => request(this.axios, this.basePath));
+        return WithdrawApiFp(this.configuration).getWithdrawalStatus(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Request a withdrawal from the wallet.
@@ -312,7 +299,7 @@ class WithdrawApi extends base_1.BaseAPI {
      * @memberof WithdrawApi
      */
     previewWithdrawal(withdrawRequestBody, options) {
-        return (0, exports.WithdrawApiFp)(this.configuration).previewWithdrawal(withdrawRequestBody, options).then((request) => request(this.axios, this.basePath));
+        return WithdrawApiFp(this.configuration).previewWithdrawal(withdrawRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Request a withdrawal from the wallet.
@@ -323,7 +310,7 @@ class WithdrawApi extends base_1.BaseAPI {
      * @memberof WithdrawApi
      */
     requestWithdrawal(withdrawRequestBody, options) {
-        return (0, exports.WithdrawApiFp)(this.configuration).requestWithdrawal(withdrawRequestBody, options).then((request) => request(this.axios, this.basePath));
+        return WithdrawApiFp(this.configuration).requestWithdrawal(withdrawRequestBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.WithdrawApi = WithdrawApi;
+//# sourceMappingURL=withdraw-api.js.map

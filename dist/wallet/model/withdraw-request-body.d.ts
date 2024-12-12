@@ -46,3 +46,4 @@ export interface WithdrawRequestBody {
      */
     'comment'?: string | null;
 }
+//# sourceMappingURL=withdraw-request-body.d.ts.map

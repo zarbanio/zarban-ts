@@ -22,3 +22,4 @@ export interface LendingpoolTxResponse {
      */
     'nextHealthFactor'?: string;
 }
+//# sourceMappingURL=lendingpool-tx-response.d.ts.map

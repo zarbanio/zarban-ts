@@ -127,3 +127,4 @@ export declare class BalanceApi extends BaseAPI implements BalanceApiInterface {
      */
     getWalletBalance(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WalletBalance, any>>;
 }
+//# sourceMappingURL=balance-api.d.ts.map

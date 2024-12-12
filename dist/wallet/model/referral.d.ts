@@ -65,3 +65,4 @@ export interface Referral {
      */
     'shareUrl'?: string;
 }
+//# sourceMappingURL=referral.d.ts.map

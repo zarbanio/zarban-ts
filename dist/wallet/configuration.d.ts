@@ -89,3 +89,4 @@ export declare class Configuration {
      */
     isJsonMime(mime: string): boolean;
 }
+//# sourceMappingURL=configuration.d.ts.map

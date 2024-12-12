@@ -28,3 +28,4 @@ export interface ScoreboardItem {
      */
     'points': number;
 }
+//# sourceMappingURL=scoreboard-item.d.ts.map

@@ -22,3 +22,4 @@ export interface WithdrawResponseBody {
      */
     'id': number;
 }
+//# sourceMappingURL=withdraw-response-body.d.ts.map

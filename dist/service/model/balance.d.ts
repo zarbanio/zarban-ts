@@ -31,3 +31,4 @@ export interface Balance {
         [key: string]: string | undefined;
     };
 }
+//# sourceMappingURL=balance.d.ts.map

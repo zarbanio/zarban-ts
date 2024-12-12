@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,33 +11,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./api/auth-api"), exports);
-__exportStar(require("./api/balance-api"), exports);
-__exportStar(require("./api/coins-api"), exports);
-__exportStar(require("./api/deposit-api"), exports);
-__exportStar(require("./api/health-api"), exports);
-__exportStar(require("./api/loans-api"), exports);
-__exportStar(require("./api/payment-api"), exports);
-__exportStar(require("./api/points-api"), exports);
-__exportStar(require("./api/redemptions-api"), exports);
-__exportStar(require("./api/referrals-api"), exports);
-__exportStar(require("./api/swap-api"), exports);
-__exportStar(require("./api/tasks-api"), exports);
-__exportStar(require("./api/transactions-api"), exports);
-__exportStar(require("./api/user-api"), exports);
-__exportStar(require("./api/withdraw-api"), exports);
+export * as AuthApi from './api/auth-api';
+export * as BalanceApi from './api/balance-api';
+export * as CoinsApi from './api/coins-api';
+export * as DepositApi from './api/deposit-api';
+export * as HealthApi from './api/health-api';
+export * as LoansApi from './api/loans-api';
+export * as PaymentApi from './api/payment-api';
+export * as PointsApi from './api/points-api';
+export * as RedemptionsApi from './api/redemptions-api';
+export * as ReferralsApi from './api/referrals-api';
+export * as SwapApi from './api/swap-api';
+export * as TasksApi from './api/tasks-api';
+export * as TransactionsApi from './api/transactions-api';
+export * as UserApi from './api/user-api';
+export * as WithdrawApi from './api/withdraw-api';
+//# sourceMappingURL=api.js.map

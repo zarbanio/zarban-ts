@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
-        "target": "es2017", // Node.js 8+ supports this
-        "module": "commonjs", // Better for Node.js
+        "target": "esnext", // Node.js 8+ supports this
+        "module": "ESNext", // Better for Node.js
         "moduleResolution": "node",
+        "sourceMap": true,
+        "declarationMap": true,
         "declaration": true,
         "outDir": "./dist",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "lib": ["es2017", "es2018.promise", "es2018.regexp", "es2018.asynciterable", "es2020"],
+        "lib": ["ESNext"],
         "types": ["node"] // Add Node.js types
     },
     "include": [

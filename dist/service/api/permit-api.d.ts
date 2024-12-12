@@ -93,3 +93,4 @@ export declare class PermitApi extends BaseAPI implements PermitApiInterface {
      */
     getSingleTokenPermit(token: string, user: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PermitSingle, any>>;
 }
+//# sourceMappingURL=permit-api.d.ts.map

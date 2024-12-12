@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetVaultEventsByIdTypeEnum = exports.VaultsApi = exports.VaultsApiFactory = exports.VaultsApiFp = exports.VaultsApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * VaultsApi - axios parameter creator
  * @export
  */
-const VaultsApiAxiosParamCreator = function (configuration) {
+export const VaultsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          *
@@ -41,23 +35,23 @@ const VaultsApiAxiosParamCreator = function (configuration) {
          */
         getVaultById: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getVaultById', 'id', id);
+            assertParamExists('getVaultById', 'id', id);
             const localVarPath = `/v2/vaults/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -71,26 +65,26 @@ const VaultsApiAxiosParamCreator = function (configuration) {
          */
         getVaultEventsById: async (id, type, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            (0, common_1.assertParamExists)('getVaultEventsById', 'id', id);
+            assertParamExists('getVaultEventsById', 'id', id);
             const localVarPath = `/v2/vaults/{id}/events`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -104,34 +98,33 @@ const VaultsApiAxiosParamCreator = function (configuration) {
         getVaultsByOwner: async (owner, options = {}) => {
             const localVarPath = `/v2/vaults`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             if (owner !== undefined) {
                 localVarQueryParameter['owner'] = owner;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.VaultsApiAxiosParamCreator = VaultsApiAxiosParamCreator;
 /**
  * VaultsApi - functional programming interface
  * @export
  */
-const VaultsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.VaultsApiAxiosParamCreator)(configuration);
+export const VaultsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = VaultsApiAxiosParamCreator(configuration);
     return {
         /**
          *
@@ -141,11 +134,10 @@ const VaultsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultById(id, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultById(id, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['VaultsApi.getVaultById']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['VaultsApi.getVaultById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          *
@@ -156,11 +148,10 @@ const VaultsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultEventsById(id, type, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultEventsById(id, type, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['VaultsApi.getVaultEventsById']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['VaultsApi.getVaultEventsById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          *
@@ -170,21 +161,19 @@ const VaultsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getVaultsByOwner(owner, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVaultsByOwner(owner, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['VaultsApi.getVaultsByOwner']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['VaultsApi.getVaultsByOwner']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.VaultsApiFp = VaultsApiFp;
 /**
  * VaultsApi - factory interface
  * @export
  */
-const VaultsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.VaultsApiFp)(configuration);
+export const VaultsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = VaultsApiFp(configuration);
     return {
         /**
          *
@@ -219,14 +208,13 @@ const VaultsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.VaultsApiFactory = VaultsApiFactory;
 /**
  * VaultsApi - object-oriented interface
  * @export
  * @class VaultsApi
  * @extends {BaseAPI}
  */
-class VaultsApi extends base_1.BaseAPI {
+export class VaultsApi extends BaseAPI {
     /**
      *
      * @summary Get a vault by ID
@@ -236,7 +224,7 @@ class VaultsApi extends base_1.BaseAPI {
      * @memberof VaultsApi
      */
     getVaultById(id, options) {
-        return (0, exports.VaultsApiFp)(this.configuration).getVaultById(id, options).then((request) => request(this.axios, this.basePath));
+        return VaultsApiFp(this.configuration).getVaultById(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -248,7 +236,7 @@ class VaultsApi extends base_1.BaseAPI {
      * @memberof VaultsApi
      */
     getVaultEventsById(id, type, options) {
-        return (0, exports.VaultsApiFp)(this.configuration).getVaultEventsById(id, type, options).then((request) => request(this.axios, this.basePath));
+        return VaultsApiFp(this.configuration).getVaultEventsById(id, type, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -259,16 +247,16 @@ class VaultsApi extends base_1.BaseAPI {
      * @memberof VaultsApi
      */
     getVaultsByOwner(owner, options) {
-        return (0, exports.VaultsApiFp)(this.configuration).getVaultsByOwner(owner, options).then((request) => request(this.axios, this.basePath));
+        return VaultsApiFp(this.configuration).getVaultsByOwner(owner, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.VaultsApi = VaultsApi;
 /**
  * @export
  */
-exports.GetVaultEventsByIdTypeEnum = {
+export const GetVaultEventsByIdTypeEnum = {
     REPAY: 'repay',
     DEPOSIT: 'deposit',
     WITHDRAW: 'withdraw',
     MINT: 'mint'
 };
+//# sourceMappingURL=vaults-api.js.map

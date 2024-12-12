@@ -83,3 +83,4 @@ export declare class CollectorApi extends BaseAPI implements CollectorApiInterfa
      */
     getCollectorData(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Stats, any>>;
 }
+//# sourceMappingURL=collector-api.d.ts.map

@@ -278,3 +278,4 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      */
     withdrawStakedAsset(stakingWithdrawTxRequest: StakingWithdrawTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StakingWithdrawTxResponse, any>>;
 }
+//# sourceMappingURL=staking-api.d.ts.map

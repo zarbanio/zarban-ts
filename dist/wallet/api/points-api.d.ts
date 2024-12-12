@@ -83,3 +83,4 @@ export declare class PointsApi extends BaseAPI implements PointsApiInterface {
      */
     getFriendsPoints(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<FriendPointsResponse, any>>;
 }
+//# sourceMappingURL=points-api.d.ts.map

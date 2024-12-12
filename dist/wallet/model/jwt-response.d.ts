@@ -22,3 +22,4 @@ export interface JwtResponse {
      */
     'token': string;
 }
+//# sourceMappingURL=jwt-response.d.ts.map

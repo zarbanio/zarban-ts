@@ -63,3 +63,4 @@ export declare const SwapRequestTradeTypeEnum: {
     readonly EXACT_OUTPUT: "ExactOutput";
 };
 export type SwapRequestTradeTypeEnum = typeof SwapRequestTradeTypeEnum[keyof typeof SwapRequestTradeTypeEnum];
+//# sourceMappingURL=swap-request.d.ts.map

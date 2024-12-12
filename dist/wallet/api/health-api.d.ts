@@ -83,3 +83,4 @@ export declare class HealthApi extends BaseAPI implements HealthApiInterface {
      */
     checkApiHealth(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<HealthStatus, any>>;
 }
+//# sourceMappingURL=health-api.d.ts.map

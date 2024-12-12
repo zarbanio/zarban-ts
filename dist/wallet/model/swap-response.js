@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,9 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SwapResponseTradeTypeEnum = void 0;
-exports.SwapResponseTradeTypeEnum = {
+export const SwapResponseTradeTypeEnum = {
     EXACT_INPUT: 'ExactInput',
     EXACT_OUTPUT: 'ExactOutput'
 };
+//# sourceMappingURL=swap-response.js.map

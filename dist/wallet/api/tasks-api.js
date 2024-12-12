@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TasksApi = exports.TasksApiFactory = exports.TasksApiFp = exports.TasksApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, setBearerAuthToObject, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * TasksApi - axios parameter creator
  * @export
  */
-const TasksApiAxiosParamCreator = function (configuration) {
+export const TasksApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get the list of tasks.
@@ -41,34 +35,33 @@ const TasksApiAxiosParamCreator = function (configuration) {
         getTasks: async (options = {}) => {
             const localVarPath = `/tasks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.TasksApiAxiosParamCreator = TasksApiAxiosParamCreator;
 /**
  * TasksApi - functional programming interface
  * @export
  */
-const TasksApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.TasksApiAxiosParamCreator)(configuration);
+export const TasksApiFp = function (configuration) {
+    const localVarAxiosParamCreator = TasksApiAxiosParamCreator(configuration);
     return {
         /**
          * Get the list of tasks.
@@ -77,21 +70,19 @@ const TasksApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getTasks(options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTasks(options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['TasksApi.getTasks']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TasksApi.getTasks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.TasksApiFp = TasksApiFp;
 /**
  * TasksApi - factory interface
  * @export
  */
-const TasksApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.TasksApiFp)(configuration);
+export const TasksApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = TasksApiFp(configuration);
     return {
         /**
          * Get the list of tasks.
@@ -104,14 +95,13 @@ const TasksApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.TasksApiFactory = TasksApiFactory;
 /**
  * TasksApi - object-oriented interface
  * @export
  * @class TasksApi
  * @extends {BaseAPI}
  */
-class TasksApi extends base_1.BaseAPI {
+export class TasksApi extends BaseAPI {
     /**
      * Get the list of tasks.
      * @summary Get tasks
@@ -120,7 +110,7 @@ class TasksApi extends base_1.BaseAPI {
      * @memberof TasksApi
      */
     getTasks(options) {
-        return (0, exports.TasksApiFp)(this.configuration).getTasks(options).then((request) => request(this.axios, this.basePath));
+        return TasksApiFp(this.configuration).getTasks(options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.TasksApi = TasksApi;
+//# sourceMappingURL=tasks-api.js.map

@@ -44,3 +44,4 @@ export interface CoinConfig {
      */
     'needsMemo': boolean;
 }
+//# sourceMappingURL=coin-config.d.ts.map

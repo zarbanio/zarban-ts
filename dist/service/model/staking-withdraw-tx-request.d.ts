@@ -34,3 +34,4 @@ export interface StakingWithdrawTxRequest {
      */
     'amount'?: string;
 }
+//# sourceMappingURL=staking-withdraw-tx-request.d.ts.map

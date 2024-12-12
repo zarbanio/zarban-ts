@@ -88,3 +88,4 @@ export declare class LogsApi extends BaseAPI implements LogsApiInterface {
      */
     getLogsByTransactionHash(txHash: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<EventDetailsResponse, any>>;
 }
+//# sourceMappingURL=logs-api.d.ts.map

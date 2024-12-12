@@ -23,3 +23,4 @@ export interface FriendPointsResponse {
      */
     'data': Array<FriendPoints>;
 }
+//# sourceMappingURL=friend-points-response.d.ts.map

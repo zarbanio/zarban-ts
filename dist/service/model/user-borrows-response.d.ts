@@ -23,3 +23,4 @@ export interface UserBorrowsResponse {
      */
     'data': Array<LendingpoolBorrow>;
 }
+//# sourceMappingURL=user-borrows-response.d.ts.map

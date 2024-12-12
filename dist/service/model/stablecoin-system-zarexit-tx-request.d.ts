@@ -28,3 +28,4 @@ export interface StablecoinSystemZarexitTxRequest {
      */
     'amount': string;
 }
+//# sourceMappingURL=stablecoin-system-zarexit-tx-request.d.ts.map

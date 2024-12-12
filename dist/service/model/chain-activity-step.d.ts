@@ -35,3 +35,4 @@ export declare const ChainActivityStepTypeEnum: {
     readonly PERSONAL_SIGN_REQUEST: "PersonalSignRequest";
 };
 export type ChainActivityStepTypeEnum = typeof ChainActivityStepTypeEnum[keyof typeof ChainActivityStepTypeEnum];
+//# sourceMappingURL=chain-activity-step.d.ts.map

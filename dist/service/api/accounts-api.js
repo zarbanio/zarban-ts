@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * AccountsApi - axios parameter creator
  * @export
  */
-const AccountsApiAxiosParamCreator = function (configuration) {
+export const AccountsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get account by address
@@ -41,35 +35,34 @@ const AccountsApiAxiosParamCreator = function (configuration) {
          */
         getAccountByAddress: async (address, options = {}) => {
             // verify required parameter 'address' is not null or undefined
-            (0, common_1.assertParamExists)('getAccountByAddress', 'address', address);
+            assertParamExists('getAccountByAddress', 'address', address);
             const localVarPath = `/v2/accounts/{address}`
                 .replace(`{${"address"}}`, encodeURIComponent(String(address)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.AccountsApiAxiosParamCreator = AccountsApiAxiosParamCreator;
 /**
  * AccountsApi - functional programming interface
  * @export
  */
-const AccountsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.AccountsApiAxiosParamCreator)(configuration);
+export const AccountsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration);
     return {
         /**
          * Get account by address
@@ -79,21 +72,19 @@ const AccountsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getAccountByAddress(address, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAccountByAddress(address, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['AccountsApi.getAccountByAddress']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AccountsApi.getAccountByAddress']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.AccountsApiFp = AccountsApiFp;
 /**
  * AccountsApi - factory interface
  * @export
  */
-const AccountsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.AccountsApiFp)(configuration);
+export const AccountsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = AccountsApiFp(configuration);
     return {
         /**
          * Get account by address
@@ -107,14 +98,13 @@ const AccountsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.AccountsApiFactory = AccountsApiFactory;
 /**
  * AccountsApi - object-oriented interface
  * @export
  * @class AccountsApi
  * @extends {BaseAPI}
  */
-class AccountsApi extends base_1.BaseAPI {
+export class AccountsApi extends BaseAPI {
     /**
      * Get account by address
      * @summary Get account by address
@@ -124,7 +114,7 @@ class AccountsApi extends base_1.BaseAPI {
      * @memberof AccountsApi
      */
     getAccountByAddress(address, options) {
-        return (0, exports.AccountsApiFp)(this.configuration).getAccountByAddress(address, options).then((request) => request(this.axios, this.basePath));
+        return AccountsApiFp(this.configuration).getAccountByAddress(address, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.AccountsApi = AccountsApi;
+//# sourceMappingURL=accounts-api.js.map

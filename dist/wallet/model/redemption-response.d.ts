@@ -23,3 +23,4 @@ export interface RedemptionResponse {
      */
     'data': Array<Redemption>;
 }
+//# sourceMappingURL=redemption-response.d.ts.map

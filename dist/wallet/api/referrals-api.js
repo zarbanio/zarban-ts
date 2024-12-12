@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,25 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReferralsApi = exports.ReferralsApiFactory = exports.ReferralsApiFp = exports.ReferralsApiAxiosParamCreator = void 0;
-const axios_1 = __importDefault(require("axios"));
+import globalAxios from 'axios';
 // URLSearchParams not necessarily used
 // @ts-ignore
-const url_1 = require("url");
+import { URL } from 'url';
 // Some imports not used depending on template conditions
 // @ts-ignore
-const common_1 = require("../common");
+import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
-const base_1 = require("../base");
+import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
 /**
  * ReferralsApi - axios parameter creator
  * @export
  */
-const ReferralsApiAxiosParamCreator = function (configuration) {
+export const ReferralsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get a referral by its ID.
@@ -41,26 +35,26 @@ const ReferralsApiAxiosParamCreator = function (configuration) {
          */
         getReferralById: async (referralId, options = {}) => {
             // verify required parameter 'referralId' is not null or undefined
-            (0, common_1.assertParamExists)('getReferralById', 'referralId', referralId);
+            assertParamExists('getReferralById', 'referralId', referralId);
             const localVarPath = `/referrals/{referralId}`
                 .replace(`{${"referralId"}}`, encodeURIComponent(String(referralId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -74,25 +68,25 @@ const ReferralsApiAxiosParamCreator = function (configuration) {
         getReferrals: async (name, options = {}) => {
             const localVarPath = `/referrals`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
             if (name !== undefined) {
                 localVarQueryParameter['name'] = name;
             }
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -105,26 +99,26 @@ const ReferralsApiAxiosParamCreator = function (configuration) {
          */
         redeemReferral: async (referralId, options = {}) => {
             // verify required parameter 'referralId' is not null or undefined
-            (0, common_1.assertParamExists)('redeemReferral', 'referralId', referralId);
+            assertParamExists('redeemReferral', 'referralId', referralId);
             const localVarPath = `/referrals/{referralId}/redeem`
                 .replace(`{${"referralId"}}`, encodeURIComponent(String(referralId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -137,38 +131,37 @@ const ReferralsApiAxiosParamCreator = function (configuration) {
          */
         validateReferral: async (referralId, options = {}) => {
             // verify required parameter 'referralId' is not null or undefined
-            (0, common_1.assertParamExists)('validateReferral', 'referralId', referralId);
+            assertParamExists('validateReferral', 'referralId', referralId);
             const localVarPath = `/referrals/{referralId}/validate`
                 .replace(`{${"referralId"}}`, encodeURIComponent(String(referralId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
-exports.ReferralsApiAxiosParamCreator = ReferralsApiAxiosParamCreator;
 /**
  * ReferralsApi - functional programming interface
  * @export
  */
-const ReferralsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = (0, exports.ReferralsApiAxiosParamCreator)(configuration);
+export const ReferralsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = ReferralsApiAxiosParamCreator(configuration);
     return {
         /**
          * Get a referral by its ID.
@@ -178,11 +171,10 @@ const ReferralsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getReferralById(referralId, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getReferralById(referralId, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['ReferralsApi.getReferralById']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReferralsApi.getReferralById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get referrals by user ID or name.
@@ -192,11 +184,10 @@ const ReferralsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async getReferrals(name, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.getReferrals(name, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['ReferralsApi.getReferrals']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReferralsApi.getReferrals']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Redeem a referral for a user.
@@ -206,11 +197,10 @@ const ReferralsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async redeemReferral(referralId, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.redeemReferral(referralId, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['ReferralsApi.redeemReferral']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReferralsApi.redeemReferral']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Validate a referral to check if it can be redeemed.
@@ -220,21 +210,19 @@ const ReferralsApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         async validateReferral(referralId, options) {
-            var _a, _b, _c;
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateReferral(referralId, options);
-            const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-            const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['ReferralsApi.validateReferral']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ReferralsApi.validateReferral']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
-exports.ReferralsApiFp = ReferralsApiFp;
 /**
  * ReferralsApi - factory interface
  * @export
  */
-const ReferralsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = (0, exports.ReferralsApiFp)(configuration);
+export const ReferralsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = ReferralsApiFp(configuration);
     return {
         /**
          * Get a referral by its ID.
@@ -278,14 +266,13 @@ const ReferralsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
-exports.ReferralsApiFactory = ReferralsApiFactory;
 /**
  * ReferralsApi - object-oriented interface
  * @export
  * @class ReferralsApi
  * @extends {BaseAPI}
  */
-class ReferralsApi extends base_1.BaseAPI {
+export class ReferralsApi extends BaseAPI {
     /**
      * Get a referral by its ID.
      * @summary Get referral by ID
@@ -295,7 +282,7 @@ class ReferralsApi extends base_1.BaseAPI {
      * @memberof ReferralsApi
      */
     getReferralById(referralId, options) {
-        return (0, exports.ReferralsApiFp)(this.configuration).getReferralById(referralId, options).then((request) => request(this.axios, this.basePath));
+        return ReferralsApiFp(this.configuration).getReferralById(referralId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get referrals by user ID or name.
@@ -306,7 +293,7 @@ class ReferralsApi extends base_1.BaseAPI {
      * @memberof ReferralsApi
      */
     getReferrals(name, options) {
-        return (0, exports.ReferralsApiFp)(this.configuration).getReferrals(name, options).then((request) => request(this.axios, this.basePath));
+        return ReferralsApiFp(this.configuration).getReferrals(name, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Redeem a referral for a user.
@@ -317,7 +304,7 @@ class ReferralsApi extends base_1.BaseAPI {
      * @memberof ReferralsApi
      */
     redeemReferral(referralId, options) {
-        return (0, exports.ReferralsApiFp)(this.configuration).redeemReferral(referralId, options).then((request) => request(this.axios, this.basePath));
+        return ReferralsApiFp(this.configuration).redeemReferral(referralId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Validate a referral to check if it can be redeemed.
@@ -328,7 +315,7 @@ class ReferralsApi extends base_1.BaseAPI {
      * @memberof ReferralsApi
      */
     validateReferral(referralId, options) {
-        return (0, exports.ReferralsApiFp)(this.configuration).validateReferral(referralId, options).then((request) => request(this.axios, this.basePath));
+        return ReferralsApiFp(this.configuration).validateReferral(referralId, options).then((request) => request(this.axios, this.basePath));
     }
 }
-exports.ReferralsApi = ReferralsApi;
+//# sourceMappingURL=referrals-api.js.map
