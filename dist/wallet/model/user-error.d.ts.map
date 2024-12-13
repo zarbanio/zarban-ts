@@ -1,1 +1,0 @@
-{"version":3,"file":"user-error.d.ts","sourceRoot":"","sources":["../../../src/wallet/model/user-error.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,gBAAgB,CAAC;AAElD;;;;GAIG;AACH,MAAM,WAAW,SAAS;IACtB;;;;OAIG;IACH,UAAU,EAAE;QAAE,CAAC,GAAG,EAAE,MAAM,GAAG,WAAW,GAAG,SAAS,CAAC;KAAE,CAAC;CAC3D"}

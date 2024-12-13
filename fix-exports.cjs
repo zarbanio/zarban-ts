@@ -4,19 +4,14 @@ const path = require("path");
 const paths = ["service", "wallet"];
 for (const p of paths) {
   // Path to the generated api.ts file
-  const apiFilePath = path.resolve(__dirname, `./src/${p}/api.ts`);
+  const apiFilePath = path.resolve(__dirname, `./src/${p}/src/apis/index.ts`);
   // Read the file content
   let apiFileContent = fs.readFileSync(apiFilePath, "utf-8");
-
   // Use regex to transform `export * from` to `export * as NameApi from`
   apiFileContent = apiFileContent.replace(
-    /export \* from '\.\/api\/([a-z-]+)-api';/g,
+    /export \* from ['"]\.\/([A-Za-z]+)Api['"];/g,
     (match, p1) => {
-      const formattedName = p1
-        .split("-")
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-        .join("");
-      return `export * as ${formattedName}Api from './api/${p1}-api';`;
+      return `export * as ${p1}Api from "./${p1}Api";`;
     }
   );
   // Write the updated content back to the file

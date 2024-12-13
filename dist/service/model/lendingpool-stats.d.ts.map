@@ -1,1 +1,0 @@
-{"version":3,"file":"lendingpool-stats.d.ts","sourceRoot":"","sources":["../../../src/service/model/lendingpool-stats.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAIH;;;;GAIG;AACH,MAAM,WAAW,gBAAgB;IAC7B;;;;OAIG;IACH,gBAAgB,EAAE,GAAG,CAAC;IACtB;;;;OAIG;IACH,cAAc,EAAE,GAAG,CAAC;IACpB;;;;OAIG;IACH,iBAAiB,EAAE,GAAG,CAAC;CAC1B"}

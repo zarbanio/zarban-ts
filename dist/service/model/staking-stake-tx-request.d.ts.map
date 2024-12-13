@@ -1,1 +1,0 @@
-{"version":3,"file":"staking-stake-tx-request.d.ts","sourceRoot":"","sources":["../../../src/service/model/staking-stake-tx-request.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAIH;;;;GAIG;AACH,MAAM,WAAW,qBAAqB;IAClC;;;;OAIG;IACH,MAAM,EAAE,MAAM,CAAC;IACf;;;;OAIG;IACH,iBAAiB,EAAE,MAAM,CAAC;IAC1B;;;;OAIG;IACH,QAAQ,CAAC,EAAE,MAAM,CAAC;CACrB"}
