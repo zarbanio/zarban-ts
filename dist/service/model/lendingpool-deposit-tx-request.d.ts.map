@@ -1,1 +1,0 @@
-{"version":3,"file":"lendingpool-deposit-tx-request.d.ts","sourceRoot":"","sources":["../../../src/service/model/lendingpool-deposit-tx-request.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAIH;;;;GAIG;AACH,MAAM,WAAW,2BAA2B;IACxC;;;;OAIG;IACH,MAAM,EAAE,MAAM,CAAC;IACf;;;;OAIG;IACH,QAAQ,EAAE,MAAM,CAAC;IACjB;;;;OAIG;IACH,QAAQ,CAAC,EAAE,MAAM,CAAC;CACrB"}

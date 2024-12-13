@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 Apis/AccountsApi.md
 Apis/AddressesApi.md
 Apis/BorrowsApi.md
