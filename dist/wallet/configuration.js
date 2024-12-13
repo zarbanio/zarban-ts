@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,63 +12,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export class Configuration {
-    /**
-     * parameter for apiKey security
-     * @param name security name
-     * @memberof Configuration
-     */
-    apiKey;
-    /**
-     * parameter for basic security
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
-    username;
-    /**
-     * parameter for basic security
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
-    password;
-    /**
-     * parameter for oauth2 security
-     * @param name security name
-     * @param scopes oauth2 scope
-     * @memberof Configuration
-     */
-    accessToken;
-    /**
-     * override base path
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
-    basePath;
-    /**
-     * override server index
-     *
-     * @type {number}
-     * @memberof Configuration
-     */
-    serverIndex;
-    /**
-     * base options for axios calls
-     *
-     * @type {any}
-     * @memberof Configuration
-     */
-    baseOptions;
-    /**
-     * The FormData constructor that will be used to create multipart form data
-     * requests. You can inject this here so that execution environments that
-     * do not support the FormData class can still run the generated client.
-     *
-     * @type {new () => FormData}
-     */
-    formDataCtor;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Configuration = void 0;
+class Configuration {
     constructor(param = {}) {
         this.apiKey = param.apiKey;
         this.username = param.username;
@@ -93,4 +40,5 @@ export class Configuration {
         return mime !== null && (jsonMime.test(mime) || mime.toLowerCase() === 'application/json-patch+json');
     }
 }
+exports.Configuration = Configuration;
 //# sourceMappingURL=configuration.js.map

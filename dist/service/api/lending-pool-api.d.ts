@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { FormattedReserveData } from '../model';
 import type { LendingpoolBorrowTxRequest } from '../model';
@@ -353,7 +354,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    createLendingPoolBorrow(lendingpoolBorrowTxRequest: LendingpoolBorrowTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolBorrowTxResponse, any>>;
+    createLendingPoolBorrow(lendingpoolBorrowTxRequest: LendingpoolBorrowTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LendingpoolBorrowTxResponse, any>>;
     /**
      * Deposit to lending pool
      * @summary Deposit to lending pool
@@ -362,7 +363,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    createLendingPoolDeposit(lendingpoolDepositTxRequest: LendingpoolDepositTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolDepositTxResponse, any>>;
+    createLendingPoolDeposit(lendingpoolDepositTxRequest: LendingpoolDepositTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LendingpoolDepositTxResponse, any>>;
     /**
      * Repay to lending pool
      * @summary Repay to lending pool
@@ -371,7 +372,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    createLendingPoolRepay(lendingpoolRepayTxRequest: LendingpoolRepayTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolRepayTxResponse, any>>;
+    createLendingPoolRepay(lendingpoolRepayTxRequest: LendingpoolRepayTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LendingpoolRepayTxResponse, any>>;
     /**
      * Withdraw from lending pool
      * @summary Withdraw from lending pool
@@ -380,7 +381,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    createLendingPoolWithdraw(lendingpoolWithdrawTxRequest: LendingpoolWithdrawTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolWithdrawTxResponse, any>>;
+    createLendingPoolWithdraw(lendingpoolWithdrawTxRequest: LendingpoolWithdrawTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LendingpoolWithdrawTxResponse, any>>;
     /**
      * Retrieve data of reserves
      * @summary Fetch Reserve Data By Asset
@@ -389,7 +390,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    fetchReserveDataByAsset(asset?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<FormattedReserveData, any>>;
+    fetchReserveDataByAsset(asset?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<FormattedReserveData, any>>;
     /**
      * Get user borrows of lendingpool
      * @summary Get user borrows of lendingpool
@@ -401,7 +402,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    getUserBorrows(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserBorrowsResponse, any>>;
+    getUserBorrows(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<UserBorrowsResponse, any>>;
     /**
      * Get user deposits of Lendingpool
      * @summary Get user deposits of Lendingpool
@@ -413,7 +414,7 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    getUserDeposits(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserDepositsResponse, any>>;
+    getUserDeposits(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<UserDepositsResponse, any>>;
     /**
      * Allows to enable/disable a specific asset as collateral
      * @summary Enable/Disable asset as collateral
@@ -422,6 +423,6 @@ export declare class LendingPoolApi extends BaseAPI implements LendingPoolApiInt
      * @throws {RequiredError}
      * @memberof LendingPoolApi
      */
-    setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest: LendingpoolUseAssetAsCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LendingpoolUseAssetAsCollateralTxResponse, any>>;
+    setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest: LendingpoolUseAssetAsCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LendingpoolUseAssetAsCollateralTxResponse, any>>;
 }
 //# sourceMappingURL=lending-pool-api.d.ts.map

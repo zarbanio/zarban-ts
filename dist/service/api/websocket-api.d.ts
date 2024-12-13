@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 /**
  * WebsocketApi - axios parameter creator
@@ -80,6 +81,6 @@ export declare class WebsocketApi extends BaseAPI implements WebsocketApiInterfa
      * @throws {RequiredError}
      * @memberof WebsocketApi
      */
-    getUnfilledOrdersWebsocket(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    getUnfilledOrdersWebsocket(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
 }
 //# sourceMappingURL=websocket-api.d.ts.map

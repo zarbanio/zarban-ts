@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CoinsApi = exports.CoinsApiFactory = exports.CoinsApiFp = exports.CoinsApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * CoinsApi - axios parameter creator
  * @export
  */
-export const CoinsApiAxiosParamCreator = function (configuration) {
+const CoinsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get the details of a coin.
@@ -35,11 +39,11 @@ export const CoinsApiAxiosParamCreator = function (configuration) {
          */
         getCoinDetails: async (symbol, options = {}) => {
             // verify required parameter 'symbol' is not null or undefined
-            assertParamExists('getCoinDetails', 'symbol', symbol);
+            (0, common_1.assertParamExists)('getCoinDetails', 'symbol', symbol);
             const localVarPath = `/coins/{symbol}`
                 .replace(`{${"symbol"}}`, encodeURIComponent(String(symbol)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,11 +51,11 @@ export const CoinsApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -64,7 +68,7 @@ export const CoinsApiAxiosParamCreator = function (configuration) {
         getSupportedCoins: async (options = {}) => {
             const localVarPath = `/coins`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -72,22 +76,23 @@ export const CoinsApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.CoinsApiAxiosParamCreator = CoinsApiAxiosParamCreator;
 /**
  * CoinsApi - functional programming interface
  * @export
  */
-export const CoinsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = CoinsApiAxiosParamCreator(configuration);
+const CoinsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.CoinsApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get the details of a coin.
@@ -99,8 +104,8 @@ export const CoinsApiFp = function (configuration) {
         async getCoinDetails(symbol, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCoinDetails(symbol, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CoinsApi.getCoinDetails']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['CoinsApi.getCoinDetails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the list of supported coins.
@@ -111,17 +116,18 @@ export const CoinsApiFp = function (configuration) {
         async getSupportedCoins(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSupportedCoins(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CoinsApi.getSupportedCoins']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['CoinsApi.getSupportedCoins']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.CoinsApiFp = CoinsApiFp;
 /**
  * CoinsApi - factory interface
  * @export
  */
-export const CoinsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = CoinsApiFp(configuration);
+const CoinsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.CoinsApiFp)(configuration);
     return {
         /**
          * Get the details of a coin.
@@ -144,13 +150,14 @@ export const CoinsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.CoinsApiFactory = CoinsApiFactory;
 /**
  * CoinsApi - object-oriented interface
  * @export
  * @class CoinsApi
  * @extends {BaseAPI}
  */
-export class CoinsApi extends BaseAPI {
+class CoinsApi extends base_1.BaseAPI {
     /**
      * Get the details of a coin.
      * @summary Get coin
@@ -160,7 +167,7 @@ export class CoinsApi extends BaseAPI {
      * @memberof CoinsApi
      */
     getCoinDetails(symbol, options) {
-        return CoinsApiFp(this.configuration).getCoinDetails(symbol, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CoinsApiFp)(this.configuration).getCoinDetails(symbol, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the list of supported coins.
@@ -170,7 +177,8 @@ export class CoinsApi extends BaseAPI {
      * @memberof CoinsApi
      */
     getSupportedCoins(options) {
-        return CoinsApiFp(this.configuration).getSupportedCoins(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CoinsApiFp)(this.configuration).getSupportedCoins(options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.CoinsApi = CoinsApi;
 //# sourceMappingURL=coins-api.js.map

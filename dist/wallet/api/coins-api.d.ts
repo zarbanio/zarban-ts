@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Coin } from '../model';
 import type { CoinResponse } from '../model';
@@ -117,7 +118,7 @@ export declare class CoinsApi extends BaseAPI implements CoinsApiInterface {
      * @throws {RequiredError}
      * @memberof CoinsApi
      */
-    getCoinDetails(symbol: Symbol, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Coin, any>>;
+    getCoinDetails(symbol: Symbol, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Coin, any>>;
     /**
      * Get the list of supported coins.
      * @summary Get coins
@@ -125,6 +126,6 @@ export declare class CoinsApi extends BaseAPI implements CoinsApiInterface {
      * @throws {RequiredError}
      * @memberof CoinsApi
      */
-    getSupportedCoins(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<CoinResponse, any>>;
+    getSupportedCoins(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<CoinResponse, any>>;
 }
 //# sourceMappingURL=coins-api.d.ts.map

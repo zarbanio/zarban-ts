@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.IlksApi = exports.IlksApiFactory = exports.IlksApiFp = exports.IlksApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * IlksApi - axios parameter creator
  * @export
  */
-export const IlksApiAxiosParamCreator = function (configuration) {
+const IlksApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Retrieve a list of all available ilks.
@@ -35,7 +39,7 @@ export const IlksApiAxiosParamCreator = function (configuration) {
         getAllIlks: async (options = {}) => {
             const localVarPath = `/v2/ilks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -43,11 +47,11 @@ export const IlksApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -60,11 +64,11 @@ export const IlksApiAxiosParamCreator = function (configuration) {
          */
         getIlkByName: async (name, options = {}) => {
             // verify required parameter 'name' is not null or undefined
-            assertParamExists('getIlkByName', 'name', name);
+            (0, common_1.assertParamExists)('getIlkByName', 'name', name);
             const localVarPath = `/v2/ilks/{name}`
                 .replace(`{${"name"}}`, encodeURIComponent(String(name)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -72,22 +76,23 @@ export const IlksApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.IlksApiAxiosParamCreator = IlksApiAxiosParamCreator;
 /**
  * IlksApi - functional programming interface
  * @export
  */
-export const IlksApiFp = function (configuration) {
-    const localVarAxiosParamCreator = IlksApiAxiosParamCreator(configuration);
+const IlksApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.IlksApiAxiosParamCreator)(configuration);
     return {
         /**
          * Retrieve a list of all available ilks.
@@ -98,8 +103,8 @@ export const IlksApiFp = function (configuration) {
         async getAllIlks(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllIlks(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['IlksApi.getAllIlks']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['IlksApi.getAllIlks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve an Ilk by providing its name.
@@ -111,17 +116,18 @@ export const IlksApiFp = function (configuration) {
         async getIlkByName(name, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getIlkByName(name, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['IlksApi.getIlkByName']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['IlksApi.getIlkByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.IlksApiFp = IlksApiFp;
 /**
  * IlksApi - factory interface
  * @export
  */
-export const IlksApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = IlksApiFp(configuration);
+const IlksApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.IlksApiFp)(configuration);
     return {
         /**
          * Retrieve a list of all available ilks.
@@ -144,13 +150,14 @@ export const IlksApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.IlksApiFactory = IlksApiFactory;
 /**
  * IlksApi - object-oriented interface
  * @export
  * @class IlksApi
  * @extends {BaseAPI}
  */
-export class IlksApi extends BaseAPI {
+class IlksApi extends base_1.BaseAPI {
     /**
      * Retrieve a list of all available ilks.
      * @summary Get all Ilks
@@ -159,7 +166,7 @@ export class IlksApi extends BaseAPI {
      * @memberof IlksApi
      */
     getAllIlks(options) {
-        return IlksApiFp(this.configuration).getAllIlks(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.IlksApiFp)(this.configuration).getAllIlks(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve an Ilk by providing its name.
@@ -170,7 +177,8 @@ export class IlksApi extends BaseAPI {
      * @memberof IlksApi
      */
     getIlkByName(name, options) {
-        return IlksApiFp(this.configuration).getIlkByName(name, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.IlksApiFp)(this.configuration).getIlkByName(name, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.IlksApi = IlksApi;
 //# sourceMappingURL=ilks-api.js.map

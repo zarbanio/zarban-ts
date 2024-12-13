@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { CreateChildUserRequest } from '../model';
 import type { EmailOtpSubmitRequest } from '../model';
@@ -323,7 +324,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    confirmKyc(kycConfirmRequest: KycConfirmRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
+    confirmKyc(kycConfirmRequest: KycConfirmRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SimpleResponse, any>>;
     /**
      * Confirm the phone number of the user.
      * @summary Confirm phone number
@@ -332,7 +333,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    confirmPhoneNumber(phoneOtpSubmitRequest: PhoneOtpSubmitRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    confirmPhoneNumber(phoneOtpSubmitRequest: PhoneOtpSubmitRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
     /**
      * create a child user
      * @summary create a child user
@@ -341,7 +342,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    createChildUser(createChildUserRequest: CreateChildUserRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<User, any>>;
+    createChildUser(createChildUserRequest: CreateChildUserRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<User, any>>;
     /**
      * Get the profile of the user.
      * @summary Get profile
@@ -349,7 +350,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    getUserProfile(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ProfileResponse, any>>;
+    getUserProfile(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ProfileResponse, any>>;
     /**
      * Submit email confirmation OTP for the user.
      * @summary Submit email confirmation OTP
@@ -358,7 +359,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    submitEmailConfirmationOtp(emailOtpSubmitRequest: EmailOtpSubmitRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
+    submitEmailConfirmationOtp(emailOtpSubmitRequest: EmailOtpSubmitRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SimpleResponse, any>>;
     /**
      * Submit KYC for the user.
      * @summary Submit KYC
@@ -367,7 +368,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    submitKyc(kycRequest: KycRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<KycResponse, any>>;
+    submitKyc(kycRequest: KycRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<KycResponse, any>>;
     /**
      * Verify the phone number of the user.
      * @summary Verify phone number
@@ -376,7 +377,7 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    verifyPhoneNumber(updatePhoneRequest: UpdatePhoneRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    verifyPhoneNumber(updatePhoneRequest: UpdatePhoneRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
     /**
      * Verify the email of the user.
      * @summary Verify email
@@ -385,6 +386,6 @@ export declare class UserApi extends BaseAPI implements UserApiInterface {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    verifyUserEmailAddress(updateEmailRequest: UpdateEmailRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
+    verifyUserEmailAddress(updateEmailRequest: UpdateEmailRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SimpleResponse, any>>;
 }
 //# sourceMappingURL=user-api.d.ts.map

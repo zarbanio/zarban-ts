@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,21 +12,24 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export * as AccountsApi from './api/accounts-api';
-export * as AddressesApi from './api/addresses-api';
-export * as BorrowsApi from './api/borrows-api';
-export * as CollectorApi from './api/collector-api';
-export * as DepositsApi from './api/deposits-api';
-export * as IlksApi from './api/ilks-api';
-export * as LendingPoolApi from './api/lending-pool-api';
-export * as LogsApi from './api/logs-api';
-export * as OrdersApi from './api/orders-api';
-export * as PermitApi from './api/permit-api';
-export * as PointsApi from './api/points-api';
-export * as PricesApi from './api/prices-api';
-export * as StableCoinSystemApi from './api/stable-coin-system-api';
-export * as StakingApi from './api/staking-api';
-export * as SwapApi from './api/swap-api';
-export * as VaultsApi from './api/vaults-api';
-export * as WebsocketApi from './api/websocket-api';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WebsocketApi = exports.VaultsApi = exports.SwapApi = exports.StakingApi = exports.StableCoinSystemApi = exports.PricesApi = exports.PointsApi = exports.PermitApi = exports.OrdersApi = exports.LogsApi = exports.LendingPoolApi = exports.IlksApi = exports.DepositsApi = exports.CollectorApi = exports.BorrowsApi = exports.AddressesApi = exports.AccountsApi = void 0;
+const tslib_1 = require("tslib");
+exports.AccountsApi = tslib_1.__importStar(require("./api/accounts-api"));
+exports.AddressesApi = tslib_1.__importStar(require("./api/addresses-api"));
+exports.BorrowsApi = tslib_1.__importStar(require("./api/borrows-api"));
+exports.CollectorApi = tslib_1.__importStar(require("./api/collector-api"));
+exports.DepositsApi = tslib_1.__importStar(require("./api/deposits-api"));
+exports.IlksApi = tslib_1.__importStar(require("./api/ilks-api"));
+exports.LendingPoolApi = tslib_1.__importStar(require("./api/lending-pool-api"));
+exports.LogsApi = tslib_1.__importStar(require("./api/logs-api"));
+exports.OrdersApi = tslib_1.__importStar(require("./api/orders-api"));
+exports.PermitApi = tslib_1.__importStar(require("./api/permit-api"));
+exports.PointsApi = tslib_1.__importStar(require("./api/points-api"));
+exports.PricesApi = tslib_1.__importStar(require("./api/prices-api"));
+exports.StableCoinSystemApi = tslib_1.__importStar(require("./api/stable-coin-system-api"));
+exports.StakingApi = tslib_1.__importStar(require("./api/staking-api"));
+exports.SwapApi = tslib_1.__importStar(require("./api/swap-api"));
+exports.VaultsApi = tslib_1.__importStar(require("./api/vaults-api"));
+exports.WebsocketApi = tslib_1.__importStar(require("./api/websocket-api"));
 //# sourceMappingURL=api.js.map

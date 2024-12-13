@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { PermitSingle } from '../model';
 /**
@@ -91,6 +92,6 @@ export declare class PermitApi extends BaseAPI implements PermitApiInterface {
      * @throws {RequiredError}
      * @memberof PermitApi
      */
-    getSingleTokenPermit(token: string, user: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PermitSingle, any>>;
+    getSingleTokenPermit(token: string, user: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<PermitSingle, any>>;
 }
 //# sourceMappingURL=permit-api.d.ts.map

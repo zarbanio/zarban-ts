@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { ChainActivity } from '../model';
 import type { Ilk } from '../model';
@@ -627,7 +628,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest: StablecoinSystemZarjoinTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    approveAndJoinZarTransaction(stablecoinSystemZarjoinTxRequest: StablecoinSystemZarjoinTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Create vault
      * @summary Create vault
@@ -636,7 +637,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    createStableCoinVault(stablecoinSystemCreateVaultTxRequest: StablecoinSystemCreateVaultTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    createStableCoinVault(stablecoinSystemCreateVaultTxRequest: StablecoinSystemCreateVaultTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Deposit collateral
      * @summary Deposit collateral
@@ -645,7 +646,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest: StablecoinSystemDepositCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    depositStableCoinCollateral(stablecoinSystemDepositCollateralTxRequest: StablecoinSystemDepositCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * exit Gem token (which can be used as collateral) from Vat contract
      * @summary exit Gem token (which can be used as collateral) from Vat contract
@@ -654,7 +655,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    exitGemTransaction(stablecoinSystemGemexitTxRequest: StablecoinSystemGemexitTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    exitGemTransaction(stablecoinSystemGemexitTxRequest: StablecoinSystemGemexitTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * exit ZAR token from Vat contract
      * @summary exit ZAR token from Vat contract
@@ -663,7 +664,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    exitZarTransaction(stablecoinSystemZarexitTxRequest: StablecoinSystemZarexitTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    exitZarTransaction(stablecoinSystemZarexitTxRequest: StablecoinSystemZarexitTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Retrieve a list of all available ilks.
      * @summary Get all Ilks
@@ -671,7 +672,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getAllIlks(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<IlksResponse, any>>;
+    getAllIlks(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<IlksResponse, any>>;
     /**
      * Get collector data
      * @summary Get collector data
@@ -679,7 +680,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getCollectorData(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Stats, any>>;
+    getCollectorData(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Stats, any>>;
     /**
      * Retrieve an Ilk by providing its name.
      * @summary Get Ilk by name
@@ -688,7 +689,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getIlkByName(name: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Ilk, any>>;
+    getIlkByName(name: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Ilk, any>>;
     /**
      *
      * @summary Get a vault by ID
@@ -697,7 +698,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getVaultById(id: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Vault, any>>;
+    getVaultById(id: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Vault, any>>;
     /**
      *
      * @summary Get vault events by ID
@@ -707,7 +708,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getVaultEventsById(id: number, type?: GetVaultEventsByIdTypeEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<VaultEventsResponse, any>>;
+    getVaultEventsById(id: number, type?: GetVaultEventsByIdTypeEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<VaultEventsResponse, any>>;
     /**
      *
      * @summary Get vaults by owner query
@@ -716,7 +717,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    getVaultsByOwner(owner?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<VaultsResponse, any>>;
+    getVaultsByOwner(owner?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<VaultsResponse, any>>;
     /**
      * liquidate a vault
      * @summary liquidate a vault
@@ -725,7 +726,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    liquidateVaultTransaction(stablecoinSystemBarkTxRequest: StablecoinSystemBarkTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    liquidateVaultTransaction(stablecoinSystemBarkTxRequest: StablecoinSystemBarkTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Mint ZAR
      * @summary Mint ZAR
@@ -734,7 +735,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    mintZarTransaction(stablecoinSystemMintZarTxRequest: StablecoinSystemMintZarTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    mintZarTransaction(stablecoinSystemMintZarTxRequest: StablecoinSystemMintZarTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Repay ZAR
      * @summary Repay ZAR
@@ -743,7 +744,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    repayZarTransaction(stablecoinSystemRepayZarTxRequest: StablecoinSystemRepayZarTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    repayZarTransaction(stablecoinSystemRepayZarTxRequest: StablecoinSystemRepayZarTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * reset a auction
      * @summary reset a auction
@@ -752,7 +753,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    resetAuctionTransaction(stablecoinSystemRedoTxRequest: StablecoinSystemRedoTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    resetAuctionTransaction(stablecoinSystemRedoTxRequest: StablecoinSystemRedoTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * take a auction
      * @summary take a auction
@@ -761,7 +762,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    takeAuctionTransaction(stablecoinSystemTakeTxRequest: StablecoinSystemTakeTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    takeAuctionTransaction(stablecoinSystemTakeTxRequest: StablecoinSystemTakeTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
     /**
      * Withdraw collateral
      * @summary Withdraw collateral
@@ -770,7 +771,7 @@ export declare class StableCoinSystemApi extends BaseAPI implements StableCoinSy
      * @throws {RequiredError}
      * @memberof StableCoinSystemApi
      */
-    withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest: StablecoinSystemWithdrawCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ChainActivity, any>>;
+    withdrawCollateralTransaction(stablecoinSystemWithdrawCollateralTxRequest: StablecoinSystemWithdrawCollateralTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ChainActivity, any>>;
 }
 /**
  * @export

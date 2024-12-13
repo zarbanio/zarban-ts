@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { SwapRequest } from '../model';
 import type { SwapResponse } from '../model';
@@ -87,6 +88,6 @@ export declare class SwapApi extends BaseAPI implements SwapApiInterface {
      * @throws {RequiredError}
      * @memberof SwapApi
      */
-    swapCoins(swapRequest: SwapRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SwapResponse, any>>;
+    swapCoins(swapRequest: SwapRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SwapResponse, any>>;
 }
 //# sourceMappingURL=swap-api.d.ts.map

@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Vault } from '../model';
 import type { VaultEventsResponse } from '../model';
@@ -158,7 +159,7 @@ export declare class VaultsApi extends BaseAPI implements VaultsApiInterface {
      * @throws {RequiredError}
      * @memberof VaultsApi
      */
-    getVaultById(id: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Vault, any>>;
+    getVaultById(id: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Vault, any>>;
     /**
      *
      * @summary Get vault events by ID
@@ -168,7 +169,7 @@ export declare class VaultsApi extends BaseAPI implements VaultsApiInterface {
      * @throws {RequiredError}
      * @memberof VaultsApi
      */
-    getVaultEventsById(id: number, type?: GetVaultEventsByIdTypeEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<VaultEventsResponse, any>>;
+    getVaultEventsById(id: number, type?: GetVaultEventsByIdTypeEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<VaultEventsResponse, any>>;
     /**
      *
      * @summary Get vaults by owner query
@@ -177,7 +178,7 @@ export declare class VaultsApi extends BaseAPI implements VaultsApiInterface {
      * @throws {RequiredError}
      * @memberof VaultsApi
      */
-    getVaultsByOwner(owner?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<VaultsResponse, any>>;
+    getVaultsByOwner(owner?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<VaultsResponse, any>>;
 }
 /**
  * @export

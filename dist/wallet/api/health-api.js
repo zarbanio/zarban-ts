@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HealthApi = exports.HealthApiFactory = exports.HealthApiFp = exports.HealthApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * HealthApi - axios parameter creator
  * @export
  */
-export const HealthApiAxiosParamCreator = function (configuration) {
+const HealthApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Check the health of the API.
@@ -35,7 +39,7 @@ export const HealthApiAxiosParamCreator = function (configuration) {
         checkApiHealth: async (options = {}) => {
             const localVarPath = `/healthz`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -43,22 +47,23 @@ export const HealthApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.HealthApiAxiosParamCreator = HealthApiAxiosParamCreator;
 /**
  * HealthApi - functional programming interface
  * @export
  */
-export const HealthApiFp = function (configuration) {
-    const localVarAxiosParamCreator = HealthApiAxiosParamCreator(configuration);
+const HealthApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.HealthApiAxiosParamCreator)(configuration);
     return {
         /**
          * Check the health of the API.
@@ -69,17 +74,18 @@ export const HealthApiFp = function (configuration) {
         async checkApiHealth(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.checkApiHealth(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HealthApi.checkApiHealth']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['HealthApi.checkApiHealth']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.HealthApiFp = HealthApiFp;
 /**
  * HealthApi - factory interface
  * @export
  */
-export const HealthApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = HealthApiFp(configuration);
+const HealthApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.HealthApiFp)(configuration);
     return {
         /**
          * Check the health of the API.
@@ -92,13 +98,14 @@ export const HealthApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.HealthApiFactory = HealthApiFactory;
 /**
  * HealthApi - object-oriented interface
  * @export
  * @class HealthApi
  * @extends {BaseAPI}
  */
-export class HealthApi extends BaseAPI {
+class HealthApi extends base_1.BaseAPI {
     /**
      * Check the health of the API.
      * @summary Health check
@@ -107,7 +114,8 @@ export class HealthApi extends BaseAPI {
      * @memberof HealthApi
      */
     checkApiHealth(options) {
-        return HealthApiFp(this.configuration).checkApiHealth(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.HealthApiFp)(this.configuration).checkApiHealth(options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.HealthApi = HealthApi;
 //# sourceMappingURL=health-api.js.map

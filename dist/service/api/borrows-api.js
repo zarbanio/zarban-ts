@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BorrowsApi = exports.BorrowsApiFactory = exports.BorrowsApiFp = exports.BorrowsApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * BorrowsApi - axios parameter creator
  * @export
  */
-export const BorrowsApiAxiosParamCreator = function (configuration) {
+const BorrowsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get user borrows of lendingpool
@@ -39,7 +43,7 @@ export const BorrowsApiAxiosParamCreator = function (configuration) {
         getUserBorrows: async (user, reserve, cursor, limit, options = {}) => {
             const localVarPath = `/v2/lendingpool/borrows`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -59,22 +63,23 @@ export const BorrowsApiAxiosParamCreator = function (configuration) {
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.BorrowsApiAxiosParamCreator = BorrowsApiAxiosParamCreator;
 /**
  * BorrowsApi - functional programming interface
  * @export
  */
-export const BorrowsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = BorrowsApiAxiosParamCreator(configuration);
+const BorrowsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.BorrowsApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get user borrows of lendingpool
@@ -89,17 +94,18 @@ export const BorrowsApiFp = function (configuration) {
         async getUserBorrows(user, reserve, cursor, limit, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserBorrows(user, reserve, cursor, limit, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BorrowsApi.getUserBorrows']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['BorrowsApi.getUserBorrows']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.BorrowsApiFp = BorrowsApiFp;
 /**
  * BorrowsApi - factory interface
  * @export
  */
-export const BorrowsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = BorrowsApiFp(configuration);
+const BorrowsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.BorrowsApiFp)(configuration);
     return {
         /**
          * Get user borrows of lendingpool
@@ -116,13 +122,14 @@ export const BorrowsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.BorrowsApiFactory = BorrowsApiFactory;
 /**
  * BorrowsApi - object-oriented interface
  * @export
  * @class BorrowsApi
  * @extends {BaseAPI}
  */
-export class BorrowsApi extends BaseAPI {
+class BorrowsApi extends base_1.BaseAPI {
     /**
      * Get user borrows of lendingpool
      * @summary Get user borrows of lendingpool
@@ -135,7 +142,8 @@ export class BorrowsApi extends BaseAPI {
      * @memberof BorrowsApi
      */
     getUserBorrows(user, reserve, cursor, limit, options) {
-        return BorrowsApiFp(this.configuration).getUserBorrows(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.BorrowsApiFp)(this.configuration).getUserBorrows(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.BorrowsApi = BorrowsApi;
 //# sourceMappingURL=borrows-api.js.map

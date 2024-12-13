@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,12 +12,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LoanToValueOptions = void 0;
 /**
  * The loan to value percentage options
  * @export
  * @enum {string}
  */
-export const LoanToValueOptions = {
+exports.LoanToValueOptions = {
     RISKY: 'Risky',
     NORMAL: 'Normal',
     SAFE: 'Safe'

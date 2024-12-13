@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SwapApi = exports.SwapApiFactory = exports.SwapApiFp = exports.SwapApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * SwapApi - axios parameter creator
  * @export
  */
-export const SwapApiAxiosParamCreator = function (configuration) {
+const SwapApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Swap coins in the wallet.
@@ -35,10 +39,10 @@ export const SwapApiAxiosParamCreator = function (configuration) {
          */
         swapCoins: async (swapRequest, options = {}) => {
             // verify required parameter 'swapRequest' is not null or undefined
-            assertParamExists('swapCoins', 'swapRequest', swapRequest);
+            (0, common_1.assertParamExists)('swapCoins', 'swapRequest', swapRequest);
             const localVarPath = `/swap`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -48,25 +52,26 @@ export const SwapApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(swapRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(swapRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.SwapApiAxiosParamCreator = SwapApiAxiosParamCreator;
 /**
  * SwapApi - functional programming interface
  * @export
  */
-export const SwapApiFp = function (configuration) {
-    const localVarAxiosParamCreator = SwapApiAxiosParamCreator(configuration);
+const SwapApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.SwapApiAxiosParamCreator)(configuration);
     return {
         /**
          * Swap coins in the wallet.
@@ -78,17 +83,18 @@ export const SwapApiFp = function (configuration) {
         async swapCoins(swapRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.swapCoins(swapRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SwapApi.swapCoins']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['SwapApi.swapCoins']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.SwapApiFp = SwapApiFp;
 /**
  * SwapApi - factory interface
  * @export
  */
-export const SwapApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = SwapApiFp(configuration);
+const SwapApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.SwapApiFp)(configuration);
     return {
         /**
          * Swap coins in the wallet.
@@ -102,13 +108,14 @@ export const SwapApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.SwapApiFactory = SwapApiFactory;
 /**
  * SwapApi - object-oriented interface
  * @export
  * @class SwapApi
  * @extends {BaseAPI}
  */
-export class SwapApi extends BaseAPI {
+class SwapApi extends base_1.BaseAPI {
     /**
      * Swap coins in the wallet.
      * @summary Swap coins
@@ -118,7 +125,8 @@ export class SwapApi extends BaseAPI {
      * @memberof SwapApi
      */
     swapCoins(swapRequest, options) {
-        return SwapApiFp(this.configuration).swapCoins(swapRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.SwapApiFp)(this.configuration).swapCoins(swapRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.SwapApi = SwapApi;
 //# sourceMappingURL=swap-api.js.map

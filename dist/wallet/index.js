@@ -1,8 +1,9 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Zarban API
- * API for Zarban services.
+ * Zarban Wallet API
+ * API for Zarban wallet services.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: info@zarban.io
@@ -11,7 +12,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export * from "./api";
-export * from "./configuration";
-export * from "./model";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+tslib_1.__exportStar(require("./api"), exports);
+tslib_1.__exportStar(require("./configuration"), exports);
+tslib_1.__exportStar(require("./model"), exports);
 //# sourceMappingURL=index.js.map

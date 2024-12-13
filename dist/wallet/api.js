@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,19 +12,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export * as AuthApi from './api/auth-api';
-export * as BalanceApi from './api/balance-api';
-export * as CoinsApi from './api/coins-api';
-export * as DepositApi from './api/deposit-api';
-export * as HealthApi from './api/health-api';
-export * as LoansApi from './api/loans-api';
-export * as PaymentApi from './api/payment-api';
-export * as PointsApi from './api/points-api';
-export * as RedemptionsApi from './api/redemptions-api';
-export * as ReferralsApi from './api/referrals-api';
-export * as SwapApi from './api/swap-api';
-export * as TasksApi from './api/tasks-api';
-export * as TransactionsApi from './api/transactions-api';
-export * as UserApi from './api/user-api';
-export * as WithdrawApi from './api/withdraw-api';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WithdrawApi = exports.UserApi = exports.TransactionsApi = exports.TasksApi = exports.SwapApi = exports.ReferralsApi = exports.RedemptionsApi = exports.PointsApi = exports.PaymentApi = exports.LoansApi = exports.HealthApi = exports.DepositApi = exports.CoinsApi = exports.BalanceApi = exports.AuthApi = void 0;
+const tslib_1 = require("tslib");
+exports.AuthApi = tslib_1.__importStar(require("./api/auth-api"));
+exports.BalanceApi = tslib_1.__importStar(require("./api/balance-api"));
+exports.CoinsApi = tslib_1.__importStar(require("./api/coins-api"));
+exports.DepositApi = tslib_1.__importStar(require("./api/deposit-api"));
+exports.HealthApi = tslib_1.__importStar(require("./api/health-api"));
+exports.LoansApi = tslib_1.__importStar(require("./api/loans-api"));
+exports.PaymentApi = tslib_1.__importStar(require("./api/payment-api"));
+exports.PointsApi = tslib_1.__importStar(require("./api/points-api"));
+exports.RedemptionsApi = tslib_1.__importStar(require("./api/redemptions-api"));
+exports.ReferralsApi = tslib_1.__importStar(require("./api/referrals-api"));
+exports.SwapApi = tslib_1.__importStar(require("./api/swap-api"));
+exports.TasksApi = tslib_1.__importStar(require("./api/tasks-api"));
+exports.TransactionsApi = tslib_1.__importStar(require("./api/transactions-api"));
+exports.UserApi = tslib_1.__importStar(require("./api/user-api"));
+exports.WithdrawApi = tslib_1.__importStar(require("./api/withdraw-api"));
 //# sourceMappingURL=api.js.map

@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { EventDetailsResponse } from '../model';
 /**
@@ -86,6 +87,6 @@ export declare class LogsApi extends BaseAPI implements LogsApiInterface {
      * @throws {RequiredError}
      * @memberof LogsApi
      */
-    getLogsByTransactionHash(txHash: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<EventDetailsResponse, any>>;
+    getLogsByTransactionHash(txHash: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<EventDetailsResponse, any>>;
 }
 //# sourceMappingURL=logs-api.d.ts.map

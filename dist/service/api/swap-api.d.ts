@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { QuoteRequest } from '../model';
 import type { QuoteResponse } from '../model';
@@ -87,6 +88,6 @@ export declare class SwapApi extends BaseAPI implements SwapApiInterface {
      * @throws {RequiredError}
      * @memberof SwapApi
      */
-    getSwapQuote(quoteRequest: QuoteRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<QuoteResponse, any>>;
+    getSwapQuote(quoteRequest: QuoteRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<QuoteResponse, any>>;
 }
 //# sourceMappingURL=swap-api.d.ts.map

@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { FriendPointsResponse } from '../model';
 /**
@@ -81,6 +82,6 @@ export declare class PointsApi extends BaseAPI implements PointsApiInterface {
      * @throws {RequiredError}
      * @memberof PointsApi
      */
-    getFriendsPoints(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<FriendPointsResponse, any>>;
+    getFriendsPoints(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<FriendPointsResponse, any>>;
 }
 //# sourceMappingURL=points-api.d.ts.map

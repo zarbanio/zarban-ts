@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SwapApi = exports.SwapApiFactory = exports.SwapApiFp = exports.SwapApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * SwapApi - axios parameter creator
  * @export
  */
-export const SwapApiAxiosParamCreator = function (configuration) {
+const SwapApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get a quote for a swap
@@ -35,10 +39,10 @@ export const SwapApiAxiosParamCreator = function (configuration) {
          */
         getSwapQuote: async (quoteRequest, options = {}) => {
             // verify required parameter 'quoteRequest' is not null or undefined
-            assertParamExists('getSwapQuote', 'quoteRequest', quoteRequest);
+            (0, common_1.assertParamExists)('getSwapQuote', 'quoteRequest', quoteRequest);
             const localVarPath = `/v2/swap/quote`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,23 +51,24 @@ export const SwapApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(quoteRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(quoteRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.SwapApiAxiosParamCreator = SwapApiAxiosParamCreator;
 /**
  * SwapApi - functional programming interface
  * @export
  */
-export const SwapApiFp = function (configuration) {
-    const localVarAxiosParamCreator = SwapApiAxiosParamCreator(configuration);
+const SwapApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.SwapApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get a quote for a swap
@@ -75,17 +80,18 @@ export const SwapApiFp = function (configuration) {
         async getSwapQuote(quoteRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSwapQuote(quoteRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SwapApi.getSwapQuote']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['SwapApi.getSwapQuote']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.SwapApiFp = SwapApiFp;
 /**
  * SwapApi - factory interface
  * @export
  */
-export const SwapApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = SwapApiFp(configuration);
+const SwapApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.SwapApiFp)(configuration);
     return {
         /**
          * Get a quote for a swap
@@ -99,13 +105,14 @@ export const SwapApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.SwapApiFactory = SwapApiFactory;
 /**
  * SwapApi - object-oriented interface
  * @export
  * @class SwapApi
  * @extends {BaseAPI}
  */
-export class SwapApi extends BaseAPI {
+class SwapApi extends base_1.BaseAPI {
     /**
      * Get a quote for a swap
      * @summary Get a quote for a swap
@@ -115,7 +122,8 @@ export class SwapApi extends BaseAPI {
      * @memberof SwapApi
      */
     getSwapQuote(quoteRequest, options) {
-        return SwapApiFp(this.configuration).getSwapQuote(quoteRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.SwapApiFp)(this.configuration).getSwapQuote(quoteRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.SwapApi = SwapApi;
 //# sourceMappingURL=swap-api.js.map

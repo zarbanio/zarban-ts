@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * UserApi - axios parameter creator
  * @export
  */
-export const UserApiAxiosParamCreator = function (configuration) {
+const UserApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Confirm KYC for the user.
@@ -35,10 +39,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         confirmKyc: async (kycConfirmRequest, options = {}) => {
             // verify required parameter 'kycConfirmRequest' is not null or undefined
-            assertParamExists('confirmKyc', 'kycConfirmRequest', kycConfirmRequest);
+            (0, common_1.assertParamExists)('confirmKyc', 'kycConfirmRequest', kycConfirmRequest);
             const localVarPath = `/users/kyc/confirm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -48,14 +52,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(kycConfirmRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(kycConfirmRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -68,10 +72,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         confirmPhoneNumber: async (phoneOtpSubmitRequest, options = {}) => {
             // verify required parameter 'phoneOtpSubmitRequest' is not null or undefined
-            assertParamExists('confirmPhoneNumber', 'phoneOtpSubmitRequest', phoneOtpSubmitRequest);
+            (0, common_1.assertParamExists)('confirmPhoneNumber', 'phoneOtpSubmitRequest', phoneOtpSubmitRequest);
             const localVarPath = `/users/phone/confirm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -81,14 +85,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(phoneOtpSubmitRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(phoneOtpSubmitRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -101,10 +105,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         createChildUser: async (createChildUserRequest, options = {}) => {
             // verify required parameter 'createChildUserRequest' is not null or undefined
-            assertParamExists('createChildUser', 'createChildUserRequest', createChildUserRequest);
+            (0, common_1.assertParamExists)('createChildUser', 'createChildUserRequest', createChildUserRequest);
             const localVarPath = `/users/children`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -114,14 +118,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(createChildUserRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(createChildUserRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -134,7 +138,7 @@ export const UserApiAxiosParamCreator = function (configuration) {
         getUserProfile: async (options = {}) => {
             const localVarPath = `/profile`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -144,12 +148,12 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -162,10 +166,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         submitEmailConfirmationOtp: async (emailOtpSubmitRequest, options = {}) => {
             // verify required parameter 'emailOtpSubmitRequest' is not null or undefined
-            assertParamExists('submitEmailConfirmationOtp', 'emailOtpSubmitRequest', emailOtpSubmitRequest);
+            (0, common_1.assertParamExists)('submitEmailConfirmationOtp', 'emailOtpSubmitRequest', emailOtpSubmitRequest);
             const localVarPath = `/users/email/confirm`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -175,14 +179,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(emailOtpSubmitRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(emailOtpSubmitRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -195,10 +199,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         submitKyc: async (kycRequest, options = {}) => {
             // verify required parameter 'kycRequest' is not null or undefined
-            assertParamExists('submitKyc', 'kycRequest', kycRequest);
+            (0, common_1.assertParamExists)('submitKyc', 'kycRequest', kycRequest);
             const localVarPath = `/users/kyc`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -208,14 +212,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(kycRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(kycRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -228,10 +232,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         verifyPhoneNumber: async (updatePhoneRequest, options = {}) => {
             // verify required parameter 'updatePhoneRequest' is not null or undefined
-            assertParamExists('verifyPhoneNumber', 'updatePhoneRequest', updatePhoneRequest);
+            (0, common_1.assertParamExists)('verifyPhoneNumber', 'updatePhoneRequest', updatePhoneRequest);
             const localVarPath = `/users/phone`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -241,14 +245,14 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(updatePhoneRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(updatePhoneRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -261,10 +265,10 @@ export const UserApiAxiosParamCreator = function (configuration) {
          */
         verifyUserEmailAddress: async (updateEmailRequest, options = {}) => {
             // verify required parameter 'updateEmailRequest' is not null or undefined
-            assertParamExists('verifyUserEmailAddress', 'updateEmailRequest', updateEmailRequest);
+            (0, common_1.assertParamExists)('verifyUserEmailAddress', 'updateEmailRequest', updateEmailRequest);
             const localVarPath = `/users/email`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -274,25 +278,26 @@ export const UserApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(updateEmailRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(updateEmailRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.UserApiAxiosParamCreator = UserApiAxiosParamCreator;
 /**
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function (configuration) {
-    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration);
+const UserApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.UserApiAxiosParamCreator)(configuration);
     return {
         /**
          * Confirm KYC for the user.
@@ -304,8 +309,8 @@ export const UserApiFp = function (configuration) {
         async confirmKyc(kycConfirmRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.confirmKyc(kycConfirmRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.confirmKyc']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.confirmKyc']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Confirm the phone number of the user.
@@ -317,8 +322,8 @@ export const UserApiFp = function (configuration) {
         async confirmPhoneNumber(phoneOtpSubmitRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.confirmPhoneNumber(phoneOtpSubmitRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.confirmPhoneNumber']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.confirmPhoneNumber']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * create a child user
@@ -330,8 +335,8 @@ export const UserApiFp = function (configuration) {
         async createChildUser(createChildUserRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createChildUser(createChildUserRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.createChildUser']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.createChildUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the profile of the user.
@@ -342,8 +347,8 @@ export const UserApiFp = function (configuration) {
         async getUserProfile(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserProfile(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.getUserProfile']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.getUserProfile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Submit email confirmation OTP for the user.
@@ -355,8 +360,8 @@ export const UserApiFp = function (configuration) {
         async submitEmailConfirmationOtp(emailOtpSubmitRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitEmailConfirmationOtp(emailOtpSubmitRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.submitEmailConfirmationOtp']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.submitEmailConfirmationOtp']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Submit KYC for the user.
@@ -368,8 +373,8 @@ export const UserApiFp = function (configuration) {
         async submitKyc(kycRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitKyc(kycRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.submitKyc']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.submitKyc']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Verify the phone number of the user.
@@ -381,8 +386,8 @@ export const UserApiFp = function (configuration) {
         async verifyPhoneNumber(updatePhoneRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verifyPhoneNumber(updatePhoneRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.verifyPhoneNumber']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.verifyPhoneNumber']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Verify the email of the user.
@@ -394,17 +399,18 @@ export const UserApiFp = function (configuration) {
         async verifyUserEmailAddress(updateEmailRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verifyUserEmailAddress(updateEmailRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.verifyUserEmailAddress']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['UserApi.verifyUserEmailAddress']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.UserApiFp = UserApiFp;
 /**
  * UserApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = UserApiFp(configuration);
+const UserApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.UserApiFp)(configuration);
     return {
         /**
          * Confirm KYC for the user.
@@ -487,13 +493,14 @@ export const UserApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.UserApiFactory = UserApiFactory;
 /**
  * UserApi - object-oriented interface
  * @export
  * @class UserApi
  * @extends {BaseAPI}
  */
-export class UserApi extends BaseAPI {
+class UserApi extends base_1.BaseAPI {
     /**
      * Confirm KYC for the user.
      * @summary Confirm KYC
@@ -503,7 +510,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     confirmKyc(kycConfirmRequest, options) {
-        return UserApiFp(this.configuration).confirmKyc(kycConfirmRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).confirmKyc(kycConfirmRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Confirm the phone number of the user.
@@ -514,7 +521,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     confirmPhoneNumber(phoneOtpSubmitRequest, options) {
-        return UserApiFp(this.configuration).confirmPhoneNumber(phoneOtpSubmitRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).confirmPhoneNumber(phoneOtpSubmitRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * create a child user
@@ -525,7 +532,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     createChildUser(createChildUserRequest, options) {
-        return UserApiFp(this.configuration).createChildUser(createChildUserRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).createChildUser(createChildUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the profile of the user.
@@ -535,7 +542,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     getUserProfile(options) {
-        return UserApiFp(this.configuration).getUserProfile(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).getUserProfile(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Submit email confirmation OTP for the user.
@@ -546,7 +553,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     submitEmailConfirmationOtp(emailOtpSubmitRequest, options) {
-        return UserApiFp(this.configuration).submitEmailConfirmationOtp(emailOtpSubmitRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).submitEmailConfirmationOtp(emailOtpSubmitRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Submit KYC for the user.
@@ -557,7 +564,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     submitKyc(kycRequest, options) {
-        return UserApiFp(this.configuration).submitKyc(kycRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).submitKyc(kycRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Verify the phone number of the user.
@@ -568,7 +575,7 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     verifyPhoneNumber(updatePhoneRequest, options) {
-        return UserApiFp(this.configuration).verifyPhoneNumber(updatePhoneRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).verifyPhoneNumber(updatePhoneRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Verify the email of the user.
@@ -579,7 +586,8 @@ export class UserApi extends BaseAPI {
      * @memberof UserApi
      */
     verifyUserEmailAddress(updateEmailRequest, options) {
-        return UserApiFp(this.configuration).verifyUserEmailAddress(updateEmailRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.UserApiFp)(this.configuration).verifyUserEmailAddress(updateEmailRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.UserApi = UserApi;
 //# sourceMappingURL=user-api.js.map

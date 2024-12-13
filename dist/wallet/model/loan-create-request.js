@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,7 +12,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export const LoanCreateRequestIntentEnum = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LoanCreateRequestIntentEnum = void 0;
+exports.LoanCreateRequestIntentEnum = {
     CREATE: 'create',
     PREVIEW: 'preview'
 };

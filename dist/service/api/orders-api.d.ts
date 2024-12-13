@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { OrderResponse } from '../model';
 import type { TimeRange } from '../model';
@@ -166,7 +167,7 @@ export declare class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    getUnfilledOrders(type?: GetUnfilledOrdersTypeEnum, hash?: string, status?: GetUnfilledOrdersStatusEnum, offerer?: string, filler?: string, decayStartTime?: TimeRange, decayEndTime?: TimeRange, deadline?: TimeRange, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<OrderResponse, any>>;
+    getUnfilledOrders(type?: GetUnfilledOrdersTypeEnum, hash?: string, status?: GetUnfilledOrdersStatusEnum, offerer?: string, filler?: string, decayStartTime?: TimeRange, decayEndTime?: TimeRange, deadline?: TimeRange, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<OrderResponse, any>>;
     /**
      * updates an order entity in database
      * @summary Updates Order Entity
@@ -175,7 +176,7 @@ export declare class OrdersApi extends BaseAPI implements OrdersApiInterface {
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    syncOrder(updateOrderRequest: UpdateOrderRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Error, any>>;
+    syncOrder(updateOrderRequest: UpdateOrderRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Error, any>>;
 }
 /**
  * @export

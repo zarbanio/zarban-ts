@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PaymentApi = exports.PaymentApiFactory = exports.PaymentApiFp = exports.PaymentApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * PaymentApi - axios parameter creator
  * @export
  */
-export const PaymentApiAxiosParamCreator = function (configuration) {
+const PaymentApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Create a new payment.
@@ -35,10 +39,10 @@ export const PaymentApiAxiosParamCreator = function (configuration) {
          */
         createPayment: async (paymentRequest, options = {}) => {
             // verify required parameter 'paymentRequest' is not null or undefined
-            assertParamExists('createPayment', 'paymentRequest', paymentRequest);
+            (0, common_1.assertParamExists)('createPayment', 'paymentRequest', paymentRequest);
             const localVarPath = `/payments`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -48,25 +52,26 @@ export const PaymentApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(paymentRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(paymentRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.PaymentApiAxiosParamCreator = PaymentApiAxiosParamCreator;
 /**
  * PaymentApi - functional programming interface
  * @export
  */
-export const PaymentApiFp = function (configuration) {
-    const localVarAxiosParamCreator = PaymentApiAxiosParamCreator(configuration);
+const PaymentApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.PaymentApiAxiosParamCreator)(configuration);
     return {
         /**
          * Create a new payment.
@@ -78,17 +83,18 @@ export const PaymentApiFp = function (configuration) {
         async createPayment(paymentRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createPayment(paymentRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PaymentApi.createPayment']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['PaymentApi.createPayment']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.PaymentApiFp = PaymentApiFp;
 /**
  * PaymentApi - factory interface
  * @export
  */
-export const PaymentApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = PaymentApiFp(configuration);
+const PaymentApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.PaymentApiFp)(configuration);
     return {
         /**
          * Create a new payment.
@@ -102,13 +108,14 @@ export const PaymentApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.PaymentApiFactory = PaymentApiFactory;
 /**
  * PaymentApi - object-oriented interface
  * @export
  * @class PaymentApi
  * @extends {BaseAPI}
  */
-export class PaymentApi extends BaseAPI {
+class PaymentApi extends base_1.BaseAPI {
     /**
      * Create a new payment.
      * @summary Create a payment
@@ -118,7 +125,8 @@ export class PaymentApi extends BaseAPI {
      * @memberof PaymentApi
      */
     createPayment(paymentRequest, options) {
-        return PaymentApiFp(this.configuration).createPayment(paymentRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.PaymentApiFp)(this.configuration).createPayment(paymentRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.PaymentApi = PaymentApi;
 //# sourceMappingURL=payment-api.js.map

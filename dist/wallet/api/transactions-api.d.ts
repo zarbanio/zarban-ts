@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { TransactionResponse } from '../model';
 /**
@@ -91,6 +92,6 @@ export declare class TransactionsApi extends BaseAPI implements TransactionsApiI
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    getUserTransactions(cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<TransactionResponse, any>>;
+    getUserTransactions(cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<TransactionResponse, any>>;
 }
 //# sourceMappingURL=transactions-api.d.ts.map
