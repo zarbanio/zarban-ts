@@ -1,6 +1,6 @@
 {
   "name": "zarban",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Zarban - A TypeScript SDK",
   "type": "module",
   "main": "dist/index.js",
@@ -9,6 +9,7 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -20,7 +21,7 @@
     "clean": "rimraf dist && rimraf src/service && rimraf src/wallet && rimraf docs",
     "generate": "npx openapi-generator-cli generate",
     "post-generate": "node fix-exports.cjs",
-    "build": "npm run clean && npm run generate && npm run post-generate && tsc",
+    "build": "npm run clean && npm run generate && npm run post-generate && tsc && tsc --project tsconfig.cjs.json",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "lint": "eslint . --ext .ts",
