@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,12 +12,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventName = void 0;
 /**
  *
  * @export
  * @enum {string}
  */
-export const EventName = {
+exports.EventName = {
     VAULTS_REPAY: 'VaultsRepay',
     VAULTS_WITHDRAW: 'VaultsWithdraw',
     VAULTS_DEPOSIT: 'VaultsDeposit',

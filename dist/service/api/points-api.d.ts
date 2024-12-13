@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Scoreboard } from '../model';
 /**
@@ -81,6 +82,6 @@ export declare class PointsApi extends BaseAPI implements PointsApiInterface {
      * @throws {RequiredError}
      * @memberof PointsApi
      */
-    getScoreboard(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Scoreboard, any>>;
+    getScoreboard(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Scoreboard, any>>;
 }
 //# sourceMappingURL=points-api.d.ts.map

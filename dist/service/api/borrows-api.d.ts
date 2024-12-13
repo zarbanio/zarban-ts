@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { UserBorrowsResponse } from '../model';
 /**
@@ -101,6 +102,6 @@ export declare class BorrowsApi extends BaseAPI implements BorrowsApiInterface {
      * @throws {RequiredError}
      * @memberof BorrowsApi
      */
-    getUserBorrows(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserBorrowsResponse, any>>;
+    getUserBorrows(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<UserBorrowsResponse, any>>;
 }
 //# sourceMappingURL=borrows-api.d.ts.map

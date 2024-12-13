@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LogsApi = exports.LogsApiFactory = exports.LogsApiFp = exports.LogsApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * LogsApi - axios parameter creator
  * @export
  */
-export const LogsApiAxiosParamCreator = function (configuration) {
+const LogsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get raw and decoded logs by transaction hash
@@ -35,11 +39,11 @@ export const LogsApiAxiosParamCreator = function (configuration) {
          */
         getLogsByTransactionHash: async (txHash, options = {}) => {
             // verify required parameter 'txHash' is not null or undefined
-            assertParamExists('getLogsByTransactionHash', 'txHash', txHash);
+            (0, common_1.assertParamExists)('getLogsByTransactionHash', 'txHash', txHash);
             const localVarPath = `/v2/logs/{txHash}`
                 .replace(`{${"txHash"}}`, encodeURIComponent(String(txHash)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,22 +51,23 @@ export const LogsApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.LogsApiAxiosParamCreator = LogsApiAxiosParamCreator;
 /**
  * LogsApi - functional programming interface
  * @export
  */
-export const LogsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = LogsApiAxiosParamCreator(configuration);
+const LogsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.LogsApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get raw and decoded logs by transaction hash
@@ -74,17 +79,18 @@ export const LogsApiFp = function (configuration) {
         async getLogsByTransactionHash(txHash, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLogsByTransactionHash(txHash, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LogsApi.getLogsByTransactionHash']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LogsApi.getLogsByTransactionHash']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.LogsApiFp = LogsApiFp;
 /**
  * LogsApi - factory interface
  * @export
  */
-export const LogsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = LogsApiFp(configuration);
+const LogsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.LogsApiFp)(configuration);
     return {
         /**
          * Get raw and decoded logs by transaction hash
@@ -98,13 +104,14 @@ export const LogsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.LogsApiFactory = LogsApiFactory;
 /**
  * LogsApi - object-oriented interface
  * @export
  * @class LogsApi
  * @extends {BaseAPI}
  */
-export class LogsApi extends BaseAPI {
+class LogsApi extends base_1.BaseAPI {
     /**
      * Get raw and decoded logs by transaction hash
      * @summary Get raw and decoded logs by transaction hash
@@ -114,7 +121,8 @@ export class LogsApi extends BaseAPI {
      * @memberof LogsApi
      */
     getLogsByTransactionHash(txHash, options) {
-        return LogsApiFp(this.configuration).getLogsByTransactionHash(txHash, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LogsApiFp)(this.configuration).getLogsByTransactionHash(txHash, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.LogsApi = LogsApi;
 //# sourceMappingURL=logs-api.js.map

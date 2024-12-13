@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CollectorApi = exports.CollectorApiFactory = exports.CollectorApiFp = exports.CollectorApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * CollectorApi - axios parameter creator
  * @export
  */
-export const CollectorApiAxiosParamCreator = function (configuration) {
+const CollectorApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get collector data
@@ -35,7 +39,7 @@ export const CollectorApiAxiosParamCreator = function (configuration) {
         getCollectorData: async (options = {}) => {
             const localVarPath = `/v2/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -43,22 +47,23 @@ export const CollectorApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.CollectorApiAxiosParamCreator = CollectorApiAxiosParamCreator;
 /**
  * CollectorApi - functional programming interface
  * @export
  */
-export const CollectorApiFp = function (configuration) {
-    const localVarAxiosParamCreator = CollectorApiAxiosParamCreator(configuration);
+const CollectorApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.CollectorApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get collector data
@@ -69,17 +74,18 @@ export const CollectorApiFp = function (configuration) {
         async getCollectorData(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollectorData(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CollectorApi.getCollectorData']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['CollectorApi.getCollectorData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.CollectorApiFp = CollectorApiFp;
 /**
  * CollectorApi - factory interface
  * @export
  */
-export const CollectorApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = CollectorApiFp(configuration);
+const CollectorApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.CollectorApiFp)(configuration);
     return {
         /**
          * Get collector data
@@ -92,13 +98,14 @@ export const CollectorApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.CollectorApiFactory = CollectorApiFactory;
 /**
  * CollectorApi - object-oriented interface
  * @export
  * @class CollectorApi
  * @extends {BaseAPI}
  */
-export class CollectorApi extends BaseAPI {
+class CollectorApi extends base_1.BaseAPI {
     /**
      * Get collector data
      * @summary Get collector data
@@ -107,7 +114,8 @@ export class CollectorApi extends BaseAPI {
      * @memberof CollectorApi
      */
     getCollectorData(options) {
-        return CollectorApiFp(this.configuration).getCollectorData(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CollectorApiFp)(this.configuration).getCollectorData(options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.CollectorApi = CollectorApi;
 //# sourceMappingURL=collector-api.js.map

@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { StakePlansResponse } from '../model';
 import type { StakingCollectRewardTxRequest } from '../model';
@@ -237,7 +238,7 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      * @throws {RequiredError}
      * @memberof StakingApi
      */
-    collectStakingReward(stakingCollectRewardTxRequest: StakingCollectRewardTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StakingCollectRewardTxResponse, any>>;
+    collectStakingReward(stakingCollectRewardTxRequest: StakingCollectRewardTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<StakingCollectRewardTxResponse, any>>;
     /**
      * Get staking plans
      * @summary Get staking plans
@@ -245,7 +246,7 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      * @throws {RequiredError}
      * @memberof StakingApi
      */
-    getStakingPlans(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StakePlansResponse, any>>;
+    getStakingPlans(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<StakePlansResponse, any>>;
     /**
      * Get user staking stats
      * @summary Get user staking stats
@@ -258,7 +259,7 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      * @throws {RequiredError}
      * @memberof StakingApi
      */
-    getUserStakingStats(user?: string, address?: string, active?: boolean, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserStakesResponse, any>>;
+    getUserStakingStats(user?: string, address?: string, active?: boolean, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<UserStakesResponse, any>>;
     /**
      * Stake to staking contract
      * @summary Stake to staking contract
@@ -267,7 +268,7 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      * @throws {RequiredError}
      * @memberof StakingApi
      */
-    stakeToStakingContract(stakingStakeTxRequest: StakingStakeTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StakingStakeTxResponse, any>>;
+    stakeToStakingContract(stakingStakeTxRequest: StakingStakeTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<StakingStakeTxResponse, any>>;
     /**
      * Withdraw staked asset
      * @summary Withdraw staked asset
@@ -276,6 +277,6 @@ export declare class StakingApi extends BaseAPI implements StakingApiInterface {
      * @throws {RequiredError}
      * @memberof StakingApi
      */
-    withdrawStakedAsset(stakingWithdrawTxRequest: StakingWithdrawTxRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StakingWithdrawTxResponse, any>>;
+    withdrawStakedAsset(stakingWithdrawTxRequest: StakingWithdrawTxRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<StakingWithdrawTxResponse, any>>;
 }
 //# sourceMappingURL=staking-api.d.ts.map

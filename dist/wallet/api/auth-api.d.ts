@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { AuthTelegramRequest } from '../model';
 import type { JwtResponse } from '../model';
@@ -255,7 +256,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    authenticateWithTelegram(authTelegramRequest: AuthTelegramRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<JwtResponse, any>>;
+    authenticateWithTelegram(authTelegramRequest: AuthTelegramRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<JwtResponse, any>>;
     /**
      * Generate a JWT token.
      * @summary Generate a JWT token
@@ -264,7 +265,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    generateJwtToken(duration: GenerateJwtTokenDurationEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<JwtResponse, any>>;
+    generateJwtToken(duration: GenerateJwtTokenDurationEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<JwtResponse, any>>;
     /**
      * Get OTP for the user.
      * @summary Get OTP
@@ -273,7 +274,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    getOtp(channel: GetOtpChannelEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
+    getOtp(channel: GetOtpChannelEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SimpleResponse, any>>;
     /**
      * Login with email and password and get a JWT token.
      * @summary Login with email and password
@@ -282,7 +283,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    loginWithEmailAndPassword(loginRequest: LoginRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<JwtResponse, any>>;
+    loginWithEmailAndPassword(loginRequest: LoginRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<JwtResponse, any>>;
     /**
      * signup with email and password and get a JWT token.
      * @summary signup with email and password
@@ -291,7 +292,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    signupWithEmailAndPassword(signUpRequest: SignUpRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<SimpleResponse, any>>;
+    signupWithEmailAndPassword(signUpRequest: SignUpRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<SimpleResponse, any>>;
     /**
      * Verify the email of the user.
      * @summary Verify email
@@ -300,7 +301,7 @@ export declare class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    verifyUserEmail(token: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<JwtResponse, any>>;
+    verifyUserEmail(token: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<JwtResponse, any>>;
 }
 /**
  * @export

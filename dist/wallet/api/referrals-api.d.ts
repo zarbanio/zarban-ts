@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Referral } from '../model';
 import type { ReferralResponse } from '../model';
@@ -186,7 +187,7 @@ export declare class ReferralsApi extends BaseAPI implements ReferralsApiInterfa
      * @throws {RequiredError}
      * @memberof ReferralsApi
      */
-    getReferralById(referralId: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Referral, any>>;
+    getReferralById(referralId: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Referral, any>>;
     /**
      * Get referrals by user ID or name.
      * @summary Get referrals
@@ -195,7 +196,7 @@ export declare class ReferralsApi extends BaseAPI implements ReferralsApiInterfa
      * @throws {RequiredError}
      * @memberof ReferralsApi
      */
-    getReferrals(name?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<ReferralResponse, any>>;
+    getReferrals(name?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<ReferralResponse, any>>;
     /**
      * Redeem a referral for a user.
      * @summary Redeem a referral
@@ -204,7 +205,7 @@ export declare class ReferralsApi extends BaseAPI implements ReferralsApiInterfa
      * @throws {RequiredError}
      * @memberof ReferralsApi
      */
-    redeemReferral(referralId: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    redeemReferral(referralId: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
     /**
      * Validate a referral to check if it can be redeemed.
      * @summary Validate a referral
@@ -213,6 +214,6 @@ export declare class ReferralsApi extends BaseAPI implements ReferralsApiInterfa
      * @throws {RequiredError}
      * @memberof ReferralsApi
      */
-    validateReferral(referralId: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    validateReferral(referralId: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
 }
 //# sourceMappingURL=referrals-api.d.ts.map

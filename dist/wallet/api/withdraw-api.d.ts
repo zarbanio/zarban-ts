@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { WithdrawRequest } from '../model';
 import type { WithdrawRequestBody } from '../model';
@@ -184,7 +185,7 @@ export declare class WithdrawApi extends BaseAPI implements WithdrawApiInterface
      * @throws {RequiredError}
      * @memberof WithdrawApi
      */
-    getUserWithdrawRequests(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WithdrawRequestResponse, any>>;
+    getUserWithdrawRequests(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<WithdrawRequestResponse, any>>;
     /**
      * Get the status of a withdrawal request.
      * @summary Get withdrawal status
@@ -193,7 +194,7 @@ export declare class WithdrawApi extends BaseAPI implements WithdrawApiInterface
      * @throws {RequiredError}
      * @memberof WithdrawApi
      */
-    getWithdrawalStatus(id: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WithdrawRequest, any>>;
+    getWithdrawalStatus(id: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<WithdrawRequest, any>>;
     /**
      * Request a withdrawal from the wallet.
      * @summary Withdraw request
@@ -202,7 +203,7 @@ export declare class WithdrawApi extends BaseAPI implements WithdrawApiInterface
      * @throws {RequiredError}
      * @memberof WithdrawApi
      */
-    previewWithdrawal(withdrawRequestBody: WithdrawRequestBody, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WithdrawRequestPreview, any>>;
+    previewWithdrawal(withdrawRequestBody: WithdrawRequestBody, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<WithdrawRequestPreview, any>>;
     /**
      * Request a withdrawal from the wallet.
      * @summary Withdraw request
@@ -211,6 +212,6 @@ export declare class WithdrawApi extends BaseAPI implements WithdrawApiInterface
      * @throws {RequiredError}
      * @memberof WithdrawApi
      */
-    requestWithdrawal(withdrawRequestBody: WithdrawRequestBody, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WithdrawResponseBody, any>>;
+    requestWithdrawal(withdrawRequestBody: WithdrawRequestBody, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<WithdrawResponseBody, any>>;
 }
 //# sourceMappingURL=withdraw-api.d.ts.map

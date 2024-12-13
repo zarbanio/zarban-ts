@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,12 +12,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Symbol = void 0;
 /**
  * Symbol representation
  * @export
  * @enum {string}
  */
-export const Symbol = {
+exports.Symbol = {
     USD: 'USD',
     DAI: 'DAI',
     USDT: 'USDT',

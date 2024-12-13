@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { AddressResponse } from '../model';
 /**
@@ -86,6 +87,6 @@ export declare class AddressesApi extends BaseAPI implements AddressesApiInterfa
      * @throws {RequiredError}
      * @memberof AddressesApi
      */
-    getAllAddresses(format?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AddressResponse, any>>;
+    getAllAddresses(format?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<AddressResponse, any>>;
 }
 //# sourceMappingURL=addresses-api.d.ts.map

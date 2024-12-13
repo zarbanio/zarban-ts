@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,7 +12,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export const WithdrawRequestStatusEnum = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WithdrawRequestStatusEnum = void 0;
+exports.WithdrawRequestStatusEnum = {
     PENDING: 'Pending',
     CANCELED: 'Canceled',
     APPROVED: 'Approved',

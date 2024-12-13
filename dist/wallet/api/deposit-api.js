@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DepositApi = exports.DepositApiFactory = exports.DepositApiFp = exports.DepositApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * DepositApi - axios parameter creator
  * @export
  */
-export const DepositApiAxiosParamCreator = function (configuration) {
+const DepositApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Deposit money to the wallet.
@@ -36,12 +40,12 @@ export const DepositApiAxiosParamCreator = function (configuration) {
          */
         depositMoney: async (network, symbol, options = {}) => {
             // verify required parameter 'network' is not null or undefined
-            assertParamExists('depositMoney', 'network', network);
+            (0, common_1.assertParamExists)('depositMoney', 'network', network);
             // verify required parameter 'symbol' is not null or undefined
-            assertParamExists('depositMoney', 'symbol', symbol);
+            (0, common_1.assertParamExists)('depositMoney', 'symbol', symbol);
             const localVarPath = `/deposit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -51,29 +55,30 @@ export const DepositApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             if (network !== undefined) {
                 localVarQueryParameter['network'] = network;
             }
             if (symbol !== undefined) {
                 localVarQueryParameter['symbol'] = symbol;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.DepositApiAxiosParamCreator = DepositApiAxiosParamCreator;
 /**
  * DepositApi - functional programming interface
  * @export
  */
-export const DepositApiFp = function (configuration) {
-    const localVarAxiosParamCreator = DepositApiAxiosParamCreator(configuration);
+const DepositApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.DepositApiAxiosParamCreator)(configuration);
     return {
         /**
          * Deposit money to the wallet.
@@ -86,17 +91,18 @@ export const DepositApiFp = function (configuration) {
         async depositMoney(network, symbol, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.depositMoney(network, symbol, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DepositApi.depositMoney']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['DepositApi.depositMoney']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.DepositApiFp = DepositApiFp;
 /**
  * DepositApi - factory interface
  * @export
  */
-export const DepositApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = DepositApiFp(configuration);
+const DepositApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.DepositApiFp)(configuration);
     return {
         /**
          * Deposit money to the wallet.
@@ -111,13 +117,14 @@ export const DepositApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.DepositApiFactory = DepositApiFactory;
 /**
  * DepositApi - object-oriented interface
  * @export
  * @class DepositApi
  * @extends {BaseAPI}
  */
-export class DepositApi extends BaseAPI {
+class DepositApi extends base_1.BaseAPI {
     /**
      * Deposit money to the wallet.
      * @summary Deposit money
@@ -128,7 +135,8 @@ export class DepositApi extends BaseAPI {
      * @memberof DepositApi
      */
     depositMoney(network, symbol, options) {
-        return DepositApiFp(this.configuration).depositMoney(network, symbol, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.DepositApiFp)(this.configuration).depositMoney(network, symbol, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.DepositApi = DepositApi;
 //# sourceMappingURL=deposit-api.js.map

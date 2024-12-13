@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Balance } from '../model';
 import type { Symbol } from '../model';
@@ -117,7 +118,7 @@ export declare class BalanceApi extends BaseAPI implements BalanceApiInterface {
      * @throws {RequiredError}
      * @memberof BalanceApi
      */
-    getBalanceBySymbol(symbol: Symbol, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Balance, any>>;
+    getBalanceBySymbol(symbol: Symbol, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Balance, any>>;
     /**
      * Get the balance of the wallet.
      * @summary Get wallet balance
@@ -125,6 +126,6 @@ export declare class BalanceApi extends BaseAPI implements BalanceApiInterface {
      * @throws {RequiredError}
      * @memberof BalanceApi
      */
-    getWalletBalance(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<WalletBalance, any>>;
+    getWalletBalance(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<WalletBalance, any>>;
 }
 //# sourceMappingURL=balance-api.d.ts.map

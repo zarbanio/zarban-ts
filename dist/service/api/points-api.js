@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PointsApi = exports.PointsApiFactory = exports.PointsApiFp = exports.PointsApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * PointsApi - axios parameter creator
  * @export
  */
-export const PointsApiAxiosParamCreator = function (configuration) {
+const PointsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get scoreboard
@@ -35,7 +39,7 @@ export const PointsApiAxiosParamCreator = function (configuration) {
         getScoreboard: async (options = {}) => {
             const localVarPath = `/v2/points/scoreboard`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -43,22 +47,23 @@ export const PointsApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.PointsApiAxiosParamCreator = PointsApiAxiosParamCreator;
 /**
  * PointsApi - functional programming interface
  * @export
  */
-export const PointsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = PointsApiAxiosParamCreator(configuration);
+const PointsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.PointsApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get scoreboard
@@ -69,17 +74,18 @@ export const PointsApiFp = function (configuration) {
         async getScoreboard(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getScoreboard(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PointsApi.getScoreboard']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['PointsApi.getScoreboard']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.PointsApiFp = PointsApiFp;
 /**
  * PointsApi - factory interface
  * @export
  */
-export const PointsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = PointsApiFp(configuration);
+const PointsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.PointsApiFp)(configuration);
     return {
         /**
          * Get scoreboard
@@ -92,13 +98,14 @@ export const PointsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.PointsApiFactory = PointsApiFactory;
 /**
  * PointsApi - object-oriented interface
  * @export
  * @class PointsApi
  * @extends {BaseAPI}
  */
-export class PointsApi extends BaseAPI {
+class PointsApi extends base_1.BaseAPI {
     /**
      * Get scoreboard
      * @summary Get scoreboard
@@ -107,7 +114,8 @@ export class PointsApi extends BaseAPI {
      * @memberof PointsApi
      */
     getScoreboard(options) {
-        return PointsApiFp(this.configuration).getScoreboard(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.PointsApiFp)(this.configuration).getScoreboard(options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.PointsApi = PointsApi;
 //# sourceMappingURL=points-api.js.map

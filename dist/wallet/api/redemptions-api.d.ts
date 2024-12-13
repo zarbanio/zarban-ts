@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { AdminRedemptionUpdateRequest } from '../model';
 import type { Redemption } from '../model';
@@ -192,7 +193,7 @@ export declare class RedemptionsApi extends BaseAPI implements RedemptionsApiInt
      * @throws {RequiredError}
      * @memberof RedemptionsApi
      */
-    getAllRedemptions(state?: GetAllRedemptionsStateEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<RedemptionResponse, any>>;
+    getAllRedemptions(state?: GetAllRedemptionsStateEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<RedemptionResponse, any>>;
     /**
      * Get the details of a redemption.
      * @summary Get redemption
@@ -201,7 +202,7 @@ export declare class RedemptionsApi extends BaseAPI implements RedemptionsApiInt
      * @throws {RequiredError}
      * @memberof RedemptionsApi
      */
-    getRedemptionDetails(id: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Redemption, any>>;
+    getRedemptionDetails(id: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Redemption, any>>;
     /**
      * Redeem zar
      * @summary Redeem zar
@@ -210,7 +211,7 @@ export declare class RedemptionsApi extends BaseAPI implements RedemptionsApiInt
      * @throws {RequiredError}
      * @memberof RedemptionsApi
      */
-    redeemZar(redemptionRequest: RedemptionRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Redemption, any>>;
+    redeemZar(redemptionRequest: RedemptionRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Redemption, any>>;
     /**
      * Update the status of a redemption.
      * @summary Update redemption
@@ -220,7 +221,7 @@ export declare class RedemptionsApi extends BaseAPI implements RedemptionsApiInt
      * @throws {RequiredError}
      * @memberof RedemptionsApi
      */
-    updateRedemptionStatus(id: string, adminRedemptionUpdateRequest: AdminRedemptionUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Redemption, any>>;
+    updateRedemptionStatus(id: string, adminRedemptionUpdateRequest: AdminRedemptionUpdateRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Redemption, any>>;
 }
 /**
  * @export

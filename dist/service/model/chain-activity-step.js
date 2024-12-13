@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,7 +12,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export const ChainActivityStepTypeEnum = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChainActivityStepTypeEnum = void 0;
+exports.ChainActivityStepTypeEnum = {
     PREPARED_TX: 'PreparedTx',
     EIP712_SIGN_REQUEST: 'EIP712SignRequest',
     PERSONAL_SIGN_REQUEST: 'PersonalSignRequest'

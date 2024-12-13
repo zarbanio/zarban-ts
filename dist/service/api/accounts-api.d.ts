@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Account } from '../model';
 /**
@@ -86,6 +87,6 @@ export declare class AccountsApi extends BaseAPI implements AccountsApiInterface
      * @throws {RequiredError}
      * @memberof AccountsApi
      */
-    getAccountByAddress(address: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Account, any>>;
+    getAccountByAddress(address: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Account, any>>;
 }
 //# sourceMappingURL=accounts-api.d.ts.map

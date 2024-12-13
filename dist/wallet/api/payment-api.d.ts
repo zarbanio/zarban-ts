@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Payment } from '../model';
 import type { PaymentRequest } from '../model';
@@ -87,6 +88,6 @@ export declare class PaymentApi extends BaseAPI implements PaymentApiInterface {
      * @throws {RequiredError}
      * @memberof PaymentApi
      */
-    createPayment(paymentRequest: PaymentRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Payment, any>>;
+    createPayment(paymentRequest: PaymentRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Payment, any>>;
 }
 //# sourceMappingURL=payment-api.d.ts.map

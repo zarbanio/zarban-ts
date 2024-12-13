@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Stats } from '../model';
 /**
@@ -81,6 +82,6 @@ export declare class CollectorApi extends BaseAPI implements CollectorApiInterfa
      * @throws {RequiredError}
      * @memberof CollectorApi
      */
-    getCollectorData(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Stats, any>>;
+    getCollectorData(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Stats, any>>;
 }
 //# sourceMappingURL=collector-api.d.ts.map

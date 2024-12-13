@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LendingPoolApi = exports.LendingPoolApiFactory = exports.LendingPoolApiFp = exports.LendingPoolApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * LendingPoolApi - axios parameter creator
  * @export
  */
-export const LendingPoolApiAxiosParamCreator = function (configuration) {
+const LendingPoolApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Borrow from lending pool
@@ -35,10 +39,10 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
          */
         createLendingPoolBorrow: async (lendingpoolBorrowTxRequest, options = {}) => {
             // verify required parameter 'lendingpoolBorrowTxRequest' is not null or undefined
-            assertParamExists('createLendingPoolBorrow', 'lendingpoolBorrowTxRequest', lendingpoolBorrowTxRequest);
+            (0, common_1.assertParamExists)('createLendingPoolBorrow', 'lendingpoolBorrowTxRequest', lendingpoolBorrowTxRequest);
             const localVarPath = `/v2/lendingpool/tx/borrow`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,12 +51,12 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(lendingpoolBorrowTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(lendingpoolBorrowTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -65,10 +69,10 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
          */
         createLendingPoolDeposit: async (lendingpoolDepositTxRequest, options = {}) => {
             // verify required parameter 'lendingpoolDepositTxRequest' is not null or undefined
-            assertParamExists('createLendingPoolDeposit', 'lendingpoolDepositTxRequest', lendingpoolDepositTxRequest);
+            (0, common_1.assertParamExists)('createLendingPoolDeposit', 'lendingpoolDepositTxRequest', lendingpoolDepositTxRequest);
             const localVarPath = `/v2/lendingpool/tx/deposit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -77,12 +81,12 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(lendingpoolDepositTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(lendingpoolDepositTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -95,10 +99,10 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
          */
         createLendingPoolRepay: async (lendingpoolRepayTxRequest, options = {}) => {
             // verify required parameter 'lendingpoolRepayTxRequest' is not null or undefined
-            assertParamExists('createLendingPoolRepay', 'lendingpoolRepayTxRequest', lendingpoolRepayTxRequest);
+            (0, common_1.assertParamExists)('createLendingPoolRepay', 'lendingpoolRepayTxRequest', lendingpoolRepayTxRequest);
             const localVarPath = `/v2/lendingpool/tx/repay`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -107,12 +111,12 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(lendingpoolRepayTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(lendingpoolRepayTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -125,10 +129,10 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
          */
         createLendingPoolWithdraw: async (lendingpoolWithdrawTxRequest, options = {}) => {
             // verify required parameter 'lendingpoolWithdrawTxRequest' is not null or undefined
-            assertParamExists('createLendingPoolWithdraw', 'lendingpoolWithdrawTxRequest', lendingpoolWithdrawTxRequest);
+            (0, common_1.assertParamExists)('createLendingPoolWithdraw', 'lendingpoolWithdrawTxRequest', lendingpoolWithdrawTxRequest);
             const localVarPath = `/v2/lendingpool/tx/withdraw`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -137,12 +141,12 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(lendingpoolWithdrawTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(lendingpoolWithdrawTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -156,7 +160,7 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
         fetchReserveDataByAsset: async (asset, options = {}) => {
             const localVarPath = `/v2/lendingpool/reserves`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -167,11 +171,11 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             if (asset !== undefined) {
                 localVarQueryParameter['asset'] = asset;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -188,7 +192,7 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
         getUserBorrows: async (user, reserve, cursor, limit, options = {}) => {
             const localVarPath = `/v2/lendingpool/borrows`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -208,11 +212,11 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -229,7 +233,7 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
         getUserDeposits: async (user, reserve, cursor, limit, options = {}) => {
             const localVarPath = `/v2/lendingpool/deposits`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -249,11 +253,11 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -266,10 +270,10 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
          */
         setLendingPoolAssetCollateral: async (lendingpoolUseAssetAsCollateralTxRequest, options = {}) => {
             // verify required parameter 'lendingpoolUseAssetAsCollateralTxRequest' is not null or undefined
-            assertParamExists('setLendingPoolAssetCollateral', 'lendingpoolUseAssetAsCollateralTxRequest', lendingpoolUseAssetAsCollateralTxRequest);
+            (0, common_1.assertParamExists)('setLendingPoolAssetCollateral', 'lendingpoolUseAssetAsCollateralTxRequest', lendingpoolUseAssetAsCollateralTxRequest);
             const localVarPath = `/v2/lendingpool/tx/useassetascollateral`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -278,23 +282,24 @@ export const LendingPoolApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(lendingpoolUseAssetAsCollateralTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(lendingpoolUseAssetAsCollateralTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.LendingPoolApiAxiosParamCreator = LendingPoolApiAxiosParamCreator;
 /**
  * LendingPoolApi - functional programming interface
  * @export
  */
-export const LendingPoolApiFp = function (configuration) {
-    const localVarAxiosParamCreator = LendingPoolApiAxiosParamCreator(configuration);
+const LendingPoolApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.LendingPoolApiAxiosParamCreator)(configuration);
     return {
         /**
          * Borrow from lending pool
@@ -306,8 +311,8 @@ export const LendingPoolApiFp = function (configuration) {
         async createLendingPoolBorrow(lendingpoolBorrowTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLendingPoolBorrow(lendingpoolBorrowTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.createLendingPoolBorrow']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.createLendingPoolBorrow']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Deposit to lending pool
@@ -319,8 +324,8 @@ export const LendingPoolApiFp = function (configuration) {
         async createLendingPoolDeposit(lendingpoolDepositTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLendingPoolDeposit(lendingpoolDepositTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.createLendingPoolDeposit']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.createLendingPoolDeposit']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Repay to lending pool
@@ -332,8 +337,8 @@ export const LendingPoolApiFp = function (configuration) {
         async createLendingPoolRepay(lendingpoolRepayTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLendingPoolRepay(lendingpoolRepayTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.createLendingPoolRepay']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.createLendingPoolRepay']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Withdraw from lending pool
@@ -345,8 +350,8 @@ export const LendingPoolApiFp = function (configuration) {
         async createLendingPoolWithdraw(lendingpoolWithdrawTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createLendingPoolWithdraw(lendingpoolWithdrawTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.createLendingPoolWithdraw']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.createLendingPoolWithdraw']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve data of reserves
@@ -358,8 +363,8 @@ export const LendingPoolApiFp = function (configuration) {
         async fetchReserveDataByAsset(asset, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchReserveDataByAsset(asset, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.fetchReserveDataByAsset']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.fetchReserveDataByAsset']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get user borrows of lendingpool
@@ -374,8 +379,8 @@ export const LendingPoolApiFp = function (configuration) {
         async getUserBorrows(user, reserve, cursor, limit, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserBorrows(user, reserve, cursor, limit, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.getUserBorrows']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.getUserBorrows']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get user deposits of Lendingpool
@@ -390,8 +395,8 @@ export const LendingPoolApiFp = function (configuration) {
         async getUserDeposits(user, reserve, cursor, limit, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserDeposits(user, reserve, cursor, limit, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.getUserDeposits']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.getUserDeposits']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Allows to enable/disable a specific asset as collateral
@@ -403,17 +408,18 @@ export const LendingPoolApiFp = function (configuration) {
         async setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['LendingPoolApi.setLendingPoolAssetCollateral']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['LendingPoolApi.setLendingPoolAssetCollateral']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.LendingPoolApiFp = LendingPoolApiFp;
 /**
  * LendingPoolApi - factory interface
  * @export
  */
-export const LendingPoolApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = LendingPoolApiFp(configuration);
+const LendingPoolApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.LendingPoolApiFp)(configuration);
     return {
         /**
          * Borrow from lending pool
@@ -503,13 +509,14 @@ export const LendingPoolApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.LendingPoolApiFactory = LendingPoolApiFactory;
 /**
  * LendingPoolApi - object-oriented interface
  * @export
  * @class LendingPoolApi
  * @extends {BaseAPI}
  */
-export class LendingPoolApi extends BaseAPI {
+class LendingPoolApi extends base_1.BaseAPI {
     /**
      * Borrow from lending pool
      * @summary Borrow from lending pool
@@ -519,7 +526,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     createLendingPoolBorrow(lendingpoolBorrowTxRequest, options) {
-        return LendingPoolApiFp(this.configuration).createLendingPoolBorrow(lendingpoolBorrowTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).createLendingPoolBorrow(lendingpoolBorrowTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Deposit to lending pool
@@ -530,7 +537,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     createLendingPoolDeposit(lendingpoolDepositTxRequest, options) {
-        return LendingPoolApiFp(this.configuration).createLendingPoolDeposit(lendingpoolDepositTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).createLendingPoolDeposit(lendingpoolDepositTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Repay to lending pool
@@ -541,7 +548,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     createLendingPoolRepay(lendingpoolRepayTxRequest, options) {
-        return LendingPoolApiFp(this.configuration).createLendingPoolRepay(lendingpoolRepayTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).createLendingPoolRepay(lendingpoolRepayTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Withdraw from lending pool
@@ -552,7 +559,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     createLendingPoolWithdraw(lendingpoolWithdrawTxRequest, options) {
-        return LendingPoolApiFp(this.configuration).createLendingPoolWithdraw(lendingpoolWithdrawTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).createLendingPoolWithdraw(lendingpoolWithdrawTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve data of reserves
@@ -563,7 +570,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     fetchReserveDataByAsset(asset, options) {
-        return LendingPoolApiFp(this.configuration).fetchReserveDataByAsset(asset, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).fetchReserveDataByAsset(asset, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get user borrows of lendingpool
@@ -577,7 +584,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     getUserBorrows(user, reserve, cursor, limit, options) {
-        return LendingPoolApiFp(this.configuration).getUserBorrows(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).getUserBorrows(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get user deposits of Lendingpool
@@ -591,7 +598,7 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     getUserDeposits(user, reserve, cursor, limit, options) {
-        return LendingPoolApiFp(this.configuration).getUserDeposits(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).getUserDeposits(user, reserve, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Allows to enable/disable a specific asset as collateral
@@ -602,7 +609,8 @@ export class LendingPoolApi extends BaseAPI {
      * @memberof LendingPoolApi
      */
     setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest, options) {
-        return LendingPoolApiFp(this.configuration).setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.LendingPoolApiFp)(this.configuration).setLendingPoolAssetCollateral(lendingpoolUseAssetAsCollateralTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.LendingPoolApi = LendingPoolApi;
 //# sourceMappingURL=lending-pool-api.js.map

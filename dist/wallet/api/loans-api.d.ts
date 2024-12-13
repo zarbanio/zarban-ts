@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Currency } from '../model';
 import type { LoanCreateRequest } from '../model';
@@ -269,7 +270,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    createLoanVault(loanCreateRequest: LoanCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LoansResponse, any>>;
+    createLoanVault(loanCreateRequest: LoanCreateRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LoansResponse, any>>;
     /**
      * Get an estimate of required collateral for a specific loan amount, and vice versa.
      * @summary Get collateral and loan amount estimation
@@ -281,7 +282,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    estimateLoanCollateral(planName: string, loanToValueOption: LoanToValueOptions, amount: string, inputType: EstimateLoanCollateralInputTypeEnum, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Currency, any>>;
+    estimateLoanCollateral(planName: string, loanToValueOption: LoanToValueOptions, amount: string, inputType: EstimateLoanCollateralInputTypeEnum, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Currency, any>>;
     /**
      * Get a list of the available plan loans.
      * @summary Get all plan loans
@@ -289,7 +290,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    getAllLoanPlans(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LoanPlanResponse, any>>;
+    getAllLoanPlans(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LoanPlanResponse, any>>;
     /**
      * Get the details of a loan.
      * @summary Get loan
@@ -298,7 +299,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    getLoanDetails(id: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LoansResponse, any>>;
+    getLoanDetails(id: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LoansResponse, any>>;
     /**
      * Get a list of the user\'s loans.
      * @summary Get user loans
@@ -308,7 +309,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    getUserLoans(state?: GetUserLoansStateEnum, planName?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LoansResponseList, any>>;
+    getUserLoans(state?: GetUserLoansStateEnum, planName?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LoansResponseList, any>>;
     /**
      * Repay a loan totally
      * @summary Repay Loan
@@ -317,7 +318,7 @@ export declare class LoansApi extends BaseAPI implements LoansApiInterface {
      * @throws {RequiredError}
      * @memberof LoansApi
      */
-    repayLoan(repayLoanRequest: RepayLoanRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<LoansResponse, any>>;
+    repayLoan(repayLoanRequest: RepayLoanRequest, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<LoansResponse, any>>;
 }
 /**
  * @export

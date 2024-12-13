@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,12 +12,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventDomain = void 0;
 /**
  * The domain of the event.
  * @export
  * @enum {string}
  */
-export const EventDomain = {
+exports.EventDomain = {
     STABLE_COIN_SYSTEM: 'stableCoinSystem',
     LENDINGPOOL: 'lendingpool',
     CHAINLINK: 'chainlink',

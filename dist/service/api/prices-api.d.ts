@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { PriceListResponse } from '../model';
 /**
@@ -86,6 +87,6 @@ export declare class PricesApi extends BaseAPI implements PricesApiInterface {
      * @throws {RequiredError}
      * @memberof PricesApi
      */
-    listPrices(symbol?: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<PriceListResponse, any>>;
+    listPrices(symbol?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<PriceListResponse, any>>;
 }
 //# sourceMappingURL=prices-api.d.ts.map

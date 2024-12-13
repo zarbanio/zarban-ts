@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { Ilk } from '../model';
 import type { IlksResponse } from '../model';
@@ -115,7 +116,7 @@ export declare class IlksApi extends BaseAPI implements IlksApiInterface {
      * @throws {RequiredError}
      * @memberof IlksApi
      */
-    getAllIlks(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<IlksResponse, any>>;
+    getAllIlks(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<IlksResponse, any>>;
     /**
      * Retrieve an Ilk by providing its name.
      * @summary Get Ilk by name
@@ -124,6 +125,6 @@ export declare class IlksApi extends BaseAPI implements IlksApiInterface {
      * @throws {RequiredError}
      * @memberof IlksApi
      */
-    getIlkByName(name: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<Ilk, any>>;
+    getIlkByName(name: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<Ilk, any>>;
 }
 //# sourceMappingURL=ilks-api.d.ts.map

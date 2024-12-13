@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { HealthStatus } from '../model';
 /**
@@ -81,6 +82,6 @@ export declare class HealthApi extends BaseAPI implements HealthApiInterface {
      * @throws {RequiredError}
      * @memberof HealthApi
      */
-    checkApiHealth(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<HealthStatus, any>>;
+    checkApiHealth(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<HealthStatus, any>>;
 }
 //# sourceMappingURL=health-api.d.ts.map

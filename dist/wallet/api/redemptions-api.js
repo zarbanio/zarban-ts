@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GetAllRedemptionsStateEnum = exports.RedemptionsApi = exports.RedemptionsApiFactory = exports.RedemptionsApiFp = exports.RedemptionsApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * RedemptionsApi - axios parameter creator
  * @export
  */
-export const RedemptionsApiAxiosParamCreator = function (configuration) {
+const RedemptionsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get a list of all redemptions.
@@ -36,7 +40,7 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
         getAllRedemptions: async (state, options = {}) => {
             const localVarPath = `/admin/redemptions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -46,15 +50,15 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             if (state !== undefined) {
                 localVarQueryParameter['state'] = state;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -67,11 +71,11 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
          */
         getRedemptionDetails: async (id, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('getRedemptionDetails', 'id', id);
+            (0, common_1.assertParamExists)('getRedemptionDetails', 'id', id);
             const localVarPath = `/admin/redemptions/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -81,12 +85,12 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -99,10 +103,10 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
          */
         redeemZar: async (redemptionRequest, options = {}) => {
             // verify required parameter 'redemptionRequest' is not null or undefined
-            assertParamExists('redeemZar', 'redemptionRequest', redemptionRequest);
+            (0, common_1.assertParamExists)('redeemZar', 'redemptionRequest', redemptionRequest);
             const localVarPath = `/redemptions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -112,14 +116,14 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(redemptionRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(redemptionRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -133,13 +137,13 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
          */
         updateRedemptionStatus: async (id, adminRedemptionUpdateRequest, options = {}) => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('updateRedemptionStatus', 'id', id);
+            (0, common_1.assertParamExists)('updateRedemptionStatus', 'id', id);
             // verify required parameter 'adminRedemptionUpdateRequest' is not null or undefined
-            assertParamExists('updateRedemptionStatus', 'adminRedemptionUpdateRequest', adminRedemptionUpdateRequest);
+            (0, common_1.assertParamExists)('updateRedemptionStatus', 'adminRedemptionUpdateRequest', adminRedemptionUpdateRequest);
             const localVarPath = `/admin/redemptions/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -149,25 +153,26 @@ export const RedemptionsApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(adminRedemptionUpdateRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(adminRedemptionUpdateRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.RedemptionsApiAxiosParamCreator = RedemptionsApiAxiosParamCreator;
 /**
  * RedemptionsApi - functional programming interface
  * @export
  */
-export const RedemptionsApiFp = function (configuration) {
-    const localVarAxiosParamCreator = RedemptionsApiAxiosParamCreator(configuration);
+const RedemptionsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.RedemptionsApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get a list of all redemptions.
@@ -179,8 +184,8 @@ export const RedemptionsApiFp = function (configuration) {
         async getAllRedemptions(state, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllRedemptions(state, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['RedemptionsApi.getAllRedemptions']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['RedemptionsApi.getAllRedemptions']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the details of a redemption.
@@ -192,8 +197,8 @@ export const RedemptionsApiFp = function (configuration) {
         async getRedemptionDetails(id, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRedemptionDetails(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['RedemptionsApi.getRedemptionDetails']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['RedemptionsApi.getRedemptionDetails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Redeem zar
@@ -205,8 +210,8 @@ export const RedemptionsApiFp = function (configuration) {
         async redeemZar(redemptionRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.redeemZar(redemptionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['RedemptionsApi.redeemZar']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['RedemptionsApi.redeemZar']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update the status of a redemption.
@@ -219,17 +224,18 @@ export const RedemptionsApiFp = function (configuration) {
         async updateRedemptionStatus(id, adminRedemptionUpdateRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRedemptionStatus(id, adminRedemptionUpdateRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['RedemptionsApi.updateRedemptionStatus']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['RedemptionsApi.updateRedemptionStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.RedemptionsApiFp = RedemptionsApiFp;
 /**
  * RedemptionsApi - factory interface
  * @export
  */
-export const RedemptionsApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = RedemptionsApiFp(configuration);
+const RedemptionsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.RedemptionsApiFp)(configuration);
     return {
         /**
          * Get a list of all redemptions.
@@ -274,13 +280,14 @@ export const RedemptionsApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.RedemptionsApiFactory = RedemptionsApiFactory;
 /**
  * RedemptionsApi - object-oriented interface
  * @export
  * @class RedemptionsApi
  * @extends {BaseAPI}
  */
-export class RedemptionsApi extends BaseAPI {
+class RedemptionsApi extends base_1.BaseAPI {
     /**
      * Get a list of all redemptions.
      * @summary Get all redemptions
@@ -290,7 +297,7 @@ export class RedemptionsApi extends BaseAPI {
      * @memberof RedemptionsApi
      */
     getAllRedemptions(state, options) {
-        return RedemptionsApiFp(this.configuration).getAllRedemptions(state, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.RedemptionsApiFp)(this.configuration).getAllRedemptions(state, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the details of a redemption.
@@ -301,7 +308,7 @@ export class RedemptionsApi extends BaseAPI {
      * @memberof RedemptionsApi
      */
     getRedemptionDetails(id, options) {
-        return RedemptionsApiFp(this.configuration).getRedemptionDetails(id, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.RedemptionsApiFp)(this.configuration).getRedemptionDetails(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Redeem zar
@@ -312,7 +319,7 @@ export class RedemptionsApi extends BaseAPI {
      * @memberof RedemptionsApi
      */
     redeemZar(redemptionRequest, options) {
-        return RedemptionsApiFp(this.configuration).redeemZar(redemptionRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.RedemptionsApiFp)(this.configuration).redeemZar(redemptionRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Update the status of a redemption.
@@ -324,13 +331,14 @@ export class RedemptionsApi extends BaseAPI {
      * @memberof RedemptionsApi
      */
     updateRedemptionStatus(id, adminRedemptionUpdateRequest, options) {
-        return RedemptionsApiFp(this.configuration).updateRedemptionStatus(id, adminRedemptionUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.RedemptionsApiFp)(this.configuration).updateRedemptionStatus(id, adminRedemptionUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.RedemptionsApi = RedemptionsApi;
 /**
  * @export
  */
-export const GetAllRedemptionsStateEnum = {
+exports.GetAllRedemptionsStateEnum = {
     PENDING: 'pending',
     APPROVED: 'approved',
     COMPLETED: 'completed',

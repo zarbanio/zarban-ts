@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { TaskResponse } from '../model';
 /**
@@ -81,6 +82,6 @@ export declare class TasksApi extends BaseAPI implements TasksApiInterface {
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    getTasks(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<TaskResponse, any>>;
+    getTasks(options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<TaskResponse, any>>;
 }
 //# sourceMappingURL=tasks-api.d.ts.map

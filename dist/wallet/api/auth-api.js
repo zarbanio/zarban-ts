@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GetOtpChannelEnum = exports.GenerateJwtTokenDurationEnum = exports.AuthApi = exports.AuthApiFactory = exports.AuthApiFp = exports.AuthApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * AuthApi - axios parameter creator
  * @export
  */
-export const AuthApiAxiosParamCreator = function (configuration) {
+const AuthApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Authenticate with Telegram and get a JWT token.
@@ -35,10 +39,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         authenticateWithTelegram: async (authTelegramRequest, options = {}) => {
             // verify required parameter 'authTelegramRequest' is not null or undefined
-            assertParamExists('authenticateWithTelegram', 'authTelegramRequest', authTelegramRequest);
+            (0, common_1.assertParamExists)('authenticateWithTelegram', 'authTelegramRequest', authTelegramRequest);
             const localVarPath = `/auth/telegram`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,12 +51,12 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(authTelegramRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(authTelegramRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -65,10 +69,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         generateJwtToken: async (duration, options = {}) => {
             // verify required parameter 'duration' is not null or undefined
-            assertParamExists('generateJwtToken', 'duration', duration);
+            (0, common_1.assertParamExists)('generateJwtToken', 'duration', duration);
             const localVarPath = `/auth/token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -78,15 +82,15 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             if (duration !== undefined) {
                 localVarQueryParameter['duration'] = duration;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -99,10 +103,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         getOtp: async (channel, options = {}) => {
             // verify required parameter 'channel' is not null or undefined
-            assertParamExists('getOtp', 'channel', channel);
+            (0, common_1.assertParamExists)('getOtp', 'channel', channel);
             const localVarPath = `/auth/otp`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -112,15 +116,15 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
             if (channel !== undefined) {
                 localVarQueryParameter['channel'] = channel;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -133,10 +137,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         loginWithEmailAndPassword: async (loginRequest, options = {}) => {
             // verify required parameter 'loginRequest' is not null or undefined
-            assertParamExists('loginWithEmailAndPassword', 'loginRequest', loginRequest);
+            (0, common_1.assertParamExists)('loginWithEmailAndPassword', 'loginRequest', loginRequest);
             const localVarPath = `/auth/login`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -145,12 +149,12 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(loginRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -163,10 +167,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         signupWithEmailAndPassword: async (signUpRequest, options = {}) => {
             // verify required parameter 'signUpRequest' is not null or undefined
-            assertParamExists('signupWithEmailAndPassword', 'signUpRequest', signUpRequest);
+            (0, common_1.assertParamExists)('signupWithEmailAndPassword', 'signUpRequest', signUpRequest);
             const localVarPath = `/auth/signup`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -175,12 +179,12 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(signUpRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(signUpRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -193,10 +197,10 @@ export const AuthApiAxiosParamCreator = function (configuration) {
          */
         verifyUserEmail: async (token, options = {}) => {
             // verify required parameter 'token' is not null or undefined
-            assertParamExists('verifyUserEmail', 'token', token);
+            (0, common_1.assertParamExists)('verifyUserEmail', 'token', token);
             const localVarPath = `/verify-email`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -207,22 +211,23 @@ export const AuthApiAxiosParamCreator = function (configuration) {
             if (token !== undefined) {
                 localVarQueryParameter['token'] = token;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.AuthApiAxiosParamCreator = AuthApiAxiosParamCreator;
 /**
  * AuthApi - functional programming interface
  * @export
  */
-export const AuthApiFp = function (configuration) {
-    const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration);
+const AuthApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.AuthApiAxiosParamCreator)(configuration);
     return {
         /**
          * Authenticate with Telegram and get a JWT token.
@@ -234,8 +239,8 @@ export const AuthApiFp = function (configuration) {
         async authenticateWithTelegram(authTelegramRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authenticateWithTelegram(authTelegramRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.authenticateWithTelegram']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.authenticateWithTelegram']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Generate a JWT token.
@@ -247,8 +252,8 @@ export const AuthApiFp = function (configuration) {
         async generateJwtToken(duration, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateJwtToken(duration, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.generateJwtToken']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.generateJwtToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get OTP for the user.
@@ -260,8 +265,8 @@ export const AuthApiFp = function (configuration) {
         async getOtp(channel, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOtp(channel, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.getOtp']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.getOtp']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Login with email and password and get a JWT token.
@@ -273,8 +278,8 @@ export const AuthApiFp = function (configuration) {
         async loginWithEmailAndPassword(loginRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.loginWithEmailAndPassword(loginRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.loginWithEmailAndPassword']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.loginWithEmailAndPassword']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * signup with email and password and get a JWT token.
@@ -286,8 +291,8 @@ export const AuthApiFp = function (configuration) {
         async signupWithEmailAndPassword(signUpRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.signupWithEmailAndPassword(signUpRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.signupWithEmailAndPassword']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.signupWithEmailAndPassword']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Verify the email of the user.
@@ -299,17 +304,18 @@ export const AuthApiFp = function (configuration) {
         async verifyUserEmail(token, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.verifyUserEmail(token, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AuthApi.verifyUserEmail']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['AuthApi.verifyUserEmail']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.AuthApiFp = AuthApiFp;
 /**
  * AuthApi - factory interface
  * @export
  */
-export const AuthApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = AuthApiFp(configuration);
+const AuthApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.AuthApiFp)(configuration);
     return {
         /**
          * Authenticate with Telegram and get a JWT token.
@@ -373,13 +379,14 @@ export const AuthApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.AuthApiFactory = AuthApiFactory;
 /**
  * AuthApi - object-oriented interface
  * @export
  * @class AuthApi
  * @extends {BaseAPI}
  */
-export class AuthApi extends BaseAPI {
+class AuthApi extends base_1.BaseAPI {
     /**
      * Authenticate with Telegram and get a JWT token.
      * @summary Authenticate with Telegram
@@ -389,7 +396,7 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     authenticateWithTelegram(authTelegramRequest, options) {
-        return AuthApiFp(this.configuration).authenticateWithTelegram(authTelegramRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).authenticateWithTelegram(authTelegramRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Generate a JWT token.
@@ -400,7 +407,7 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     generateJwtToken(duration, options) {
-        return AuthApiFp(this.configuration).generateJwtToken(duration, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).generateJwtToken(duration, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get OTP for the user.
@@ -411,7 +418,7 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     getOtp(channel, options) {
-        return AuthApiFp(this.configuration).getOtp(channel, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).getOtp(channel, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Login with email and password and get a JWT token.
@@ -422,7 +429,7 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     loginWithEmailAndPassword(loginRequest, options) {
-        return AuthApiFp(this.configuration).loginWithEmailAndPassword(loginRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).loginWithEmailAndPassword(loginRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * signup with email and password and get a JWT token.
@@ -433,7 +440,7 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     signupWithEmailAndPassword(signUpRequest, options) {
-        return AuthApiFp(this.configuration).signupWithEmailAndPassword(signUpRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).signupWithEmailAndPassword(signUpRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Verify the email of the user.
@@ -444,13 +451,14 @@ export class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     verifyUserEmail(token, options) {
-        return AuthApiFp(this.configuration).verifyUserEmail(token, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.AuthApiFp)(this.configuration).verifyUserEmail(token, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.AuthApi = AuthApi;
 /**
  * @export
  */
-export const GenerateJwtTokenDurationEnum = {
+exports.GenerateJwtTokenDurationEnum = {
     NUMBER_7: 7,
     NUMBER_15: 15,
     NUMBER_30: 30,
@@ -459,7 +467,7 @@ export const GenerateJwtTokenDurationEnum = {
 /**
  * @export
  */
-export const GetOtpChannelEnum = {
+exports.GetOtpChannelEnum = {
     PHONE: 'phone'
 };
 //# sourceMappingURL=auth-api.js.map

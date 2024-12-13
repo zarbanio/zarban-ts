@@ -11,6 +11,7 @@
  */
 import type { Configuration } from '../configuration';
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 import { type RequestArgs, BaseAPI } from '../base';
 import type { UserDepositsResponse } from '../model';
 /**
@@ -101,6 +102,6 @@ export declare class DepositsApi extends BaseAPI implements DepositsApiInterface
      * @throws {RequiredError}
      * @memberof DepositsApi
      */
-    getUserDeposits(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<UserDepositsResponse, any>>;
+    getUserDeposits(user?: string, reserve?: string, cursor?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<UserDepositsResponse, any>>;
 }
 //# sourceMappingURL=deposits-api.d.ts.map

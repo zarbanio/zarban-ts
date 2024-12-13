@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BalanceApi = exports.BalanceApiFactory = exports.BalanceApiFp = exports.BalanceApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setBearerAuthToObject, setSearchParams, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * BalanceApi - axios parameter creator
  * @export
  */
-export const BalanceApiAxiosParamCreator = function (configuration) {
+const BalanceApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get the balance by a symbol.
@@ -35,11 +39,11 @@ export const BalanceApiAxiosParamCreator = function (configuration) {
          */
         getBalanceBySymbol: async (symbol, options = {}) => {
             // verify required parameter 'symbol' is not null or undefined
-            assertParamExists('getBalanceBySymbol', 'symbol', symbol);
+            (0, common_1.assertParamExists)('getBalanceBySymbol', 'symbol', symbol);
             const localVarPath = `/balance/{symbol}`
                 .replace(`{${"symbol"}}`, encodeURIComponent(String(symbol)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -49,12 +53,12 @@ export const BalanceApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -67,7 +71,7 @@ export const BalanceApiAxiosParamCreator = function (configuration) {
         getWalletBalance: async (options = {}) => {
             const localVarPath = `/balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -77,23 +81,24 @@ export const BalanceApiAxiosParamCreator = function (configuration) {
             const localVarQueryParameter = {};
             // authentication bearerAuth required
             // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration);
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            await (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.BalanceApiAxiosParamCreator = BalanceApiAxiosParamCreator;
 /**
  * BalanceApi - functional programming interface
  * @export
  */
-export const BalanceApiFp = function (configuration) {
-    const localVarAxiosParamCreator = BalanceApiAxiosParamCreator(configuration);
+const BalanceApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.BalanceApiAxiosParamCreator)(configuration);
     return {
         /**
          * Get the balance by a symbol.
@@ -105,8 +110,8 @@ export const BalanceApiFp = function (configuration) {
         async getBalanceBySymbol(symbol, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getBalanceBySymbol(symbol, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BalanceApi.getBalanceBySymbol']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['BalanceApi.getBalanceBySymbol']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get the balance of the wallet.
@@ -117,17 +122,18 @@ export const BalanceApiFp = function (configuration) {
         async getWalletBalance(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWalletBalance(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['BalanceApi.getWalletBalance']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['BalanceApi.getWalletBalance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.BalanceApiFp = BalanceApiFp;
 /**
  * BalanceApi - factory interface
  * @export
  */
-export const BalanceApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = BalanceApiFp(configuration);
+const BalanceApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.BalanceApiFp)(configuration);
     return {
         /**
          * Get the balance by a symbol.
@@ -150,13 +156,14 @@ export const BalanceApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.BalanceApiFactory = BalanceApiFactory;
 /**
  * BalanceApi - object-oriented interface
  * @export
  * @class BalanceApi
  * @extends {BaseAPI}
  */
-export class BalanceApi extends BaseAPI {
+class BalanceApi extends base_1.BaseAPI {
     /**
      * Get the balance by a symbol.
      * @summary Get balance
@@ -166,7 +173,7 @@ export class BalanceApi extends BaseAPI {
      * @memberof BalanceApi
      */
     getBalanceBySymbol(symbol, options) {
-        return BalanceApiFp(this.configuration).getBalanceBySymbol(symbol, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.BalanceApiFp)(this.configuration).getBalanceBySymbol(symbol, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get the balance of the wallet.
@@ -176,7 +183,8 @@ export class BalanceApi extends BaseAPI {
      * @memberof BalanceApi
      */
     getWalletBalance(options) {
-        return BalanceApiFp(this.configuration).getWalletBalance(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.BalanceApiFp)(this.configuration).getWalletBalance(options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.BalanceApi = BalanceApi;
 //# sourceMappingURL=balance-api.js.map

@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -11,20 +12,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import globalAxios from 'axios';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StakingApi = exports.StakingApiFactory = exports.StakingApiFp = exports.StakingApiAxiosParamCreator = void 0;
+const tslib_1 = require("tslib");
+const axios_1 = tslib_1.__importDefault(require("axios"));
 // URLSearchParams not necessarily used
 // @ts-ignore
-import { URL } from 'url';
+const url_1 = require("url");
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+const common_1 = require("../common");
 // @ts-ignore
-import { BASE_PATH, BaseAPI, operationServerMap } from '../base';
+const base_1 = require("../base");
 /**
  * StakingApi - axios parameter creator
  * @export
  */
-export const StakingApiAxiosParamCreator = function (configuration) {
+const StakingApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Collect staking reward
@@ -35,10 +39,10 @@ export const StakingApiAxiosParamCreator = function (configuration) {
          */
         collectStakingReward: async (stakingCollectRewardTxRequest, options = {}) => {
             // verify required parameter 'stakingCollectRewardTxRequest' is not null or undefined
-            assertParamExists('collectStakingReward', 'stakingCollectRewardTxRequest', stakingCollectRewardTxRequest);
+            (0, common_1.assertParamExists)('collectStakingReward', 'stakingCollectRewardTxRequest', stakingCollectRewardTxRequest);
             const localVarPath = `/v2/staking/tx/collectreward`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -47,12 +51,12 @@ export const StakingApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(stakingCollectRewardTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stakingCollectRewardTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -65,7 +69,7 @@ export const StakingApiAxiosParamCreator = function (configuration) {
         getStakingPlans: async (options = {}) => {
             const localVarPath = `/v2/staking/plans`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -73,11 +77,11 @@ export const StakingApiAxiosParamCreator = function (configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -95,7 +99,7 @@ export const StakingApiAxiosParamCreator = function (configuration) {
         getUserStakingStats: async (user, address, active, cursor, limit, options = {}) => {
             const localVarPath = `/v2/staking/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -118,11 +122,11 @@ export const StakingApiAxiosParamCreator = function (configuration) {
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -135,10 +139,10 @@ export const StakingApiAxiosParamCreator = function (configuration) {
          */
         stakeToStakingContract: async (stakingStakeTxRequest, options = {}) => {
             // verify required parameter 'stakingStakeTxRequest' is not null or undefined
-            assertParamExists('stakeToStakingContract', 'stakingStakeTxRequest', stakingStakeTxRequest);
+            (0, common_1.assertParamExists)('stakeToStakingContract', 'stakingStakeTxRequest', stakingStakeTxRequest);
             const localVarPath = `/v2/staking/tx/stake`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -147,12 +151,12 @@ export const StakingApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(stakingStakeTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stakingStakeTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -165,10 +169,10 @@ export const StakingApiAxiosParamCreator = function (configuration) {
          */
         withdrawStakedAsset: async (stakingWithdrawTxRequest, options = {}) => {
             // verify required parameter 'stakingWithdrawTxRequest' is not null or undefined
-            assertParamExists('withdrawStakedAsset', 'stakingWithdrawTxRequest', stakingWithdrawTxRequest);
+            (0, common_1.assertParamExists)('withdrawStakedAsset', 'stakingWithdrawTxRequest', stakingWithdrawTxRequest);
             const localVarPath = `/v2/staking/tx/withdraw`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            const localVarUrlObj = new url_1.URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -177,23 +181,24 @@ export const StakingApiAxiosParamCreator = function (configuration) {
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             localVarHeaderParameter['Content-Type'] = 'application/json';
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(stakingWithdrawTxRequest, localVarRequestOptions, configuration);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(stakingWithdrawTxRequest, localVarRequestOptions, configuration);
             return {
-                url: toPathString(localVarUrlObj),
+                url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
     };
 };
+exports.StakingApiAxiosParamCreator = StakingApiAxiosParamCreator;
 /**
  * StakingApi - functional programming interface
  * @export
  */
-export const StakingApiFp = function (configuration) {
-    const localVarAxiosParamCreator = StakingApiAxiosParamCreator(configuration);
+const StakingApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.StakingApiAxiosParamCreator)(configuration);
     return {
         /**
          * Collect staking reward
@@ -205,8 +210,8 @@ export const StakingApiFp = function (configuration) {
         async collectStakingReward(stakingCollectRewardTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.collectStakingReward(stakingCollectRewardTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StakingApi.collectStakingReward']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['StakingApi.collectStakingReward']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get staking plans
@@ -217,8 +222,8 @@ export const StakingApiFp = function (configuration) {
         async getStakingPlans(options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getStakingPlans(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StakingApi.getStakingPlans']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['StakingApi.getStakingPlans']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get user staking stats
@@ -234,8 +239,8 @@ export const StakingApiFp = function (configuration) {
         async getUserStakingStats(user, address, active, cursor, limit, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserStakingStats(user, address, active, cursor, limit, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StakingApi.getUserStakingStats']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['StakingApi.getUserStakingStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Stake to staking contract
@@ -247,8 +252,8 @@ export const StakingApiFp = function (configuration) {
         async stakeToStakingContract(stakingStakeTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.stakeToStakingContract(stakingStakeTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StakingApi.stakeToStakingContract']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['StakingApi.stakeToStakingContract']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Withdraw staked asset
@@ -260,17 +265,18 @@ export const StakingApiFp = function (configuration) {
         async withdrawStakedAsset(stakingWithdrawTxRequest, options) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.withdrawStakedAsset(stakingWithdrawTxRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['StakingApi.withdrawStakedAsset']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            const localVarOperationServerBasePath = base_1.operationServerMap['StakingApi.withdrawStakedAsset']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     };
 };
+exports.StakingApiFp = StakingApiFp;
 /**
  * StakingApi - factory interface
  * @export
  */
-export const StakingApiFactory = function (configuration, basePath, axios) {
-    const localVarFp = StakingApiFp(configuration);
+const StakingApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.StakingApiFp)(configuration);
     return {
         /**
          * Collect staking reward
@@ -327,13 +333,14 @@ export const StakingApiFactory = function (configuration, basePath, axios) {
         },
     };
 };
+exports.StakingApiFactory = StakingApiFactory;
 /**
  * StakingApi - object-oriented interface
  * @export
  * @class StakingApi
  * @extends {BaseAPI}
  */
-export class StakingApi extends BaseAPI {
+class StakingApi extends base_1.BaseAPI {
     /**
      * Collect staking reward
      * @summary Collect staking reward
@@ -343,7 +350,7 @@ export class StakingApi extends BaseAPI {
      * @memberof StakingApi
      */
     collectStakingReward(stakingCollectRewardTxRequest, options) {
-        return StakingApiFp(this.configuration).collectStakingReward(stakingCollectRewardTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.StakingApiFp)(this.configuration).collectStakingReward(stakingCollectRewardTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get staking plans
@@ -353,7 +360,7 @@ export class StakingApi extends BaseAPI {
      * @memberof StakingApi
      */
     getStakingPlans(options) {
-        return StakingApiFp(this.configuration).getStakingPlans(options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.StakingApiFp)(this.configuration).getStakingPlans(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Get user staking stats
@@ -368,7 +375,7 @@ export class StakingApi extends BaseAPI {
      * @memberof StakingApi
      */
     getUserStakingStats(user, address, active, cursor, limit, options) {
-        return StakingApiFp(this.configuration).getUserStakingStats(user, address, active, cursor, limit, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.StakingApiFp)(this.configuration).getUserStakingStats(user, address, active, cursor, limit, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Stake to staking contract
@@ -379,7 +386,7 @@ export class StakingApi extends BaseAPI {
      * @memberof StakingApi
      */
     stakeToStakingContract(stakingStakeTxRequest, options) {
-        return StakingApiFp(this.configuration).stakeToStakingContract(stakingStakeTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.StakingApiFp)(this.configuration).stakeToStakingContract(stakingStakeTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Withdraw staked asset
@@ -390,7 +397,8 @@ export class StakingApi extends BaseAPI {
      * @memberof StakingApi
      */
     withdrawStakedAsset(stakingWithdrawTxRequest, options) {
-        return StakingApiFp(this.configuration).withdrawStakedAsset(stakingWithdrawTxRequest, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.StakingApiFp)(this.configuration).withdrawStakedAsset(stakingWithdrawTxRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
+exports.StakingApi = StakingApi;
 //# sourceMappingURL=staking-api.js.map
