@@ -1,29 +1,36 @@
 import { Wallet } from "zarban";
 
-async function signupExample(): Promise<Wallet.SimpleResponse> {
+async function loginExample() {
   // Create and configure the Configuration object
   const cfg = new Wallet.Configuration({
     basePath: "https://testwapi.zarban.io",
   });
 
-  // Create an instance of the authApi using the Configuration
+  // Create an instance of the authApi
   const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
-  // Prepare the signup request data
-  const signupRequest = Wallet.SignUpRequestFromJSON({
+  // Prepare the login request data
+  const loginRequest = Wallet.LoginRequestFromJSON({
     email: "user@example.com",
-    password: "yourSecuredPassword",
+    password: "your_secure_password",
   });
 
   try {
-    // Call the signup API
-    const response = await authApi.signupWithEmailAndPassword({
-      signUpRequest: signupRequest,
+    // Call the login API
+    const response = await authApi.loginWithEmailAndPassword({
+      loginRequest: loginRequest,
     });
-    console.log("Signup successful!");
-    console.log("Confirmation link sent.");
+    console.log("Login successful!");
+    console.log(`Token: ${response.token}`);
 
-    console.log(`Message: ${JSON.stringify(response.messages, null, 2)}`);
+    // After successful login, you can set the access token for future authenticated requests
+    /*
+    const newCfg = new Wallet.Configuration({
+      basePath: "https://testwapi.zarban.io",
+      accessToken: response.token,
+    });
+    */
+
     return response;
   } catch (error) {
     const modelError = Wallet.instanceOfModelError(error);
@@ -39,9 +46,8 @@ async function signupExample(): Promise<Wallet.SimpleResponse> {
   }
 }
 
-// Execute with proper error handling
 if (require.main === module) {
-  signupExample()
+  loginExample()
     .then(() => process.exit(0))
     .catch(() => process.exit(1));
 }
