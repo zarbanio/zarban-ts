@@ -36,7 +36,7 @@ async function loginExample() {
     const modelError = Wallet.instanceOfModelError(error);
     if (modelError) {
       console.log(
-        `Exception when calling authApi->signupWithEmailAndPassword: ${error}`
+        `Exception when calling authApi->loginWithEmailAndPassword: ${error}`
       );
       console.log(`Error message: ${error.msg}`);
     } else {
