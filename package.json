@@ -61,5 +61,10 @@
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "homepage": "https://zarban.io",
+  "bugs": {
+    "url": "https://github.com/zarbanio/zarban-ts/issues",
+    "email": "info@zarban.io"
   }
 }
