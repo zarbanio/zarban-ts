@@ -12,8 +12,8 @@ async function signupExample() {
 
   // Prepare the signup request data
   const signupRequest: Wallet.SignUpRequest = {
-    email: "arashalaei22@gmail.com",
-    password: "12345678",
+    email: "user@example.com",
+    password: "yourSecurePassword",
   };
 
   const signupWithHandler = withErrorHandler<Wallet.SimpleResponse>(
