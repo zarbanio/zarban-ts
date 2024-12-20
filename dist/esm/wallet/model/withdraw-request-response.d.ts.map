@@ -1,0 +1,1 @@
+{"version":3,"file":"withdraw-request-response.d.ts","sourceRoot":"","sources":["../../../../src/wallet/model/withdraw-request-response.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AAE1D;;;;GAIG;AACH,MAAM,WAAW,uBAAuB;IACpC;;;;OAIG;IACH,MAAM,EAAE,KAAK,CAAC,eAAe,CAAC,CAAC;CAClC"}

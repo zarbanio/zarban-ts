@@ -1,0 +1,1 @@
+{"version":3,"file":"swap-request.js","sourceRoot":"","sources":["../../../src/wallet/model/swap-request.ts"],"names":[],"mappings":";AAAA,oBAAoB;AACpB,oBAAoB;AACpB;;;;;;;;;;GAUG;;;AAgDU,QAAA,qBAAqB,GAAG;IACjC,IAAI,EAAE,MAAM;IACZ,KAAK,EAAE,OAAO;IACd,OAAO,EAAE,SAAS;CACZ,CAAC;AAGE,QAAA,wBAAwB,GAAG;IACpC,WAAW,EAAE,YAAY;IACzB,YAAY,EAAE,aAAa;CACrB,CAAC"}

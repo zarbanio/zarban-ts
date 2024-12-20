@@ -2903,8 +2903,8 @@ components:
           type: string
           description: Intent to create a vault
           enum:
-            - create
-            - preview
+            - Create
+            - Preview
           example: "Create"
         planName:
           type: string

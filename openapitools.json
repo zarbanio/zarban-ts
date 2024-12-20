@@ -5,7 +5,7 @@
     "version": "7.10.0",
     "generators": {
       "service": {
-        "generatorName": "typescript-fetch",
+        "generatorName": "typescript-axios",
         "output": "./src/service",
         "inputSpec": "./api_specs/service.openapi.yaml",
         "additionalProperties": {
@@ -16,7 +16,7 @@
           "apiPackage": "api",
           "modelPackage": "model",
           "npmName": "zarban",
-          "npmVersion": "0.1.8",
+          "npmVersion": "0.2.0",
           "modelPropertyNaming": "camelCase",
           "enumPropertyNaming": "UPPERCASE",
           "nullSafeAdditionalProps": true
@@ -29,7 +29,7 @@
         "inputSpec": "./api_specs/service.openapi.yaml"
       },
       "wallet": {
-        "generatorName": "typescript-fetch",
+        "generatorName": "typescript-axios",
         "output": "./src/wallet",
         "inputSpec": "./api_specs/wallet.openapi.yaml",
         "additionalProperties": {
@@ -40,7 +40,7 @@
           "apiPackage": "api",
           "modelPackage": "model",
           "npmName": "zarban",
-          "npmVersion": "0.1.8",
+          "npmVersion": "0.2.0",
           "modelPropertyNaming": "camelCase",
           "enumPropertyNaming": "UPPERCASE",
           "nullSafeAdditionalProps": true

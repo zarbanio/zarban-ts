@@ -10,31 +10,22 @@ async function signupExample(): Promise<Wallet.SimpleResponse> {
   const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
   // Prepare the signup request data
-  const signupRequest = Wallet.SignUpRequestFromJSON({
-    email: "user@example.com",
-    password: "yourSecuredPassword",
-  });
+  const signupRequest: Wallet.SignUpRequest = {
+    email: "arashalaei22@gmail.com",
+    password: "12345678",
+  };
 
   try {
     // Call the signup API
-    const response = await authApi.signupWithEmailAndPassword({
-      signUpRequest: signupRequest,
-    });
+    let response,
+      _ = await authApi.signupWithEmailAndPassword(signupRequest);
     console.log("Signup successful!");
     console.log("Confirmation link sent.");
 
     console.log(`Message: ${JSON.stringify(response.messages, null, 2)}`);
     return response;
   } catch (error) {
-    const modelError = Wallet.instanceOfModelError(error);
-    if (modelError) {
-      console.log(
-        `Exception when calling authApi->signupWithEmailAndPassword: ${error}`
-      );
-      console.log(`Error message: ${error.msg}`);
-    } else {
-      console.error("Unexpected error:", error);
-    }
+    console.log(error.response.data);
     throw error;
   }
 }

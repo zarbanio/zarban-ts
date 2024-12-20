@@ -1,0 +1,1 @@
+{"version":3,"file":"staking-withdraw-tx-response.d.ts","sourceRoot":"","sources":["../../../../src/service/model/staking-withdraw-tx-response.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AAEtD;;;;GAIG;AACH,MAAM,WAAW,yBAAyB;IACtC;;;;OAIG;IACH,eAAe,CAAC,EAAE,aAAa,CAAC;CACnC"}
