@@ -1,0 +1,1 @@
+{"version":3,"file":"balance.d.ts","sourceRoot":"","sources":["../../../src/service/model/balance.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;GAUG;AAKH,OAAO,KAAK,EAAE,KAAK,EAAE,MAAM,SAAS,CAAC;AAErC;;;;GAIG;AACH,MAAM,WAAW,OAAO;IACpB;;;;OAIG;IACH,OAAO,EAAE,KAAK,CAAC;IACf;;;;OAIG;IACH,SAAS,EAAE;QAAE,CAAC,GAAG,EAAE,MAAM,GAAG,MAAM,GAAG,SAAS,CAAC;KAAE,CAAC;CACrD"}

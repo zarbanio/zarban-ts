@@ -1,0 +1,1 @@
+{"version":3,"file":"transaction-type.js","sourceRoot":"","sources":["../../../src/wallet/model/transaction-type.ts"],"names":[],"mappings":";AAAA,oBAAoB;AACpB,oBAAoB;AACpB;;;;;;;;;;GAUG;;;AAIH;;;;GAIG;AAEU,QAAA,eAAe,GAAG;IAC3B,MAAM,EAAE,QAAQ;IAChB,KAAK,EAAE,OAAO;IACd,QAAQ,EAAE,UAAU;IACpB,OAAO,EAAE,SAAS;IAClB,QAAQ,EAAE,UAAU;CACd,CAAC"}
