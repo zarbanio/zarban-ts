@@ -16,7 +16,7 @@
           "apiPackage": "api",
           "modelPackage": "model",
           "npmName": "zarban",
-          "npmVersion": "0.2.0",
+          "npmVersion": "0.2.1",
           "modelPropertyNaming": "camelCase",
           "enumPropertyNaming": "UPPERCASE",
           "nullSafeAdditionalProps": true
@@ -40,7 +40,7 @@
           "apiPackage": "api",
           "modelPackage": "model",
           "npmName": "zarban",
-          "npmVersion": "0.2.0",
+          "npmVersion": "0.2.1",
           "modelPropertyNaming": "camelCase",
           "enumPropertyNaming": "UPPERCASE",
           "nullSafeAdditionalProps": true

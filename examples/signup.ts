@@ -1,6 +1,7 @@
-import { Wallet } from "zarban";
+import { Wallet, ZarbanUtils } from "zarban";
+const { withErrorHandler } = ZarbanUtils;
 
-async function signupExample(): Promise<Wallet.SimpleResponse> {
+async function signupExample() {
   // Create and configure the Configuration object
   const cfg = new Wallet.Configuration({
     basePath: "https://testwapi.zarban.io",
@@ -15,24 +16,32 @@ async function signupExample(): Promise<Wallet.SimpleResponse> {
     password: "12345678",
   };
 
-  try {
-    // Call the signup API
-    let response,
-      _ = await authApi.signupWithEmailAndPassword(signupRequest);
-    console.log("Signup successful!");
-    console.log("Confirmation link sent.");
+  const signupWithHandler = withErrorHandler<Wallet.SimpleResponse>(
+    "Wallet",
+    () => authApi.signupWithEmailAndPassword(signupRequest),
+    (response) => {
+      console.log("Signup successful!");
+      console.log("Confirmation link sent.");
+      console.log(
+        `Message: ${JSON.stringify(response.data.messages, null, 2)}`
+      );
+    }
+  );
 
-    console.log(`Message: ${JSON.stringify(response.messages, null, 2)}`);
-    return response;
-  } catch (error) {
-    console.log(error.response.data);
-    throw error;
+  const [result, error] = await signupWithHandler();
+  if (error) {
+    // You can do some extra work with errors here!
+    return error;
   }
+  return result;
 }
 
 // Execute with proper error handling
 if (require.main === module) {
-  signupExample()
-    .then(() => process.exit(0))
-    .catch(() => process.exit(1));
+  signupExample().then((result) => {
+    if (result instanceof Error) {
+      process.exit(1);
+    }
+    process.exit(0);
+  });
 }
