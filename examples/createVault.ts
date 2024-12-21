@@ -37,69 +37,34 @@ for managing sensitive information in production environments.
 
 import * as fs from "fs";
 import * as path from "path";
-import { Service } from "zarban";
+import { Service, ZarbanUtils } from "zarban";
 import { Web3, HttpProvider } from "web3";
 
-// define the error handler type
-type AsyncFn<T> = (...args: any[]) => Promise<T>;
-
-// Define the error handler function
-function withErrorHandler<T>(
-  fn: AsyncFn<T>,
-  apiName: string,
-  methodName: string
-) {
-  return async (
-    ...args: any[]
-  ): Promise<[T | null, Error | Service.ModelError | null]> => {
-    try {
-      const result = await fn(...args);
-      return [result, null];
-    } catch (error) {
-      if (Service.instanceOfModelError(error)) {
-        console.log(
-          `Exception when calling ${apiName}->${methodName}: ${error}`
-        );
-        console.log(`Error message: ${error.msg}`);
-        console.log(`Reasons: ${error.reasons}`);
-        return [null, error as Service.ModelError];
-      } else {
-        console.error("Unexpected error:", error);
-        return [null, error as Error];
-      }
-    }
-  };
-}
-
-function createApiMethod<T>(
-  fn: AsyncFn<T>,
-  apiName: string,
-  methodName: string
-) {
-  return withErrorHandler(fn, apiName, methodName);
-}
+const { withErrorHandler } = ZarbanUtils;
 
 /**
  * @description Retrieve and return a list of unique collateral type symbols.
  * @param {StableCoinSystemApi} [api] : The Stable CoinSystem Api client instance.
  * @returns {Promise<Service.Ilk[]>} A list of unique collateral type symbols.
  */
-const getIlksSymbolBase = async (
+const getIlksSymbol = async (
   api: Service.StableCoinSystemApi.StableCoinSystemApi
 ): Promise<string[]> => {
-  const ilks = await api.getAllIlks();
+  const getAllIlksWithHandler = withErrorHandler<Service.IlksResponse>(
+    "Service",
+    () => api.getAllIlks()
+  );
+
+  const [ilks, error] = await getAllIlksWithHandler();
+  if (error) {
+    throw error;
+  }
   const symbols: string[] = [];
   for (const ilk of ilks.data) {
     symbols.push(ilk.symbol);
   }
   return [...new Set(symbols)];
 };
-
-const getIlksSymbol = createApiMethod(
-  getIlksSymbolBase,
-  "StableCoinSystemApi",
-  "getAllIlks"
-);
 
 /**
  * @description Convert a human-readable amount to its native blockchain representation.
@@ -114,15 +79,13 @@ const toNative = async (
   amount: number
 ) => {
   // 1) get symbols
-  const [symbols, error] = await getIlksSymbol(api);
-  if (error) {
-    throw error;
-  }
+  const symbols = await getIlksSymbol(api);
+
   // 2) create ratio dict
   const ratio: { [key: string]: number } = {
     ZAR: 18,
   };
-  for (const s of symbols!) {
+  for (const s of symbols) {
     ratio[s] = 18;
   }
 
@@ -141,7 +104,7 @@ const toNative = async (
  * @param {number} [collateralAmount] : The amount of collateral to deposit.
  * @param {number} [loanAmount] : The amount of stablecoin to generate.
  */
-const getVaultTxStepsBase = async (
+const getVaultTxSteps = async (
   api: Service.StableCoinSystemApi.StableCoinSystemApi,
   ilkName: string,
   symbol: string,
@@ -152,26 +115,20 @@ const getVaultTxStepsBase = async (
   const nativeCollateralAmount = await toNative(api, symbol, collateralAmount);
   const nativeLoanAmount = await toNative(api, "ZAR", loanAmount);
 
-  const createVaultTxRequest =
-    Service.StablecoinSystemCreateVaultTxRequestFromJSON({
-      ilkName,
-      walletAddress,
-      nativeCollateralAmount,
-      nativeLoanAmount,
-    });
+  const createVaultTxRequest: Service.StablecoinSystemCreateVaultTxRequest = {
+    ilkName,
+    user: walletAddress,
+    collateralAmount: nativeCollateralAmount,
+    mintAmount: nativeLoanAmount,
+  };
 
-  const createStableCoinVaultResponse = await api.createStableCoinVault({
-    stablecoinSystemCreateVaultTxRequest: createVaultTxRequest,
-  });
+  const createStableCoinVaultWithHandler =
+    withErrorHandler<Service.ChainActivity>("Service", () =>
+      api.createStableCoinVault(createVaultTxRequest)
+    );
 
-  return createStableCoinVaultResponse;
+  return createStableCoinVaultWithHandler();
 };
-
-const getVaultTxSteps = createApiMethod(
-  getVaultTxStepsBase,
-  "StableCoinSystemApi",
-  "createStableCoinVault"
-);
 
 const getAddressFromPrivateKey = (privateKey: Uint8Array | string): string => {
   // Create a Web3 instance
@@ -182,26 +139,21 @@ const getAddressFromPrivateKey = (privateKey: Uint8Array | string): string => {
   return account.address;
 };
 
-const getLogsBase = async (txHash) => {
+const getLogs = async (txHash) => {
   const logsApi = new Service.LogsApi.LogsApi();
-  const getLogsResponse = await logsApi.getLogsByTransactionHash({ txHash });
-  return getLogsResponse;
+  const getLogsWithHandler = withErrorHandler<Service.EventDetailsResponse>(
+    "Service",
+    () => logsApi.getLogsByTransactionHash(txHash)
+  );
+  return getLogsWithHandler();
 };
 
-const getLogs = createApiMethod(
-  getLogsBase,
-  "logsApi",
-  "getLogsByTransactionHash"
-);
-
 const getVaultId = (logs: Service.EventDetailsResponse) => {
-  let vaultId: undefined | string = undefined;
+  let vaultId = null;
   if (logs) {
     for (const log of logs.data) {
       if (log.name == "NewCdp") {
-        if (log.decoded) {
-          vaultId = log.decoded["Cdp"];
-        }
+        vaultId = log.decoded["Cdp"];
       }
     }
   }
@@ -302,26 +254,6 @@ const waitForTransactionReceipt = async (
   return null; // Return null if receipt was not found within max wait time
 };
 
-const beautifyJson = (jsonData: string | object): string => {
-  let parsedData: object;
-
-  // Parse the JSON string if it's not already an object
-  if (typeof jsonData === "string") {
-    try {
-      parsedData = JSON.parse(jsonData);
-    } catch (error) {
-      throw new Error("Invalid JSON string provided");
-    }
-  } else {
-    parsedData = jsonData;
-  }
-
-  // Convert the parsed data back to a string with indentation
-  const beautified = JSON.stringify(parsedData, null, 2);
-
-  return beautified;
-};
-
 async function main() {
   // Configuration
   const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
@@ -330,7 +262,7 @@ async function main() {
 
   // Setup Zarban API client
   let cfg = new Service.Configuration({
-    basePath: "https://testwapi.zarban.io",
+    basePath: "https://testapi.zarban.io",
   });
   const stableCoinSystemApi =
     new Service.StableCoinSystemApi.StableCoinSystemApi(cfg);
@@ -378,7 +310,7 @@ async function main() {
   );
 
   if (!error) {
-    const { numberOfSteps, stepNumber, steps } = ChainActivity!;
+    const { numberOfSteps, stepNumber, steps } = ChainActivity;
     if (steps) {
       for (let s = stepNumber; s <= numberOfSteps; s++) {
         const [ChainActivity, error] = await getVaultTxSteps(
@@ -390,7 +322,7 @@ async function main() {
           LOAN_AMOUNT
         );
         if (!error) {
-          const { numberOfSteps: numberOf, stepNumber, steps } = ChainActivity!;
+          const { numberOfSteps: numberOf, stepNumber, steps } = ChainActivity;
           let txHash;
           for (const [index, step] of steps.entries()) {
             const data = step["data"];
@@ -459,7 +391,7 @@ async function main() {
           if (numberOf == stepNumber) {
             const [logs, error] = await getLogs(txHash);
             if (!error) {
-              const vaultid = getVaultId(logs!);
+              const vaultid = getVaultId(logs);
               if (vaultid) {
                 console.log("vault was created successfully.");
                 console.log(`TX HASH: ${txHash}\nVAULT ID: ${vaultid}`);
