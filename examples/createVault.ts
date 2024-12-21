@@ -262,7 +262,7 @@ async function main() {
 
   // Setup Zarban API client
   let cfg = new Service.Configuration({
-    basePath: "https://testwapi.zarban.io",
+    basePath: "https://testapi.zarban.io",
   });
   const stableCoinSystemApi =
     new Service.StableCoinSystemApi.StableCoinSystemApi(cfg);
