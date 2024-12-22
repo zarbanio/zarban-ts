@@ -9,7 +9,7 @@ Before running this example, ensure you have:
 1. Installed the Zarban SDK:
 
 ```bash
-pip install zarban
+npm install zarban
 ```
 
 2. Superuser credentials with appropriate permissions
@@ -70,112 +70,215 @@ pip install zarban
 
 ## Code Example
 
-```python
-import zarban.wallet.openapi_client as wallet
+```typeScript
+import { Wallet, ZarbanUtils } from "zarban";
+const { withErrorHandler } = ZarbanUtils;
 
-from pprint import pprint
+async function createChildExample() {
+  // Create and configure the Configuration object
+  let cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+  });
 
+  // Create an instance of the BaseAPI using the Configuration
+  const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
-def child_creation_example():
-    # Initialize API client
-    cfg = wallet.Configuration(host="https://testwapi.zarban.io")
-    api_client = wallet.ApiClient(cfg)
-    auth_api = wallet.AuthApi(api_client)
-    user_api = wallet.UserApi(api_client)
+  // Constant superuser email and password
+  const SUPERUSER_EMAIL = "user@example.com";
+  const SUPERUSER_PASSWORD = "your_secure_password";
 
-    # Constant superuser email and password
-    SUPERUSER_EMAIL = "user@example.com"
-    SUPERUSER_PASSWORD = "yourSecuredPassword"
+  // Superuser login
+  const loginRequest: Wallet.LoginRequest = {
+    email: SUPERUSER_EMAIL,
+    password: SUPERUSER_PASSWORD,
+  };
 
-    try:
-        # Superuser login
-        login_request = wallet.LoginRequest(
-            email=SUPERUSER_EMAIL,
-            password=SUPERUSER_PASSWORD
-        )
-        login_response = auth_api.login_with_email_and_password(login_request)
-        pprint(f"Superuser login successful")
+  // Call the login API
+  const loginWithHandler = withErrorHandler<Wallet.JwtResponse>(
+    "Wallet",
+    () => authApi.loginWithEmailAndPassword(loginRequest),
+    (_) => {
+      console.log("Superuser login successful");
+    }
+  );
 
-        # Set the access token for subsequent requests
-        cfg.access_token = login_response.token
+  const [loginResponse, loginError] = await loginWithHandler();
+  if (loginError) {
+    // you can do some addition works with error here!
+    return loginError;
+  }
 
-        # Create a child user
-        child_username = f"child_user_test"
-        child_request = wallet.CreateChildUserRequest(
-            username=child_username
-        )
+  cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: loginResponse.token,
+  });
 
-        child_response =user_api.create_child_user(child_request)
-        pprint(f"Child user created. Username: {child_response.username}")
+  // Create a child user
+  const childUsername = "child_user_test";
+  let userApi = new Wallet.UserApi.UserApi(cfg);
 
-        # Get child user's profile
-        # Set the X-Child-User header in the api_client's default headers
-        api_client.default_headers['X-Child-User'] = child_response.username
+  const createChildUserRequest: Wallet.CreateChildUserRequest = {
+    username: childUsername,
+  };
 
-        # Make the profile request
-        profile_response = user_api.get_user_profile()
+  const createChildUserWithHandler = withErrorHandler<Wallet.User>(
+    "Wallet",
+    () => userApi.createChildUser(createChildUserRequest),
+    (response) => {
+      console.log(`Child user created. Username: ${response.data.username}`);
+    }
+  );
 
-        pprint("Child user profile:")
-        pprint(profile_response)
+  const [childResponse, createChildUserError] =
+    await createChildUserWithHandler();
+  if (createChildUserError) {
+    // you can do some addition works with error here!
+    return createChildUserError;
+  }
 
-        # Remove the X-Child-User header after use
-        api_client.default_headers.pop('X-Child-User', None)
+  // Get child user's profile
+  // Set the X-Child-User header
+  cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: loginResponse.token,
+    baseOptions: {
+      headers: {
+        "X-Child-User": childResponse.username,
+      },
+    },
+  });
+  userApi = new Wallet.UserApi.UserApi(cfg);
+  // Make the profile request
+  const getUserProfileWithHandler = withErrorHandler<Wallet.ProfileResponse>(
+    "Wallet",
+    () => userApi.getUserProfile(),
+    (response) => {
+      console.log("Child user profile:");
+      console.log(response.data);
+    }
+  );
 
-    except wallet.ApiException as e:
-        pprint(f"API Exception: {e}")
-        pprint(f"Status code: {e.status}")
-        pprint(f"Reason: {e.reason}")
-        pprint(f"Error message: {e.body}")
+  const [UserProfile, UserProfileError] = await getUserProfileWithHandler();
+  if (UserProfileError) {
+    // you can do some addition works with error here!
+    return UserProfileError;
+  }
 
+  // Remove the X-Child-User header after use
+  cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: loginResponse.token,
+  });
+}
 
-if __name__ == "__main__":
-    child_creation_example()
+if (require.main === module) {
+  createChildExample()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1));
+}
 ```
 
 ## Step-by-Step Explanation
 
 1. **Initialize API Client**
 
-   ```python
-    cfg = wallet.Configuration(host="https://testwapi.zarban.io")
-    api_client = wallet.ApiClient(cfg)
-    auth_api = wallet.AuthApi(api_client)
-    user_api = wallet.UserApi(api_client)
+   ```typeScript
+   let cfg = new Wallet.Configuration({
+        basePath: "https://testwapi.zarban.io",
+   });
+    const authApi = new Wallet.AuthApi.AuthApi(cfg);
+
+    cfg = new Wallet.Configuration({
+        basePath: "https://testwapi.zarban.io",
+        accessToken: loginResponse.token,
+   });
+    let userApi = new Wallet.UserApi.UserApi(cfg);
    ```
 
    Sets up the API client with the test environment endpoint.
 
 2. **Superuser Authentication**
 
-   ```python
-    login_request = wallet.LoginRequest(
-        email=SUPERUSER_EMAIL,
-        password=SUPERUSER_PASSWORD
-    )
+   ```typeScript
+   const loginRequest: Wallet.LoginRequest = {
+    email: SUPERUSER_EMAIL,
+    password: SUPERUSER_PASSWORD,
+   };
 
-    login_response = auth_api.login_with_email_and_password(login_request)
-    cfg.access_token = login_response.token
+    const loginWithHandler = withErrorHandler<Wallet.JwtResponse>(
+        "Wallet",
+        () => authApi.loginWithEmailAndPassword(loginRequest),
+        (_) => {
+            console.log("Superuser login successful");
+        }
+        );
+
+    const [loginResponse, loginError] = await loginWithHandler();
+    if (loginError) {
+    // you can do some addition works with error here!
+    return loginError;
+    }
+
+    cfg = new Wallet.Configuration({
+        basePath: "https://testwapi.zarban.io",
+        accessToken: loginResponse.token,
+    });
    ```
 
-   Authenticates the superuser and stores the access token.
+Authenticates the superuser and stores the access token.
 
 3. **Create Child User**
 
-   ```python
-    child_request = wallet.CreateChildUserRequest(
-        username=child_username
-    )
+```typeScript
+const childUsername = "child_user_test";
+  let userApi = new Wallet.UserApi.UserApi(cfg);
 
-    child_response =user_api.create_child_user(child_request)
-   ```
+  const createChildUserRequest: Wallet.CreateChildUserRequest = {
+    username: childUsername,
+  };
 
-   Creates a new child user account.
+  const createChildUserWithHandler = withErrorHandler<Wallet.User>(
+    "Wallet",
+    () => userApi.createChildUser(createChildUserRequest),
+    (response) => {
+      console.log(`Child user created. Username: ${response.data.username}`);
+    }
+  );
+
+  const [childResponse, createChildUserError] =
+    await createChildUserWithHandler();
+  if (createChildUserError) {
+    // you can do some addition works with error here!
+    return createChildUserError;
+  }
+```
+
+Creates a new child user account.
 
 4. **Access Child User Profile**
 
-   ```python
-    api_client.default_headers['X-Child-User'] = child_response.username
-    profile_response = user_api.get_user_profile()
+   ```typeScript
+   cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: loginResponse.token,
+    baseOptions: {
+      headers: {
+        "X-Child-User": childResponse.username,
+      },
+    },
+   });
+   userApi = new Wallet.UserApi.UserApi(cfg);
+   // Make the profile request
+   const getUserProfileWithHandler = withErrorHandler<Wallet.ProfileResponse>(
+    "Wallet",
+    () => userApi.getUserProfile(),
+    (response) => {
+      console.log("Child user profile:");
+      console.log(response.data);
+    }
+   );
+
+    const [UserProfile, UserProfileError] = await getUserProfileWithHandler();
    ```
 
    Sets the required header and retrieves the child user's profile.
@@ -203,38 +306,39 @@ if __name__ == "__main__":
 
 ### Error Handling Example
 
-```python
-try:
-    child_response =user_api.create_child_user(child_request)
-except wallet.ApiException as e:
-    if e.status == 400:
-        print("Invalid request: Check username format")
-    elif e.status == 500:
-        print("Server error: Please try again later")
+```typeScript
+  if (UserProfileError) {
+    // you can do some addition works with error here!
+    return UserProfileError;
+  }
 ```
 
 ## Best Practices
 
 1. **Header Management**
 
-   ```python
-   # DO clean up headers after use
-   api_client.default_headers.pop('X-Child-User', None)
+   ```typeScript
+   // DO clean up headers after use
+   cfg = new Wallet.Configuration({
+        basePath: "https://testwapi.zarban.io",
+        accessToken: loginResponse.token,
+    })
 
-   # DON'T leave sensitive headers in place
-   # Incorrect: Not removing headers after use
+   // DON'T leave sensitive headers in place
+   // Incorrect: Not removing headers after use
    ```
 
 2. **Username Generation**
 
-   ```python
-   # DO use safe username generation
-   import uuid
-   safe_username = f"child_{uuid.uuid4().hex[:8]}"
+   ```typeScript
+    // DO use safe username generation
+    import { v4 as uuidv4 } from 'uuid';
 
-   # DON'T use predictable usernames
-   # Incorrect: sequential usernames
-   username = f"child_{sequential_number}"
+    const safeUsername = `child_${uuidv4().replace(/-/g, '').slice(0, 8)}`;
+
+    // DON'T use predictable usernames
+    // Incorrect: sequential usernames
+    // const username = `child_${sequentialNumber}`; // Avoid using sequential numbers
    ```
 
 3. **Security Considerations**
