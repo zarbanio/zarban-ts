@@ -114,10 +114,10 @@ if (require.main === module) {
 
 ## Response Handling
 
-The example includes error handling using try/except blocks:
+The example includes error handling using withErrorHandler:
 
 - On success: Prints a confirmation message and the response messages
-- On failure: Catches `ApiException` and prints the error details
+- On failure: Catches `error` and prints the error details
 
 ## Expected Output
 

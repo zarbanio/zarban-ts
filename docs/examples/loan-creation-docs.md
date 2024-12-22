@@ -150,7 +150,7 @@ Returns loan details including status, collateral, debt, and other relevant info
 
 ## Error Handling
 
-The SDK uses `ApiException` for error handling. Common errors include:
+The SDK uses `withErrorHandler` for error handling. Common errors include:
 
 - 400: Bad Request
 - 401: Unauthorized
