@@ -60,7 +60,7 @@ async function main() {
     accessToken: ACCESS_TOKEN,
     baseOptions: {
       headers: {
-        "X-Child-User": "child_user_test22",
+        "X-Child-User": "child_user_test",
       },
     },
   });

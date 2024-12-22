@@ -2,11 +2,11 @@
 
 ## Overview
 
-This document describes how to use the Zarban SDK to create loans. The SDK provides functionality for creating new loans and monitoring their status through a simple Python interface.
+This document describes how to use the Zarban SDK to create loans. The SDK provides functionality for creating new loans and monitoring their status through a simple typeScript interface.
 
 ## Prerequisites
 
-- Python 3.x
+- Node >= 16.0.0
 - Zarban SDK (`zarban.wallet`)
 - Valid API access token
 - Child user credentials (if applicable)
@@ -14,7 +14,7 @@ This document describes how to use the Zarban SDK to create loans. The SDK provi
 ## Installation
 
 ```bash
-pip install zarban
+npm install zarban
 ```
 
 ## Authentication
@@ -24,29 +24,36 @@ The SDK requires two forms of authentication:
 1. An API access token
 2. A child user header (optional, depending on use case)
 
-```python
-    cfg = wallet.Configuration(host="https://testwapi.zarban.io")
-    cfg.access_token = ACCESS_TOKEN
-    api_client = wallet.ApiClient(cfg)
-    api_client.default_headers['X-Child-User'] = "your_child_username"
+```typeScript
+  let cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: ACCESS_TOKEN,
+    baseOptions: {
+      headers: {
+        "X-Child-User": "child_user_test",
+      },
+    },
+  });
+
+  let loanApi = new Wallet.LoansApi.LoansApi(cfg);
 ```
 
 ## Core Functions
 
 ### Creating a Loan
 
-#### `create_loan(api_instance, plan_name, collateral, debt, symbol, loan_to_value_option)`
+#### `const createLoan = async ( loanApi, planName collateral, debt, symbol, loanToValueOption)`
 
 Creates a new loan using the specified parameters.
 
 **Parameters:**
 
-- `loans_api`: LoansApi instance
-- `plan_name`: str - Name of the loan plan (Currently supports "DAIA" and "DAIB")
-- `collateral`: str - Amount of collateral
-- `debt`: str - Amount of debt
-- `symbol`: str - Coin symbol (e.g., "USDT")
-- `loan_to_value_option`: str - Risk level ("Safe", "Normal", or "Risky")
+- `loanApi`: Wallet.LoansApi.LoansApi instance
+- `planName`: string - Name of the loan plan (Currently supports "DAIA" and "DAIB")
+- `collateral`: string - Amount of collateral
+- `debt`: string - Amount of debt
+- `symbol`: string - Coin symbol (e.g., "DAI")
+- `loanToValueOption`: string - Risk level ("Safe", "Normal", or "Risky")
 
 **Important Notes:**
 
@@ -55,32 +62,36 @@ Creates a new loan using the specified parameters.
 
 **Example:**
 
-```python
-loan_id = create_loan(
-    loans_api,
-    plan_name="DAIA",
-    collateral="1000",
-    debt="",
-    symbol="USDT",
-    loan_to_value_option="Safe"
-)
+```typeScript
+  const [createLoanResponse, createLoanError] = await createLoan(
+    loanApi,
+    PLAN_NAME,
+    COLLATERAL,
+    DEBT,
+    SYMBOL,
+    LOAN_TO_VALUE_OPTIONS
+  );
+  if (createLoanError) {
+    // you can do some addition works with error here!
+    return createLoanError;
+  }
 ```
 
 ### Checking Loan Status
 
-#### `loan_Status(loans_api, loan_id)`
+#### `const loanStatus = async (loanApi ,loanId)`
 
 Retrieves and displays the current state of a loan.
 
 **Parameters:**
 
-- `loans_api`: LoansApi instance
-- `loan_id`: str - The ID of the loan to check
+- `loanApi`: Wallet.LoansApi.LoansApi instance
+- `loanId`: string - The ID of the loan to check
 
 **Returns:**
 Loan details object containing:
 
-- State
+- Status
 - Collateral amount
 - Debt amount
 - Interest rate
@@ -88,8 +99,15 @@ Loan details object containing:
 
 **Example:**
 
-```python
-loan_details = loan_Status(loans_api, loan_id)
+```typeScript
+const [loanDetails, loanDetailsError] = await loanStatus(
+    loanApi,
+    createLoanResponse.id
+);
+if (loanDetailsError) {
+    // you can do some addition works with error here!
+    return loanDetailsError;
+}
 ```
 
 ## API Endpoints
@@ -140,48 +158,94 @@ The SDK uses `ApiException` for error handling. Common errors include:
 
 Example error handling:
 
-```python
-try:
-    loan_details = loans_api.get_loan_details(loan_id)
-except wallet.ApiException as e:
-    print(f"Error: {e}")
+```typeScript
+if (loanDetailsError) {
+    // you can do some addition works with error here!
+    return loanDetailsError;
+}
 ```
 
 ## Complete Usage Example
 
-```python
-def main():
-    # Replace with your actual access token
-    ACCESS_TOKEN = "your_child_username"
+```typeScript
+async function main() {
+  // Replace with your actual access token
+  const ACCESS_TOKEN = "your_access_token_here";
 
-    # Setup API client
-    cfg = wallet.Configuration(host="https://testwapi.zarban.io")
-    cfg.access_token = ACCESS_TOKEN
-    api_client = wallet.ApiClient(cfg)
-    loans_api = wallet.LoansApi(api_client)
+  // Setup API client
+  let cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: ACCESS_TOKEN,
+    baseOptions: {
+      headers: {
+        "X-Child-User": "child_user_test",
+      },
+    },
+  });
 
-    # Set the X-Child-User header in the api_client's default headers
-    api_client.default_headers['X-Child-User'] = "your_child_username"
-    # Create loan
-    loan_id = create_loan(
-        loans_api,
-        "DAIA",    # plan name
-        "1000",    # collateral
-        "",        # debt
-        "USDT",    # symbol
-        "Safe"     # loan to value option
-    )
+  let loanApi = new Wallet.LoansApi.LoansApi(cfg);
 
-    # Check status
-    if loan_id:
-        loan_details = loan_status(loans_api, loan_id)
+  // Loan creation parameters, Replace them with yout actual data
+  // *** either collateral or debt must be empty ***
+  const PLAN_NAME = "DAIA"; // Only DAIA and DAIB supported
+  const COLLATERAL = "1000"; // Amount of collateral
+  const DEBT = ""; // Amount of debt
+  const SYMBOL = "DAI"; // Coin symbol
+  const LOAN_TO_VALUE_OPTIONS = "Safe"; // Risky - Normal - Safe
+
+  // Create loan
+  const [createLoanResponse, createLoanError] = await createLoan(
+    loanApi,
+    PLAN_NAME,
+    COLLATERAL,
+    DEBT,
+    SYMBOL,
+    LOAN_TO_VALUE_OPTIONS
+  );
+  if (createLoanError) {
+    // you can do some addition works with error here!
+    return createLoanError;
+  }
+
+  // Remove the X-Child-User header after use
+  cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: ACCESS_TOKEN,
+  });
+
+  loanApi = new Wallet.LoansApi.LoansApi(cfg);
+
+  if (createLoanResponse.id) {
+    console.log(`Loan created with ID: ${createLoanResponse.id}`);
+
+    // Track loan status
+    console.log("\nTracking loan status...");
+    const [loanDetails, loanDetailsError] = await loanStatus(
+      loanApi,
+      createLoanResponse.id
+    );
+    if (loanDetailsError) {
+      // you can do some addition works with error here!
+      return loanDetailsError;
+    }
+    if (loanDetails) {
+      // You can add more specific actions based on the loan state
+      console.log(`Loan status: ${loanDetails.state}`);
+    }
+  } else {
+    console.log("Failed to create loan");
+  }
+}
 ```
 
 ## Best Practices
 
 1. Always remove the X-Child-User header after use:
-   ```python
-   api_client.default_headers.pop('X-Child-User', None)
+   ```typeScript
+   cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+    accessToken: ACCESS_TOKEN,
+   });
    ```
 2. Implement proper error handling for all API calls
 3. Validate input parameters before making API calls
