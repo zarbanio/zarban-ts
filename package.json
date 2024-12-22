@@ -1,6 +1,6 @@
 {
   "name": "zarban",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Zarban - A TypeScript SDK",
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "clean": "rimraf dist && rimraf src/service && rimraf src/wallet && rimraf docs",
+    "clean": "rimraf dist && rimraf src/service && rimraf src/wallet && rimraf docs/service  && rimraf docs/wallet",
     "generate": "npx openapi-generator-cli generate",
     "post-generate": "node fix-exports.cjs",
     "build": "npm run clean && npm run generate && npm run post-generate && tsc && tsc -p tsconfig.esm.json",
