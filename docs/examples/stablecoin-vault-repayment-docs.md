@@ -6,67 +6,67 @@ This documentation covers the implementation of vault repayment in the Zarban St
 
 ## Prerequisites
 
-- Python 3.x
-- Web3.py
+- Node >= 16.0.0
+- Web3.js
 - Zarban SDK
 - Ethereum node access (RPC URL)
 - Private key with sufficient funds
-- Required Python packages:
+- Required node packages:
   ```bash
-  pip install zarban
+  npm install zarban
   ```
 
 ## Core Components
 
 ### 1. Amount Conversion
 
-#### `to_native(amount)`
+#### `const toNative = (amount)`
 
 Converts a human-readable amount to its native blockchain format (wei).
 
 **Parameters:**
 
-- `amount (float)`: The amount to be converted
+- `amount (number)`: The amount to be converted
 
 **Returns:**
 
-- `str`: The amount in native blockchain format
+- `string`: The amount in native blockchain format
 
 **Example:**
 
-```python
-native_amount = to_native(1.5)
+```typeScript
+nativeAmount = toNative(1.5)
 ```
 
 ### 2. Vault Repayment Transaction Processing
 
-#### `get_vault_tx_steps(api, wallet_address, vault_id, amount)`
+#### `const getVaultTxSteps = async (api, walletAddress, vaultId, amount)`
 
 Retrieves transaction steps for vault repayment.
 
 **Parameters:**
 
-- `api (service.StableCoinSystemApi)`: The API client instance
-- `wallet_address (str)`: User's wallet address
-- `vault_id (int)`: The ID of the vault to be repaid
-- `amount (float)`: The repayment amount
+- `api (Service.StableCoinSystemApi.StableCoinSystemApi)`: The StableCoinSystem Api instance
+- `walletAddress (string)`: User's wallet address
+- `vaultId (number)`: The ID of the vault to be repaid
+- `amount (number | undefined)`: The repayment amount
 
 **Returns:**
 
-- `dict`: (number_of_steps, step_number, steps)
+- `Promise`: (numberOfSteps, stepNumber, steps)
 
 ### 3. Transaction Management
 
-#### `wait_for_transaction_receipt(w3, tx_hash, max_wait_time=120, check_interval=15)`
+#### `const waitForTransactionReceipt = async (web3, txHash, maxWaitTime = 120, checkInterval = 15)`
 
 Waits for transaction confirmation.
 
 **Parameters:**
 
 - `w3`: Web3 instance
-- `tx_hash`: Transaction hash
-- `max_wait_time`: Maximum wait time in seconds
-- `check_interval`: Check interval in seconds
+- `txHash`: Transaction hash
+- `maxWaitTime`: Maximum wait time in seconds
+- `checkInterval`: Check interval in seconds
 
 **Returns:**
 
@@ -74,42 +74,67 @@ Waits for transaction confirmation.
 
 ### 4. Transaction Logging
 
-#### `save_transaction_details(tx, tx_hash)`
+#### `const saveTransactionDetails = (tx, txHash, vaultId)`
 
 Saves transaction details to a JSON file.
 
 **Parameters:**
 
 - `tx`: Transaction object
-- `tx_hash`: Transaction hash
+- `txHash`: Transaction hash
+- `vaultId`: Vault identifier (can be None)
 
 ## Complete Implementation Example
 
-```python
-# Configuration
-HTTPS_RPC_URL = "your_ethereum_node_url"
-PRIVATE_KEY = "your_private_key"
-WALLET_ADDRESS = get_address_from_private_key(PRIVATE_KEY)
+```typeScript
+  // Configuration
+  const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
+  const PRIVATE_KEY = "Replace with your Private key"; // start with "0x"
+  const WALLET_ADDRESS = getAddressFromPrivateKey(PRIVATE_KEY);
 
-# Setup API client
-cfg = service.Configuration(host="https://testapi.zarban.io")
-api_client = ApiClient(cfg)
-stable_coin_system_api = service.StableCoinSystemApi(api_client)
+  // Define vault repayment parameters
+  const VAULT_ID: number = "Replace with your vault id";
+  const AMOUNT: number = "Replace with your actual repayment value";
 
-# Setup Web3
-w3 = Web3(Web3.HTTPProvider(HTTPS_RPC_URL))
+  // Setup Zarban API client
+  let cfg = new Service.Configuration({
+    basePath: "https://testapi.zarban.io",
+  });
 
-# Vault repayment parameters
-VAULT_ID = 123  # Replace with your actual vault ID
-REPAYMENT_AMOUNT = 500  # Replace with your actual repayment amount
+  const stableCoinSystemApi =
+    new Service.StableCoinSystemApi.StableCoinSystemApi(cfg);
 
-# Repay vault
-num_of_steps, step_number, steps = get_vault_tx_steps(
-    stable_coin_system_api,
+  // Setup Web3 connection
+  const w3 = new Web3(new HttpProvider(HTTPS_RPC_URL));
+
+  // Verify connection by checking if we can fetch the latest block number
+  w3.eth
+    .getBlockNumber()
+    .then((blockNumber) => {
+      console.log(`Successfully connected to ${HTTPS_RPC_URL}`);
+      console.log(`Latest block number: ${blockNumber}`);
+    })
+    .catch((error) => {
+      console.error(`Failed to connect to ${HTTPS_RPC_URL}:`, error);
+      process.exit(1);
+    });
+
+  const account = w3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+
+  // Get the chain ID
+  let chainId;
+  try {
+    chainId = await w3.eth.getChainId();
+  } catch (error) {
+    console.error("Error getting chain ID:", error);
+  }
+
+  const [ChainActivity, error] = await getVaultTxSteps(
+    stableCoinSystemApi,
     WALLET_ADDRESS,
     VAULT_ID,
-    REPAYMENT_AMOUNT
-)
+    AMOUNT
+  );
 ```
 
 ## Transaction Flow
@@ -135,13 +160,18 @@ num_of_steps, step_number, steps = get_vault_tx_steps(
 
 ## Error Handling
 
-```python
-try:
-    # Vault repayment code
-except service.ApiException as e:
-    print(f"Response body: {beautify_json(e.body)}")
-except Exception as e:
-    print(f"Unexpected error: {e}")
+```typeScript
+  const [ChainActivity, error] = await getVaultTxSteps(
+    stableCoinSystemApi,
+    WALLET_ADDRESS,
+    VAULT_ID,
+    AMOUNT
+  );
+
+  if (error) {
+    // you can do some addition works with error here!
+    return error;
+  }
 ```
 
 ## Best Practices
@@ -182,7 +212,8 @@ Example log entry:
     "value": "1000000000000000",
     "gas": 200000
   },
-  "tx_hash": "0x..."
+  "txHash": "0x...",
+  "vaultId": "ETH#43"
 }
 ```
 
@@ -208,10 +239,17 @@ Example log entry:
 
 1. **Connection Issues**
 
-   ```python
-   if not w3.is_connected():
-       print(f"Failed to connect to {HTTPS_RPC_URL}")
-       exit(1)
+   ```typeScript
+   w3.eth
+    .getBlockNumber()
+    .then((blockNumber) => {
+      console.log(`Successfully connected to ${HTTPS_RPC_URL}`);
+      console.log(`Latest block number: ${blockNumber}`);
+    })
+    .catch((error) => {
+      console.error(`Failed to connect to ${HTTPS_RPC_URL}:`, error);
+      process.exit(1);
+    });
    ```
 
 2. **Transaction Failures**
@@ -231,4 +269,4 @@ For additional support or bug reports, please contact the Zarban support team or
 
 ## See Also
 
-- [API Reference Documentation](../service/StableCoinSystemApi.md)
+- [API Reference Documentation](../service/Apis/StableCoinSystemApi.md)
