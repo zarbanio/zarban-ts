@@ -6,91 +6,91 @@ This documentation covers the implementation of vault creation in the Zarban Sta
 
 ## Prerequisites
 
-- Python 3.x
-- Web3.py
+- Node > 16.0.0
+- Web3.js
 - Zarban SDK
 - Ethereum node access (RPC URL)
 - Private key with sufficient funds
-- Required Python packages:
+- Required node packages:
   ```bash
-  pip install zarban
+  npm install zarban
   ```
 
 ## Core Components
 
 ### 1. Collateral Type Management
 
-#### `get_ilks_symbol(api)`
+#### `const getIlksSymbol = async (api: Service.StableCoinSystemApi.StableCoinSystemApi)`
 
 Retrieves available collateral types from the system.
 
 **Parameters:**
 
-- `api (service.StableCoinSystemApi)`: The API client instance
+- `api (Service.StableCoinSystemApi.StableCoinSystemApi)`: The StableCoinSystem Api instance
 
 **Returns:**
 
-- `list`: Unique collateral type symbols
+- `Promise<string[]>`: Unique collateral type symbols
 
 **Example:**
 
-```python
-symbols = get_ilks_symbol(stable_coin_system_api)
+```typeScript
+const symbols = await getIlksSymbol(api);
 ```
 
 ### 2. Amount Conversion
 
-#### `to_native(api, symbol, amount)`
+#### `const toNative = async (api, symbol, amount)`
 
 Converts human-readable amounts to blockchain native format.
 
 **Parameters:**
 
-- `api (service.StableCoinSystemApi)`: The API client instance
-- `symbol (str)`: Asset symbol (e.g., "ETH", "ZAR")
-- `amount (float)`: Human-readable amount
+- `api (Service.StableCoinSystemApi.StableCoinSystemApi)`: The StableCoinSystem Api instance
+- `symbol (string)`: Asset symbol (e.g., "ETH", "ZAR")
+- `amount (number)`: Human-readable amount
 
 **Returns:**
 
-- `str`: Amount in native blockchain format (wei)
+- `string`: Amount in native blockchain format (wei)
 
 **Example:**
 
-```python
-native_amount = to_native(api, "ETH", 0.01)
+```typeScript
+const nativeCollateralAmount = await toNative(api, "ETH", 0.01)
 ```
 
 ### 3. Vault Transaction Processing
 
-#### `get_vault_tx_steps(api, ilk_name, symbol, wallet_address, collateral_amount, loan_amount)`
+#### `const getVaultTxSteps = async (api, ilkName, symbol, walletAddress, collateralAmount , loanAmount)`
 
 Retrieves transaction steps for vault creation.
 
 **Parameters:**
 
-- `api (service.StableCoinSystemApi)`: The API client instance
-- `ilk_name (str)`: Collateral type name
-- `symbol (str)`: Asset symbol
-- `wallet_address (str)`: User's wallet address
-- `collateral_amount (float)`: Collateral amount
-- `loan_amount (float)`: Loan amount in stablecoin
+- `api (Service.StableCoinSystemApi.StableCoinSystemApi)`: The StableCoinSystem Api instance
+- `ilkName (string)`: Collateral type name
+- `symbol (string)`: Asset symbol
+- `walletAddress (string)`: User's wallet address
+- `collateralAmount (number)`: Collateral amount
+- `loanAmount (number)`: Loan amount in stablecoin
 
 **Returns:**
 
-- `dict`: (number_of_steps, step_number, steps)
+- `Promis`: (numberOfSteps, stepNumber, steps)
 
 ### 4. Transaction Management
 
-#### `wait_for_transaction_receipt(w3, tx_hash, max_wait_time=120, check_interval=15)`
+#### `const waitForTransactionReceipt = async (web3, txHash, maxWaitTime = 120, checkInterval = 15)`
 
 Waits for transaction confirmation.
 
 **Parameters:**
 
 - `w3`: Web3 instance
-- `tx_hash`: Transaction hash
-- `max_wait_time`: Maximum wait time in seconds
-- `check_interval`: Check interval in seconds
+- `txHash`: Transaction hash
+- `maxWaitTime`: Maximum wait time in seconds
+- `checkInterval`: Check interval in seconds
 
 **Returns:**
 
@@ -98,47 +98,73 @@ Waits for transaction confirmation.
 
 ### 5. Transaction Logging
 
-#### `save_transaction_details(tx, tx_hash, vault_id)`
+#### `const saveTransactionDetails = (tx, txHash, vaultId)`
 
 Saves transaction details to a JSON file.
 
 **Parameters:**
 
 - `tx`: Transaction object
-- `tx_hash`: Transaction hash
-- `vault_id`: Vault identifier (can be None)
+- `txHash`: Transaction hash
+- `vaultId`: Vault identifier (can be None)
 
 ## Complete Implementation Example
 
-```python
-# Configuration
-HTTPS_RPC_URL = "your_ethereum_node_url"
-PRIVATE_KEY = "your_private_key"
-WALLET_ADDRESS = get_address_from_private_key(PRIVATE_KEY)
+```typeScript
+  // Configuration
+  const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
+  const PRIVATE_KEY = "Replace with your Private key"; // start with "0x"
+  const WALLET_ADDRESS = getAddressFromPrivateKey(PRIVATE_KEY);
 
-# Setup API client
-cfg = service.Configuration(host="https://testapi.zarban.io")
-api_client = service.ApiClient(cfg)
-stable_coin_system_api = service.StableCoinSystemApi(api_client)
+  // Setup Zarban API client
+  let cfg = new Service.Configuration({
+    basePath: "https://testapi.zarban.io",
+  });
 
-# Setup Web3
-w3 = Web3(Web3.HTTPProvider(HTTPS_RPC_URL))
+  const stableCoinSystemApi =
+    new Service.StableCoinSystemApi.StableCoinSystemApi(cfg);
 
-# Vault parameters
-ILK_NAME = "ETHA"
-SYMBOL = "ETH"
-COLLATERAL_AMOUNT = 0.01
-LOAN_AMOUNT = 1000
+  // Setup Web3 connection
+  const w3 = new Web3(new HttpProvider(HTTPS_RPC_URL));
 
-# Create vault
-api_response = get_vault_tx_steps(
-    stable_coin_system_api,
+  // Verify connection by checking if we can fetch the latest block number
+  w3.eth
+    .getBlockNumber()
+    .then((blockNumber) => {
+      console.log(`Successfully connected to ${HTTPS_RPC_URL}`);
+      console.log(`Latest block number: ${blockNumber}`);
+    })
+    .catch((error) => {
+      console.error(`Failed to connect to ${HTTPS_RPC_URL}:`, error);
+      process.exit(1);
+    });
+
+  // Get account from private key
+  const account = w3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+  console.log("Account Address:", account.address);
+
+  // Get the chain ID
+  let chainId;
+  try {
+    chainId = await w3.eth.getChainId();
+  } catch (error) {
+    console.error("Error getting chain ID:", error);
+  }
+
+  // Define vault creation parameters
+  const ILK_NAME = "ETHA"; // Replace with your desired ilk
+  const SYMBOL = "ETH"; // Replace with the symbol associated with your ilk
+  const COLLATERAL_AMOUNT = 0.001; // Replace with your desired amount
+  const LOAN_AMOUNT = 100; // Replace with your desired amount
+
+  const [ChainActivity, error] = await getVaultTxSteps(
+    stableCoinSystemApi,
     ILK_NAME,
     SYMBOL,
     WALLET_ADDRESS,
     COLLATERAL_AMOUNT,
     LOAN_AMOUNT
-)
+  );
 ```
 
 ## Transaction Flow
@@ -167,13 +193,12 @@ api_response = get_vault_tx_steps(
 
 ## Error Handling
 
-```python
-try:
-    # Vault creation code
-except service.ApiException as e:
-    print(f"Response body: {beautify_json(e.body)}")
-except Exception as e:
-    print(f"Unexpected error: {e}")
+```typeScript
+ const [logs, error] = await getLogs(txHash);
+if (error) {
+   // handle errors here
+   return;
+}
 ```
 
 ## Best Practices
@@ -215,8 +240,8 @@ Example log entry:
     "value": "1000000000000000",
     "gas": 200000
   },
-  "tx_hash": "0x...",
-  "vault_id": "123"
+  "txHash": "0x...",
+  "vaultId": "123"
 }
 ```
 
@@ -243,10 +268,17 @@ Example log entry:
 
 1. **Connection Issues**
 
-   ```python
-   if not w3.is_connected():
-       print(f"Failed to connect to {HTTPS_RPC_URL}")
-       exit(1)
+   ```typeScript
+   w3.eth
+    .getBlockNumber()
+    .then((blockNumber) => {
+      console.log(`Successfully connected to ${HTTPS_RPC_URL}`);
+      console.log(`Latest block number: ${blockNumber}`);
+    })
+    .catch((error) => {
+      console.error(`Failed to connect to ${HTTPS_RPC_URL}:`, error);
+      process.exit(1);
+    });
    ```
 
 2. **Transaction Failures**
@@ -266,4 +298,4 @@ For additional support or bug reports, please contact the Zarban support team or
 
 ## See Also
 
-- [API Reference Documentation](../service/StableCoinSystemApi.md)
+- [API Reference Documentation](../service/Apis/StableCoinSystemApi.md)
