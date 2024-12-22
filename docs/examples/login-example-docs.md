@@ -1,6 +1,6 @@
 # User Login Example
 
-This example demonstrates how to implement user authentication using the Zarban SDK. It shows how to log in a user, handle the authentication token, and set up proper logging for the authentication process.
+This example demonstrates how to implement user authentication using the Zarban SDK. It shows how to log in a user, handle the authentication token.
 
 ## Prerequisites
 
@@ -9,16 +9,10 @@ Before running this example, ensure you have:
 1. Installed the Zarban SDK:
 
 ```bash
-pip install zarban
+npm install zarban
 ```
 
-2. Set up Python logging (optional but recommended):
-
-```bash
-pip install logging
-```
-
-3. Access to the Zarban API (test environment)
+2. Access to the Zarban API (test environment)
 
 ## API Specification
 
@@ -93,105 +87,98 @@ pip install logging
 
 ## Code Example
 
-```python
-import zarban.wallet.openapi_client as wallet
+```typeScript
+import { Wallet, ZarbanUtils } from "zarban";
+const { withErrorHandler } = ZarbanUtils;
 
-import logging
+async function loginExample() {
+  // Create and configure the Configuration object
+  const cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+  });
 
-def login_example():
-    # Set up logging
-    logger = logging.getLogger(__name__)
+  // Create an instance of the BaseAPI using the Configuration
+  const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
-    # Create and configure the Configuration object
-    cfg = wallet.Configuration(
-        host="https://testwapi.zarban.io"  # Use the working API URL
-    )
+  // Prepare the login request data
+  const loginRequest: Wallet.LoginRequest = {
+    email: "user@example.com",
+    password: "your_secure_password",
+  };
 
-    # Create an instance of the ApiClient with the configuration
-    api_client = wallet.ApiClient(cfg)
+  const loginWithHandler = withErrorHandler<Wallet.JwtResponse>(
+    "Wallet",
+    () => authApi.loginWithEmailAndPassword(loginRequest),
+    (response) => {
+      console.log("Login successful!");
+      console.log(`Token: ${response.data.token}`);
+    }
+  );
 
-    # Create an instance of the DefaultApi using the ApiClient
-    auth_api = wallet.AuthApi(api_client)
+  const [response, error] = await loginWithHandler();
+  if (error) {
+    // you can do some addition works with error here!
+    return error;
+  }
+  return response;
+}
 
-    # Prepare the login request data
-    login_request = wallet.LoginRequest(
-        email="user@example.com",
-        password="your_secured_password"
-    )
-
-    try:
-        # Call the login API
-        api_response = auth_api.login_with_email_and_password(login_request)
-        logger.info("Login successful!")
-        logger.info(f"Token: {api_response.token}")
-
-        # After successful login, you can set the access token for future authenticated requests
-        cfg.access_token = api_response.token
-
-        return api_response.token
-
-    except wallet.ApiException as e:
-        logger.error(f"Exception when calling auth_api->login_with_email_and_password: {e}")
-        logger.error(f"Status code: {e.status}")
-        logger.error(f"Reason: {e.reason}")
-        logger.error(f"Error message: {e.body}")
-        return None
-
-if __name__ == "__main__":
-    token = login_example()
-    if token:
-        print(f"Login successful. Token: {token}")
-    else:
-        print("Login failed. Please check the logs for more information.")
+if (require.main === module) {
+  loginExample().then((result) => {
+    if (result instanceof Error) {
+      process.exit(1);
+    }
+    process.exit(0);
+  });
+}
 ```
 
 ## Step-by-Step Explanation
 
-1. **Set Up Logging**
+1. **Configure API Client**
 
-   ```python
-   logger = logging.getLogger(__name__)
-   ```
-
-   Initializes a logger instance for tracking authentication events and errors.
-
-2. **Configure API Client**
-
-   ```python
-    cfg = wallet.Configuration(
-        host="https://testwapi.zarban.io"
-    )
-
-    # Create an instance of the ApiClient with the configuration
-    api_client = wallet.ApiClient(cfg)
+   ```typeScript
+    const cfg = new Wallet.Configuration({
+    basePath: "https://testwapi.zarban.io",
+   });
    ```
 
    Creates and configures the API client with the test environment endpoint.
 
-3. **Initialize API Instance**
+2. **Initialize API Instance**
 
-   ```python
-    auth_api = wallet.AuthApi(api_client)
+   ```typeScript
+   const authApi = new Wallet.AuthApi.AuthApi(cfg);
    ```
 
    Creates an instance of the AuthApi for making API calls.
 
-4. **Prepare Login Request**
+3. **Prepare Login Request**
 
-   ```python
-    login_request = wallet.LoginRequest(
-        email="user@example.com",
-        password="your_secured_password"
-    )
+   ```typeScript
+   const loginRequest: Wallet.LoginRequest = {
+    email: "user@example.com",
+    password: "your_secure_password",
+   };
    ```
 
    Creates a login request object with user credentials.
 
-5. **Handle Authentication**
-   ```python
-    api_response = auth_api.login_with_email_and_password(login_request)
-    cfg.access_token = api_response.token
+4. **Handle Authentication**
+
+   ```typeScript
+   const [response, error] = await loginWithHandler();
+   if (error) {
+        // you can do some addition works with error here!
+        return error;
+   }
+
+    newCfg = new Wallet.Configuration({
+        basePath: "https://testwapi.zarban.io",
+        accessToken: response.token,
+   });
    ```
+
    Sends login request and stores the authentication token for future requests.
 
 ## Error Handling
@@ -224,62 +211,43 @@ The example includes comprehensive error handling based on the API specification
 
 ### Error Handling Example
 
-```python
-try:
-    api_response = api_instance.auth_login_post(login_request)
-except wallet.ApiException as e:
-    if e.status == 400:
-        logger.error("Bad Request: Check input parameters")
-    elif e.status == 401:
-        logger.error("Unauthorized: Invalid credentials")
-    elif e.status == 404:
-        logger.error("Not Found: User account not found")
-    elif e.status == 500:
-        logger.error("Server Error: Please try again later")
-```
+Error Handling is already done by withErrorHandler method but you can do more with error if you want
 
-## Logging Configuration
-
-To set up proper logging, add this configuration before running the example:
-
-```python
-import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('auth.log'),
-        logging.StreamHandler()
-    ]
-)
+```typeScript
+const [response, error] = await loginWithHandler();
+  if (error) {
+    // you can do some addition works with error here!
+    return error;
+  }
 ```
 
 ## Best Practices
 
 1. **Credential Management**
 
-   ```python
-   # DON'T store credentials in code
-   email = "user@example.com"  # Incorrect
+   ```typeScript
+   // DON'T store credentials in code
+   const email = "user@example.com"  # Incorrect
 
-   # DO use environment variables
-   import os
-   email = os.environ.get('ZARBAN_USER_EMAIL')
+   // DO use environment variables
+   import * as dotenv from 'dotenv';
+   // Load environment variables from the `.env` file
+   dotenv.config();
+   const email =  process.env.ZARBAN_USER_EMAIL
    ```
 
 2. **Token Storage**
 
-   ```python
-   # DO store token securely
-   def save_token(token):
-       # Use your secure storage method
-       pass
+   ```typeScript
+   // DO store token securely
+   const saveToken = (token) => {
+       // Use your secure storage method
+   }
 
-   # DO clear token on logout
-   def logout():
-       configuration.access_token = None
-       # Clear stored token
+   // DO clear token on logout
+   const logout = () => {
+       // Clear stored token
+   }
    ```
 
 3. **Security Considerations**

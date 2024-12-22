@@ -3,7 +3,7 @@ const { withErrorHandler } = ZarbanUtils;
 
 async function loginExample() {
   // Create and configure the Configuration object
-  const cfg = new Wallet.Configuration({
+  let cfg = new Wallet.Configuration({
     basePath: "https://testwapi.zarban.io",
   });
 
@@ -32,7 +32,7 @@ async function loginExample() {
   }
   // After successful login, you can set the access token for future authenticated requests
   /*
-  const newCfg = new Wallet.Configuration({
+  newCfg = new Wallet.Configuration({
     basePath: "https://testwapi.zarban.io",
     accessToken: response.token,
   });
