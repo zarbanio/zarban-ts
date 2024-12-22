@@ -4,10 +4,10 @@
   <img src="https://zarban.io/favicon.ico" width="400" alt="Logo">
 </p>
 
-[![npm version](https://badge.fury.io/js/zarban.svg)](https://badge.fury.io/js/zarban-ts)
+[![npm version](https://badge.fury.io/js/zarban.svg)](https://badge.fury.io/js/zarban)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7%2B-blue)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/node/v/zarban)](https://www.npmjs.com/package/zarban-ts)
+[![Node.js](https://img.shields.io/node/v/zarban)](https://www.npmjs.com/package/zarban)
 
 Zarban SDK is a typeScript interface for interacting with the Zarban DeFi protocol, enabling developers to seamlessly integrate lending and borrowing functionalities into their applications. This SDK simplifies complex DeFi operations by providing easy-to-use methods for lending assets, managing collateral, borrowing funds, and monitoring positions in the Zarban protocol.
 
@@ -72,22 +72,27 @@ const cfg = Wallet.Configuration({
 const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
 // Make a simple API call
-response = authApi.someMethod()
-console.log(response)
+try{
+  response = await authApi.someMethod()
+  console.log(response)
+}catch(error){
+  console.log(error)
+}
 ```
 
 ## Usage Examples
 
-For detailed usage examples, see our [Examples Documentation](docs).
+For detailed usage examples, see our [Examples Documentation](docs/examples).
 
 ### Advanced Usage
 
 Here's a simple example to sign up and get started with Zarban:
 
 ```typeScript
-import { Wallet } from "zarban";
+import { Wallet, ZarbanUtils } from "zarban";
+const { withErrorHandler } = ZarbanUtils;
 
-async function signupExample(): Promise<Wallet.SimpleResponse> {
+async function signupExample() {
   // Create and configure the Configuration object
   const cfg = new Wallet.Configuration({
     basePath: "https://testwapi.zarban.io",
@@ -97,40 +102,39 @@ async function signupExample(): Promise<Wallet.SimpleResponse> {
   const authApi = new Wallet.AuthApi.AuthApi(cfg);
 
   // Prepare the signup request data
-  const signupRequest = Wallet.SignUpRequestFromJSON({
+  const signupRequest: Wallet.SignUpRequest = {
     email: "user@example.com",
-    password: "yourSecuredPassword",
-  });
+    password: "yourSecurePassword",
+  };
 
-  try {
-    // Call the signup API
-    const response = await authApi.signupWithEmailAndPassword({
-      signUpRequest: signupRequest,
-    });
-    console.log("Signup successful!");
-    console.log("Confirmation link sent.");
-
-    console.log(`Message: ${JSON.stringify(response.messages, null, 2)}`);
-    return response;
-  } catch (error) {
-    const modelError = Wallet.instanceOfModelError(error);
-    if (modelError) {
+  const signupWithHandler = withErrorHandler<Wallet.SimpleResponse>(
+    "Wallet",
+    () => authApi.signupWithEmailAndPassword(signupRequest),
+    (response) => {
+      console.log("Signup successful!");
+      console.log("Confirmation link sent.");
       console.log(
-        `Exception when calling authApi->signupWithEmailAndPassword: ${error}`
+        `Message: ${JSON.stringify(response.data.messages, null, 2)}`
       );
-      console.log(`Error message: ${error.msg}`);
-    } else {
-      console.error("Unexpected error:", error);
     }
-    throw error;
+  );
+
+  const [result, error] = await signupWithHandler();
+  if (error) {
+    // You can do some extra work with errors here!
+    return error;
   }
+  return result;
 }
 
 // Execute with proper error handling
 if (require.main === module) {
-  signupExample()
-    .then(() => process.exit(0))
-    .catch(() => process.exit(1));
+  signupExample().then((result) => {
+    if (result instanceof Error) {
+      process.exit(1);
+    }
+    process.exit(0);
+  });
 }
 ```
 
@@ -174,83 +178,58 @@ const cfg = new Wallet.Configuration({
 
 ### Configuration Parameters
 
-| **Property**           | **Type**                                                                                           | **Description**                                  |
-| ---------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| `basePath`             | `string`                                                                                           | Override base path for API requests.             |
-| `fetchApi`             | `FetchAPI`                                                                                         | Custom implementation of fetch.                  |
-| `middleware`           | `Middleware[]`                                                                                     | Middleware to apply before/after fetch requests. |
-| `queryParamsStringify` | `(params: HTTPQuery) => string`                                                                    | Function to stringify query parameters.          |
-| `username`             | `string`                                                                                           | Username for basic security.                     |
-| `password`             | `string`                                                                                           | Password for basic security.                     |
-| `apiKey`               | `string` \| `Promise<string>` \| `(name: string) => string \| Promise<string>`                     | API key for API authentication.                  |
-| `accessToken`          | `string` \| `Promise<string>` \| `(name?: string, scopes?: string[]) => string \| Promise<string>` | Access token for OAuth2 security.                |
-| `headers`              | `HTTPHeaders`                                                                                      | Headers to include in every request.             |
-| `credentials`          | `RequestCredentials`                                                                               | Credentials mode for requests (e.g., "include"). |
+| Parameter    | Type                                                                                                                                     | Description                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| apiKey       | `string \| Promise<string> \| ((name: string) => string) \| ((name: string) => Promise<string>)`                                         | Parameter for apiKey security. Can be a string, Promise of string, or function returning string/Promise.        |
+| username     | `string`                                                                                                                                 | Parameter for basic security authentication username.                                                           |
+| password     | `string`                                                                                                                                 | Parameter for basic security authentication password.                                                           |
+| accessToken  | `string \| Promise<string> \| ((name?: string, scopes?: string[]) => string) \| ((name?: string, scopes?: string[]) => Promise<string>)` | Parameter for OAuth2 security. Can be a string, Promise of string, or function taking optional name and scopes. |
+| basePath     | `string`                                                                                                                                 | Override the default base path for API requests.                                                                |
+| serverIndex  | `number`                                                                                                                                 | Override the default server index for API requests.                                                             |
+| baseOptions  | `any`                                                                                                                                    | Base options to be applied to all axios calls.                                                                  |
+| formDataCtor | `new () => any`                                                                                                                          | Custom FormData constructor for environments that don't support the native FormData class.                      |
 
 ## Error Handling
 
-```typeScript
-// First define the error handler type
-type AsyncFn<T> = (...args: any[]) => Promise<T>;
+To make error handling easier, we provide a utility function named withErrorHandler. This function simplifies the process of managing errors and helps avoid repetitive try/catch blocks in your code.
 
-// Define the error handler function
-// Higher-Order Function Pattern
-function withErrorHandler<T>(
-  fn: AsyncFn<T>,
-  apiName: string,
-  methodName: string
-) {
-  return async (
-    ...args: any[]
-  ): Promise<[T | null, Error | Service.ModelError | null]> => {
-    try {
-      const result = await fn(...args);
-      return [result, null];
-    } catch (error) {
-      if (Service.instanceOfModelError(error)) {
-        console.log(
-          `Exception when calling ${apiName}->${methodName}: ${error}`
-        );
-        console.log(`Error message: ${error.msg}`);
-        console.log(`Reasons: ${error.reasons}`);
-        return [null, error as Service.ModelError];
-      } else {
-        console.error("Unexpected error:", error);
-        return [null, error as Error];
-      }
-    }
-  };
-}
-```
+While using withErrorHandler is not mandatory, we highly recommend it for cleaner and more maintainable code. If you prefer, you can always handle errors manually using traditional try/catch blocks.
 
 ### Usage example:
 
+Using withErrorHandler
+
 ```typeScript
-import { Service } from "zarban";
+import { ZarbanUtils } from "zarban";
+const { withErrorHandler } = ZarbanUtils;
 
-const getIlksSymbolBase = async (
-  api: Service.StableCoinSystemApi.StableCoinSystemApi
-): Promise<Service.Ilk[]> => {
-  const ilks = await api.getAllIlks();
-  const symbols: Service.Ilk[] = [];
-  for (const ilk of ilks.data) {
-    symbols.push(ilk);
-  }
-  return [...new Set(symbols)];
-};
+const loginWithHandler = withErrorHandler<Wallet.JwtResponse>(
+    "Wallet",
+    () => authApi.loginWithEmailAndPassword(loginRequest),
+    (response) => {
+      console.log("Login successful!");
+      console.log(`Token: ${response.data.token}`);
+    }
+  );
 
-// Create the wrapped version with error handling
-const getIlksSymbol = withErrorHandler(getIlksSymbolBase);
-
-async function example() {
-  const [ilks, error] = await getIlksSymbol(api);
+  const [response, error] = await loginWithHandler();
   if (error) {
-    // Handle error case
-    return;
+    // you can do some addition works with error here!
+    return error;
   }
-  // Use ilks safely here
-  console.log(ilks);
-}
+```
+
+Manual Error Handling
+
+```typeScript
+  try{
+    const response = await authApi.loginWithEmailAndPassword(loginRequest)
+    console.log("Login successful!");
+    console.log(`Token: ${response.data.token}`);
+  }catch(error){
+    // handle different types of error here
+    console.log(error)
+  }
 ```
 
 ## Contributing
