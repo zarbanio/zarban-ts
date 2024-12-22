@@ -257,13 +257,14 @@ const waitForTransactionReceipt = async (
 async function main() {
   // Configuration
   const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
-  const PRIVATE_KEY = "Replace with your Private key";
+  const PRIVATE_KEY = "Replace with your Private key"; // start with "0x"
   const WALLET_ADDRESS = getAddressFromPrivateKey(PRIVATE_KEY);
 
   // Setup Zarban API client
   let cfg = new Service.Configuration({
     basePath: "https://testapi.zarban.io",
   });
+
   const stableCoinSystemApi =
     new Service.StableCoinSystemApi.StableCoinSystemApi(cfg);
 
@@ -297,8 +298,8 @@ async function main() {
   // Define vault creation parameters
   const ILK_NAME = "ETHA"; // Replace with your desired ilk
   const SYMBOL = "ETH"; // Replace with the symbol associated with your ilk
-  const COLLATERAL_AMOUNT = 0.01; // Replace with your desired amount
-  const LOAN_AMOUNT = 1000; // Replace with your desired amount
+  const COLLATERAL_AMOUNT = 0.001; // Replace with your desired amount
+  const LOAN_AMOUNT = 100; // Replace with your desired amount
 
   const [ChainActivity, error] = await getVaultTxSteps(
     stableCoinSystemApi,
@@ -343,9 +344,13 @@ async function main() {
               }
               const gas = data["gasUseEstimate"];
               // Prepare transaction
-              let gasPrice;
+              let gasPrice: bigint = BigInt(0);
               try {
+                const baseFee = (await w3.eth.getBlock("latest")).baseFeePerGas;
                 gasPrice = await w3.eth.getGasPrice();
+                if (gasPrice < baseFee) {
+                  gasPrice = (baseFee * BigInt(110)) / BigInt(100); // Increase by 110%
+                }
               } catch (error) {
                 console.log("Error while getting gasPrice");
                 console.log(error);
@@ -355,7 +360,7 @@ async function main() {
                 to: addressTo,
                 value: +value,
                 gas: gas,
-                gasPrice: gasPrice,
+                gasPrice: gasPrice.toString(),
                 nonce: nonce,
                 chainId: chainId,
                 data: calldata,
