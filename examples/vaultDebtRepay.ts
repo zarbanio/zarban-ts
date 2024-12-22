@@ -11,7 +11,7 @@ import { Web3, HttpProvider } from "web3";
 
 const { withErrorHandler } = ZarbanUtils;
 
-const to_native = (amount: number) => {
+const toNative = (amount: number) => {
   return (amount * Math.pow(10, 18)).toString();
 };
 
@@ -23,7 +23,7 @@ const getVaultTxSteps = async (
 ) => {
   let nativeAmount;
   if (amount) {
-    nativeAmount = to_native(amount);
+    nativeAmount = toNative(amount);
   }
 
   const repayZarTxRequest: Service.StablecoinSystemRepayZarTxRequest = {
