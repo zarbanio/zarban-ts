@@ -11,7 +11,7 @@ import { Web3, HttpProvider } from "web3";
 
 const { withErrorHandler } = ZarbanUtils;
 
-const toNative = (amount: number) => {
+const to_native = (amount: number) => {
   return (amount * Math.pow(10, 18)).toString();
 };
 
@@ -23,7 +23,7 @@ const getVaultTxSteps = async (
 ) => {
   let nativeAmount;
   if (amount) {
-    nativeAmount = toNative(amount);
+    nativeAmount = to_native(amount);
   }
 
   const repayZarTxRequest: Service.StablecoinSystemRepayZarTxRequest = {
@@ -47,27 +47,6 @@ const getAddressFromPrivateKey = (privateKey: Uint8Array | string): string => {
   const account = w3.eth.accounts.privateKeyToAccount(privateKey);
   // Return the address
   return account.address;
-};
-
-const getLogs = async (txHash) => {
-  const logsApi = new Service.LogsApi.LogsApi();
-  const getLogsWithHandler = withErrorHandler<Service.EventDetailsResponse>(
-    "Service",
-    () => logsApi.getLogsByTransactionHash(txHash)
-  );
-  return getLogsWithHandler();
-};
-
-const getVaultId = (logs: Service.EventDetailsResponse) => {
-  let vaultId = null;
-  if (logs) {
-    for (const log of logs.data) {
-      if (log.name == "NewCdp") {
-        vaultId = log.decoded["Cdp"];
-      }
-    }
-  }
-  return vaultId;
 };
 
 interface TransactionDetails {
@@ -167,12 +146,12 @@ const waitForTransactionReceipt = async (
 async function main() {
   // Configuration
   const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
-  const PRIVATE_KEY = "Replace with your Private key"; // start with "0x"
+  const PRIVATE_KEY = "Replace with your Private key"; // "0x..."
   const WALLET_ADDRESS = getAddressFromPrivateKey(PRIVATE_KEY);
 
   // Define vault repayment parameters
-  const VAULT_ID: number = "Replace with your vault id";
-  const AMOUNT: number = "Replace with your actual repayment value";
+  const VAULT_ID: number = 0; // Update with the actual vault ID
+  const AMOUNT: number = 0; // Update with the amount to repay
 
   // Setup Zarban API client
   let cfg = new Service.Configuration({
@@ -200,7 +179,7 @@ async function main() {
   const account = w3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 
   // Get the chain ID
-  let chainId;
+  let chainId: bigint = BigInt(0);
   try {
     chainId = await w3.eth.getChainId();
   } catch (error) {
@@ -242,15 +221,15 @@ async function main() {
         const methodParams = data["methodParameters"];
         const addressTo = methodParams["to"];
         const calldata = methodParams["calldata"];
-        const value = methodParams["value"];
-        let nonce;
+        const value: bigint = methodParams["value"];
+        let nonce: bigint = BigInt(0);
         try {
           nonce = await w3.eth.getTransactionCount(account.address);
         } catch (error) {
           console.log("Error while getting nonce");
           console.log(error);
         }
-        const gas = data["gasUseEstimate"];
+        const gas: bigint = data["gasUseEstimate"];
         // Prepare transaction
         let gasPrice: bigint = BigInt(0);
         try {
@@ -266,11 +245,11 @@ async function main() {
         const tx = {
           from: WALLET_ADDRESS,
           to: addressTo,
-          value: +value,
-          gas: gas,
+          value: value.toString(),
+          gas: gas.toString(),
           gasPrice: gasPrice.toString(),
-          nonce: nonce,
-          chainId: chainId,
+          nonce: nonce.toString(),
+          chainId: chainId.toString(),
           data: calldata,
         };
         // Sign and send transaction
@@ -284,7 +263,7 @@ async function main() {
 
         txHash = send.transactionHash;
         // Save transaction details after each transaction
-        saveTransactionDetails(tx, txHash, null); // vault_id is None at this point
+        saveTransactionDetails(tx, txHash, VAULT_ID.toString());
         // Wait for the transaction to be mined
         const receipt = waitForTransactionReceipt(w3, txHash);
         if (!receipt) {
@@ -294,7 +273,9 @@ async function main() {
           continue; // Skip to the next step if this transaction wasn't mined
         }
         console.log(
-          `Transaction ${txHash} was mined in block ${receipt["blockNumber"]}`
+          `Transaction ${txHash} was mined in block ${
+            (await receipt).blockNumber
+          }`
         );
       }
     }

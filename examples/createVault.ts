@@ -34,6 +34,7 @@ caution and ensure you understand the implications of each transaction.
 Security Warning: Never hardcode or commit private keys. Use secure methods
 for managing sensitive information in production environments.
 */
+process.removeAllListeners("warning");
 
 import * as fs from "fs";
 import * as path from "path";
@@ -139,8 +140,8 @@ const getAddressFromPrivateKey = (privateKey: Uint8Array | string): string => {
   return account.address;
 };
 
-const getLogs = async (txHash) => {
-  const logsApi = new Service.LogsApi.LogsApi();
+const getLogs = async (txHash: string, cfg: Service.Configuration) => {
+  const logsApi = new Service.LogsApi.LogsApi(cfg);
   const getLogsWithHandler = withErrorHandler<Service.EventDetailsResponse>(
     "Service",
     () => logsApi.getLogsByTransactionHash(txHash)
@@ -160,15 +161,26 @@ const getVaultId = (logs: Service.EventDetailsResponse) => {
   return vaultId;
 };
 
+type EthereumTransaction = {
+  from: string;
+  to: string;
+  value: string;
+  gas: string;
+  gasPrice: string;
+  nonce: string;
+  chainId: string;
+  data: string;
+};
+
 interface TransactionDetails {
   timestamp: string;
-  tx: {};
+  tx: EthereumTransaction;
   txHash: string;
   vaultId?: string | null;
 }
 
 const saveTransactionDetails = (
-  tx: {},
+  tx: EthereumTransaction,
   txHash: string,
   vaultId: string | null
 ): void => {
@@ -197,6 +209,7 @@ const saveTransactionDetails = (
   existingData.push(transactionData);
 
   // Write updated data back to the file
+  console.log(typeof existingData[0].tx.gas);
   try {
     fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2), "utf8");
     console.log("Transaction details saved to transaction_log.json");
@@ -209,7 +222,7 @@ const saveTransactionDetails = (
 async function updateLastTransactionWithVaultId(vaultId: string) {
   try {
     // Read the existing transaction log
-    const filePath = "transaction_log.json";
+    const filePath = path.join(__dirname, "transaction_log.json");
     const data = JSON.parse(
       fs.readFileSync(filePath, "utf-8")
     ) as TransactionDetails[];
@@ -257,7 +270,7 @@ const waitForTransactionReceipt = async (
 async function main() {
   // Configuration
   const HTTPS_RPC_URL = "Replace with your Ethereum node URL";
-  const PRIVATE_KEY = "Replace with your Private key"; // start with "0x"
+  const PRIVATE_KEY = "Replace with your Private key"; // "0x..."
   const WALLET_ADDRESS = getAddressFromPrivateKey(PRIVATE_KEY);
 
   // Setup Zarban API client
@@ -285,10 +298,9 @@ async function main() {
 
   // Get account from private key
   const account = w3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
-  console.log("Account Address:", account.address);
 
   // Get the chain ID
-  let chainId;
+  let chainId: bigint = BigInt(0);
   try {
     chainId = await w3.eth.getChainId();
   } catch (error) {
@@ -334,15 +346,15 @@ async function main() {
               const methodParams = data["methodParameters"];
               const addressTo = methodParams["to"];
               const calldata = methodParams["calldata"];
-              const value = methodParams["value"];
-              let nonce;
+              const value: bigint = methodParams["value"];
+              let nonce: bigint = BigInt(0);
               try {
                 nonce = await w3.eth.getTransactionCount(account.address);
               } catch (error) {
                 console.log("Error while getting nonce");
                 console.log(error);
               }
-              const gas = data["gasUseEstimate"];
+              const gas: bigint = data["gasUseEstimate"];
               // Prepare transaction
               let gasPrice: bigint = BigInt(0);
               try {
@@ -355,16 +367,17 @@ async function main() {
                 console.log("Error while getting gasPrice");
                 console.log(error);
               }
-              const tx = {
+              const tx: EthereumTransaction = {
                 from: WALLET_ADDRESS,
                 to: addressTo,
-                value: +value,
-                gas: gas,
+                value: value.toString(),
+                gas: gas.toString(),
                 gasPrice: gasPrice.toString(),
-                nonce: nonce,
-                chainId: chainId,
+                nonce: nonce.toString(),
+                chainId: chainId.toString(),
                 data: calldata,
               };
+
               // Sign and send transaction
               const signedTxn = await account.signTransaction(tx);
               let send;
@@ -388,13 +401,15 @@ async function main() {
                 continue; // Skip to the next step if this transaction wasn't mined
               }
               console.log(
-                `Transaction ${txHash} was mined in block ${receipt["blockNumber"]}`
+                `Transaction ${txHash} was mined in block ${
+                  (await receipt).blockNumber
+                }`
               );
             }
           }
 
           if (numberOf == stepNumber) {
-            const [logs, error] = await getLogs(txHash);
+            const [logs, error] = await getLogs(txHash, cfg);
             if (!error) {
               const vaultid = getVaultId(logs);
               if (vaultid) {
